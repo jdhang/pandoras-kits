@@ -6,13 +6,12 @@ var Review = require('./models/review');
 var User = require('./models/user')(db);
 var Order = ('./models/order')(db);
 
-Kit.hasMany(Item)
+Kit.belongsToMany(Item)
 Kit.hasMany(Review)
-Kit.hasMany(Order)
+Kit.belongsToMany(Order)
 Review.belongsTo(User)
 Review.belongsTo(Kit)
 Item.belongsToMany(Kit)
 Order.belongsTo(User)
-Order.hasMany(Kit)
 
 module.exports = db;
