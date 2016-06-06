@@ -17,11 +17,7 @@ module.exports = function (db) {
         classMethods: {
         },
         hooks: {
-            beforeValidate: function (kit) {
-                //if (kit) {
-                    //kit.change
-                //}
-            }
+            //placeholder for options
         }
     });
 };
