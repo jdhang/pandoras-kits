@@ -33,6 +33,15 @@ module.exports = function (db) {
         instanceMethods: {
         },
         classMethods: {
+            findByCategory: function(category) {  // in wikistack, we had this in a tagArray... if this doesn't work, perhaps turn it into a categoryArray
+                return this.findAll({
+                    where: {
+                        categories: {
+                            $overlap: category   //categoryArray?
+                        }
+                    }
+                });
+            }
         },
         hooks: {
             beforeValidate: function (kit) {
