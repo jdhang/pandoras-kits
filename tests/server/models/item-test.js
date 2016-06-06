@@ -21,6 +21,10 @@ describe('Item model', function () {
     return db.sync({ force: true })
   })
 
+  afterEach('Sync DB', function () {
+    return db.sync({ force: true })
+  })
+
   describe('Class Methods', function () {
   })
 

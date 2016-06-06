@@ -4,7 +4,7 @@ const Sequelize = require('sequelize')
 
 module.exports = function (db) {
 
-  db.define('item', {
+  return db.define('item', {
     name: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -45,4 +45,5 @@ module.exports = function (db) {
     classMethods: {
     }
   })
+
 }
