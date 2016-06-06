@@ -26,7 +26,6 @@ module.exports = function (db) {
         },
         quantity: {
             type: Sequelize.INTEGER,
-            allowNull: false,
             defaultValue: 1
         }
     }, {
@@ -37,7 +36,7 @@ module.exports = function (db) {
                 return this.findAll({
                     where: {
                         categories: {
-                            $overlap: category   //categoryArray?
+                            $overlap: [category]   //categoryArray?
                         }
                     }
                 });
