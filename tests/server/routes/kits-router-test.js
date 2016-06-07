@@ -45,7 +45,7 @@ describe('Kits Route', function () {
         })
     });
 
-	xdescribe('`/kits` URI', function() {
+	describe('`/kits` URI', function() {
 		it('GET responds with an array of all kits', function(done) {
 	      agent
 	        .get('/api/kits')
