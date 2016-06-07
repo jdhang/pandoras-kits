@@ -5,14 +5,14 @@ const chai = require('chai')
 chai.use(require('chai-things'))
 const expect = chai.expect
 
-const Sequelize = require('sequelize');
-const dbURI = 'postgres://localhost:5432/testing-pandoras-kits'
-const db = new Sequelize(dbURI, {
-    logging: false
-})
+// const Sequelize = require('sequelize');
+// const dbURI = 'postgres://localhost:5432/testing-pandoras-kits'
+// const db = new Sequelize(dbURI, {
+//     logging: false
+// })
 
-require('../../../server/db/models/item')(db)
-
+// require('../../../server/db/models/item')(db)
+const db = require('../../../server/db')
 const Item = db.model('item')
 
 describe('Item model', function () {
