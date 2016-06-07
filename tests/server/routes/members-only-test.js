@@ -1,12 +1,13 @@
 // Instantiate all models
 var expect = require('chai').expect;
 
-var Sequelize = require('sequelize');
-var dbURI = 'postgres://localhost:5432/testing-pandoras-kits';
-var db = new Sequelize(dbURI, {
-    logging: false
-});
-require('../../../server/db/models/user')(db);
+var db = require('../../../server/db')
+// var Sequelize = require('sequelize');
+// var dbURI = 'postgres://localhost:5432/testing-pandoras-kits';
+// var db = new Sequelize(dbURI, {
+//     logging: false
+// });
+// require('../../../server/db/models/user')(db);
 
 var supertest = require('supertest');
 
