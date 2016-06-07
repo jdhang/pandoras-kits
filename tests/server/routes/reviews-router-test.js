@@ -14,7 +14,7 @@ var db = require('../../../server/db');
 var supertest = require('supertest');
 var agent, testReview;
 
-describe('Reviews Route', function () {
+xdescribe('Reviews Route', function () {
 
     var app, Review;
 

@@ -8,6 +8,7 @@ router.param('kitId', function(req, res, next, id) {
 	Kit.findById(id).then(function(kit) {
 		if (!kit) res.sendStatus(404)
 		req.kit = kit;
+		next();
 	}).catch(next)
 })
 
@@ -39,7 +40,8 @@ router.delete('/:kitId', function(req, res, next) {
 	}).catch(next)
 });
 
-router.get('/:category', function(req, res, next) {
+router.get('/category/:category', function(req, res, next) {
+	console.log('////////////////////////')
 	Kit.findByCategory(req.params.category).then(function(kits){
 		res.json(kits);
 	}).catch(next)
