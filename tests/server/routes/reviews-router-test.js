@@ -1,20 +1,10 @@
 // Instantiate all models
 var expect = require('chai').expect;
-
-// var Sequelize = require('sequelize');
-// var dbURI = 'postgres://localhost:5432/pandoras-kits';
-// var db = new Sequelize(dbURI, {
-//     logging: false
-// });
-// require('../../../server/db/models/user')(db);
-// require('../../../server/db/models/review')(db);
 var db = require('../../../server/db');
-
-
 var supertest = require('supertest');
 var agent, testReview;
 
-xdescribe('Reviews Route', function () {
+describe('Reviews Route', function () {
 
     var app, Review;
 

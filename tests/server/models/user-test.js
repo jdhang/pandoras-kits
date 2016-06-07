@@ -1,17 +1,9 @@
 var sinon = require('sinon');
 var expect = require('chai').expect;
-
-var Sequelize = require('sequelize');
-var dbURI = 'postgres://localhost:5432/testing-pandoras-kits';
-var db = new Sequelize(dbURI, {
-    logging: false
-});
-
-require('../../../server/db/models/user')(db);
-
+var db = require('../../../server/db')
 var User = db.model('user');
 
-xdescribe('User model', function () {
+describe('User model', function () {
 
     beforeEach('Sync DB', function () {
        return db.sync({ force: true });
