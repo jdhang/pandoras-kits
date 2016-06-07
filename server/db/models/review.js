@@ -3,12 +3,16 @@ var Sequelize = require('sequelize');
 
 module.exports = function (db) {
 
-    db.define('review', {
+    return db.define('review', {
+        title: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
         num_stars: {
-            type: Sequelize.Integer,
+            type: Sequelize.INTEGER,
             validate:{ min: 1, max: 5}
         },
-        text: {
+        content: {
             type: Sequelize.TEXT
         }
     }, {
