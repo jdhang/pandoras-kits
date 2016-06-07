@@ -22,7 +22,7 @@ module.exports = function (db) {
             findByUser: function(userId){
                 return this.findAll({
                     where: {
-                       userId: userId;
+                       userId: userId
                     }
                 });
             }
