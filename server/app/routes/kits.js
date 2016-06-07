@@ -41,7 +41,6 @@ router.delete('/:kitId', function(req, res, next) {
 });
 
 router.get('/category/:category', function(req, res, next) {
-	console.log('////////////////////////')
 	Kit.findByCategory(req.params.category).then(function(kits){
 		res.json(kits);
 	}).catch(next)
