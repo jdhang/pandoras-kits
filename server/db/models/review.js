@@ -19,9 +19,13 @@ module.exports = function (db) {
         instanceMethods: {
         },
         classMethods: {
-        },
-        hooks: {
-            //placeholder for options
+            findByUser: function(userId){
+                return this.findAll({
+                    where: {
+                       userId: userId;
+                    }
+                });
+            }
         }
     });
 };
