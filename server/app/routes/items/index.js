@@ -8,6 +8,7 @@ router.param('itemId', function (req, res, next, id) {
   .then((item) => {
     if (!kit) res.sendStatus(404)
     req.item = item
+    next()
   })
   .catch(next)
 })
