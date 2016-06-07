@@ -1,8 +1,8 @@
 var router = require('express').Router();
 
-var models = require('../../db');
+var db = require('../../db');
 
-var Review= models.Review;
+var Review= db.model('review');
 
 
 module.exports = router;
@@ -11,7 +11,7 @@ router.param('reviewId', function(req, res,next,id){
 	Review.findById(id)
 	.then(function(review){
 		if (!review) res.sendStatus(404)
-		else req.review=review
+		else req.review=review; next();
 	})
 	.catch(next);
 });
@@ -42,6 +42,6 @@ router.put('/:reviewId', function(req,res,next){
 
 router.delete('/:reviewId', function(req,res,next){
 	req.review.destroy()
-	.then(() => res.status(204))
+	.then(() => res.sendStatus(204))
 	.catch(next);
 });
