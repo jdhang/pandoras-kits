@@ -163,7 +163,9 @@ gulp.task('default', function () {
     gulp.watch(['browser/**/*.html', 'server/app/views/*.html'], ['reload']);
 
     // Run server tests when a server file or server test file changes.
-    gulp.watch(['tests/server/**/*.js'], ['set-test-node-env', 'testServerJS', 'reset-node-env']);
+    gulp.watch(['tests/server/**/*.js'], function () {
+      runSeq('set-test-node-env', 'testServerJS', 'reset-node-env')
+    })
 
     // Run browser testing when a browser test file changes.
     gulp.watch('tests/browser/**/*', ['testBrowserJS']);
