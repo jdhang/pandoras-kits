@@ -1,8 +1,8 @@
 'use strict';
 var db = require('./_db');
-// var Kit = require('./models/kit')(db);
-// var Item = require('./models/item')(db);
 var Review = require('./models/review')(db);
+var Kit = require('./models/kit')(db);
+var Item = require('./models/item')(db);
 var User = require('./models/user')(db);
 // var Order = ('./models/order')(db);
 
@@ -14,6 +14,4 @@ var User = require('./models/user')(db);
 // Item.belongsToMany(Kit)
 // Order.belongsTo(User)
 
-module.exports = {
-	Review: Review
-}
+module.exports = db;

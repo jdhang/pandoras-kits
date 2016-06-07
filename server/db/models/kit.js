@@ -26,13 +26,21 @@ module.exports = function (db) {
         },
         quantity: {
             type: Sequelize.INTEGER,
-            allowNull: false,
             defaultValue: 1
         }
     }, {
         instanceMethods: {
         },
         classMethods: {
+            findByCategory: function(category) {  // in wikistack, we had this in a tagArray... if this doesn't work, perhaps turn it into a categoryArray
+                return this.findAll({
+                    where: {
+                        categories: {
+                            $overlap: [category]   //categoryArray?
+                        }
+                    }
+                });
+            }
         },
         hooks: {
             beforeValidate: function (kit) {
