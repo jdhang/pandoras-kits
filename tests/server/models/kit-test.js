@@ -11,7 +11,7 @@ require('../../../server/db/models/kit')(db);
 
 var Kit = db.model('kit');
 
-xdescribe('Kit model', function () {
+describe('Kit model', function () {
 
     beforeEach('Sync DB', function () {
        return db.sync({ force: true });
