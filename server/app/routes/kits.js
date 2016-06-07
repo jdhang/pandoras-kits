@@ -1,6 +1,7 @@
 'use strict';
 var router = require('express').Router();
-var Kit = require('../../db/models/kit');
+var db = require('../../db')
+var Kit = db.model('kit')
 module.exports = router;
 
 router.param('kitId', function(req, res, next, id) {
