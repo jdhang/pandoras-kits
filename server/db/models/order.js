@@ -14,6 +14,11 @@ module.exports = function (db) {
   }, {
     getterMethods: {
       total: function () {
+        return this.getOrderDetails()
+        .then((orderDetails) => {
+          return orderDetails.map((orderDetail) => {return orderDetail.subtotal })
+                             .reduce((prev, current) => { return prev + current }, 0)
+        })
       },
       paid: function () {
         return this.paymentDate !== null
