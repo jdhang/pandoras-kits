@@ -8,7 +8,10 @@ module.exports = function (db) {
     return db.define('kit', {
         name: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
         },
         description: {
             type: Sequelize.TEXT
@@ -17,6 +20,7 @@ module.exports = function (db) {
             type: Sequelize.FLOAT,
             allowNull: false,
             validate: {
+                notEmpty: true,
                 min: 0
             }
         },
