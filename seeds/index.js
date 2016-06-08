@@ -10,18 +10,18 @@ let seedOrders = function () {
 
   let orders = [
     {
-      status: 'Processing',
+      status: 'processing',
       paymentDate: Date.now()
     },
     {
-      status: 'Completed'
+      status: 'completed'
     },
     {
-      status: 'Processing',
+      status: 'processing',
       shippedDate: Date.now()
     },
     {
-      status: 'Cancelled'
+      status: 'cancelled'
     }
   ]
 

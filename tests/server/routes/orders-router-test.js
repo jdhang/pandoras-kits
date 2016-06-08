@@ -22,8 +22,8 @@ describe('API Orders Routes', function () {
   beforeEach(function () {
     return Promise.all([
       Order.create({}),
-      Order.create({ status: 'Completed' }),
-      Order.create({ status: 'Completed' }),
+      Order.create({ status: 'completed' }),
+      Order.create({ status: 'completed' }),
     ])
     .spread(function(order1, order2, order3){
       testOrder1 = order1
