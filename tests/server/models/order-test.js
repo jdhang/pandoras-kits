@@ -101,7 +101,7 @@ describe('Order model', function () {
         done()
       })
 
-      xit('should return a promise', function (done) {
+      it('should return a promise', function (done) {
         expect(testOrder.getTotal().then).to.be.a('Function')
         done()
       })
@@ -125,29 +125,6 @@ describe('Order model', function () {
   })
 
   describe('Class Methods', function () {
-
-    describe('findByStatus method', function () {
-
-      beforeEach(function () {
-        return createOrder()
-      })
-
-      it('returns empty array with invalid status', function () {
-        return Order.findByStatus('Processing')
-        .then((orders) => {
-          expect(orders).to.have.length(0)
-        })
-      })
-
-      it('returns orders with correct input status', function () {
-        return Order.findByStatus('Created')
-        .then((orders) => {
-          expect(orders).to.have.length(1)
-        })
-      })
-
-    })
-
   })
 
   describe('Validations', function () {
