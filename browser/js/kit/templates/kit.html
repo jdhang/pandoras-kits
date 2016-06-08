@@ -10,7 +10,8 @@
     <div class="col-xs-4">
     	<p>Description: {{ kit.description }}</p>
     	<p>Price: ${{ kit.price }}</p>
-        <p>Qty: {{ kit.quantity }}</p>
+        <p ng-show="{{ kit.quantity > 0 }}">Qty: <input></p>
+        <span class="soldout" ng-hide="{{ kit.quantity > 0 }}">SOLD OUT</span>
     </div>
   </div>
 </div>
