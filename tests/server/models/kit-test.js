@@ -16,7 +16,7 @@ describe('Kit model', function () {
     describe('properties', function () {
 
         it('requires name', function() {
-            Kit.build({
+            return Kit.build({
                 price: 1
             }).validate().then(function(kit) {
                 expect(kit.message).to.equal('notNull Violation: name cannot be null');
@@ -24,7 +24,7 @@ describe('Kit model', function () {
         });
 
         it('requires price', function() {
-            Kit.build({
+            return Kit.build({
                 name: 'foo'
             }).validate().then(function(newkit) {
                 expect(newkit.message).to.equal('notNull Violation: price cannot be null');
@@ -37,7 +37,7 @@ describe('Kit model', function () {
                 price: 1
             })
 
-            kit.then(function(newkit) {
+            return kit.then(function(newkit) {
                 expect(newkit.description).to.equal(null);
                 expect(newkit.categories).to.equal(null);
                 expect(newkit.imageUrl).to.be.a('string');
@@ -50,7 +50,7 @@ describe('Kit model', function () {
     describe('findByCategory method', function () {
 
         it('should return all kits that are associated with a given category', function () {
-            Kit.bulkCreate([
+            return Kit.bulkCreate([
                 {   name: 'foobar',
                     price: 1,
                     categories: [ 'foo', 'bar' ]
