@@ -33,10 +33,10 @@ module.exports = function (db) {
         })
       }
     },
-    classMethods: {
-      findByStatus: function (status) {
-        return this.findAll({ where: { status: status }})
-      }
+    classMethods: {}
+  }, {
+    defaultScope: {
+      include: [{ model: 'OrderDetail' }]
     }
   })
 }

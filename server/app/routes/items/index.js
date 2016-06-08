@@ -1,12 +1,12 @@
 'use strict'
 
 const router = require('express').Router()
-const Item = require('../../db').model('item')
+const Item = require('../../../db').model('item')
 
 router.param('itemId', function (req, res, next, id) {
   Item.findById(id)
   .then((item) => {
-    if (!kit) res.sendStatus(404)
+    if (!item) res.sendStatus(404)
     req.item = item
     next()
   })
