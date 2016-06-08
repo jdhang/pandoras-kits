@@ -1,77 +1,74 @@
 'use strict'
 
+const Promise = require('sequelize').Promise
 const chai = require('chai')
 chai.use(require('chai-things'))
 const expect = chai.expect
 const db = require('../../../server/db')
-const Promise = require('sequelize').Promise
 const OrderDetail = db.model('orderDetail')
 const Order = db.model('order')
 
-describe('Order model', function () {
+describe('Order model', () => {
 
-  beforeEach('Sync DB', function () {
+  let falseyOrder, paidOrder, shippedOrder
+
+  beforeEach('Sync DB', () => {
     return db.sync({ force: true })
   })
 
-  afterEach('Sync DB', function () {
+  after('Clean DB', () => {
     return db.sync({ force: true })
   })
 
-  let createOrder = function (additionalFields) {
-    let fields = Object.assign({}, additionalFields)
-    return Order.create(fields)
-  }
+  beforeEach('Create Orders', () => {
+    return Promise.all([
+      Order.create({}),
+      Order.create({ paymentDate: Date.now() }),
+      Order.create({ shippedDate: Date.now() })
+    ])
+    .spread((order1, order2, order3) => {
+      falseyOrder = order1
+      paidOrder = order2
+      shippedOrder = order3
+    })
+  })
 
-  describe('Getter Methods', function () {
+  describe('Getter Methods', () => {
 
-    describe('paid method', function () {
+    describe('paid method', () => {
 
-      it('returns false by default', function () {
-        return createOrder()
-        .then((createdOrder) => {
-          expect(createdOrder.paid).to.be.false
-        })
+      it('returns false by default', () => {
+        expect(falseyOrder.paid).to.be.false
       })
 
-      it('returns true if paymentDate is not null', function () {
-        return createOrder({ paymentDate: Date.now() })
-        .then((createdOrder) => {
-          expect(createdOrder.paid).to.be.true
-        })
+      it('returns true if paymentDate is not null', () => {
+        expect(paidOrder.paid).to.be.true
       })
 
     })
 
-    describe('shipped method', function () {
+    describe('shipped method', () => {
 
-      it('returns false by default', function () {
-        return createOrder()
-        .then((createdOrder) => {
-          expect(createdOrder.shipped).to.be.false
-        })
+      it('returns false by default', () => {
+        expect(falseyOrder.shipped).to.be.false
       })
 
-      it('returns true if shippedDate is not null', function () {
-        return createOrder({ shippedDate: Date.now() })
-        .then((createdOrder) => {
-          expect(createdOrder.shipped).to.be.true
-        })
+      it('returns true if shippedDate is not null', () => {
+        expect(shippedOrder.shipped).to.be.true
       })
 
     })
 
   })
 
-  describe('Instance Methods', function () {
+  describe('Instance Methods', () => {
 
-    describe('getTotal method', function () {
+    describe('getTotal method', () => {
 
-      let testOrder, testOrderDetail1, testOrderDetail2
+      let associatedOrder
 
-      beforeEach(function () {
+      beforeEach(() => {
         return Promise.all([
-          createOrder(),
           OrderDetail.create({
             unitPrice: 10.00,
             quantity: 2
@@ -81,40 +78,35 @@ describe('Order model', function () {
             quantity: 1
           })
         ])
-        .spread((order, orderDetail1, orderDetail2) => {
+        .spread((orderDetail1, orderDetail2) => {
           return Promise.all([
-            order.addOrderDetails([orderDetail1, orderDetail2]),
-            orderDetail1.setOrder(order),
-            orderDetail2.setOrder(order)
+            falseyOrder.addOrderDetails([orderDetail1, orderDetail2]),
+            orderDetail1.setOrder(falseyOrder),
+            orderDetail2.setOrder(falseyOrder)
           ])
         })
         .spread((order, orderDetail1, orderDetail2) => {
-          testOrder = order
-          testOrderDetail1 = orderDetail1
-          testOrderDetail2 = orderDetail2
+          associatedOrder = order
         })
       })
 
-
-      it('should exist', function (done) {
-        expect(testOrder.getTotal).to.be.a('Function')
-        done()
+      it('exists', () => {
+        expect(associatedOrder.getTotal).to.be.a('Function')
       })
 
-      it('should return a promise', function (done) {
-        expect(testOrder.getTotal().then).to.be.a('Function')
-        done()
+      it('returns a promise', () => {
+        expect(associatedOrder.getTotal().then).to.be.a('Function')
       })
 
-      it('should return a number when the promise is resolved', function () {
-        return testOrder.getTotal()
+      it('returns a number when the promise is resolved', () => {
+        return associatedOrder.getTotal()
         .then((total) => {
           expect(total).to.be.a('Number')
         })
       })
 
-      it('should return the correct total when the promise is resolved', function () {
-        return testOrder.getTotal()
+      it('returns the correct total when the promise is resolved', () => {
+        return associatedOrder.getTotal()
         .then((total) => {
           expect(total).to.equal(30)
         })
@@ -123,12 +115,5 @@ describe('Order model', function () {
     })
 
   })
-
-  describe('Class Methods', function () {
-  })
-
-  describe('Validations', function () {
-  })
-
 
 })
