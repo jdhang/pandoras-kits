@@ -22,6 +22,7 @@ var db = require('./server/db');
 var User = db.model('user');
 var Kit = db.model('kit');  // Liz edit
 var Promise = require('sequelize').Promise;
+const seed = require('./seeds')
 
 var seedUsers = function () {
 
@@ -64,9 +65,18 @@ var seedUsers = function () {
 
 };
 
+
 db.sync({ force: true })
     .then(function () {
-        return seedUsers();
+      return Promise.all([
+        seedUsers(),
+        seed.Kits(),
+        seed.Orders(),
+        seed.OrderDetails()
+      ]);
+    })
+    .then(function () {
+      return seed.Associations()
     })
     .then(function () {
         console.log(chalk.green('Seed successful!'));
