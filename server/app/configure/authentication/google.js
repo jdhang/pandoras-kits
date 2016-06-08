@@ -27,7 +27,6 @@ module.exports = function (app, db) {
                     return user;
                 } else {
                     return User.create({
-                        email: profile.email,
                         google_id: profile.id
                     });
                 }
