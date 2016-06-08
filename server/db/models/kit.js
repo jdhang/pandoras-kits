@@ -15,7 +15,10 @@ module.exports = function (db) {
         },
         price: {
             type: Sequelize.FLOAT,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                min: 0
+            }
         },
         imageUrl: {
             type: Sequelize.STRING,
@@ -26,7 +29,10 @@ module.exports = function (db) {
         },
         quantity: {
             type: Sequelize.INTEGER,
-            defaultValue: 1
+            defaultValue: 1,
+            validate: {
+                min: 0
+            }
         }
     }, {
         instanceMethods: {
