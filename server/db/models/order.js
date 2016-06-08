@@ -12,8 +12,8 @@ module.exports = function (db) {
       type: Sequelize.DATE
     },
     status: {
-      type: Sequelize.ENUM('Created', 'Processing', 'Cancelled', 'Completed'),
-      defaultValue: 'Created'
+      type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
+      defaultValue: 'created'
     }
   }, {
     getterMethods: {
@@ -28,15 +28,10 @@ module.exports = function (db) {
       getTotal: function () {
         return this.getOrderDetails()
         .then((orderDetails) => {
-          return orderDetails.map((orderDetail) => { return orderDetail.subtotal })
-            .reduce((prev, curr) => { return prev + curr })
+          return orderDetails.map(orderDetail => orderDetail.subtotal)
+            .reduce((prev, curr) => prev + curr)
         })
       }
     },
-    classMethods: {}
-  }, {
-    defaultScope: {
-      include: [{ model: 'OrderDetail' }]
-    }
   })
 }

@@ -32,7 +32,7 @@ describe('API Orders Routes', function () {
 
   describe('GET /orders', function () {
 
-    it('should respond with 200', function (done) {
+    it('responds with 200', function (done) {
       agent.get('/api/orders/').expect(200)
       .end((err, res) => {
         if (err) return done(err)
@@ -42,9 +42,9 @@ describe('API Orders Routes', function () {
       })
     })
 
-    it('should return filtered orders with query', function (done) {
+    it('returns filtered orders with query', function (done) {
       agent
-      .get('/api/orders?status=Completed')
+      .get('/api/orders?status=completed')
       .expect(200)
       .end((err, res) => {
         if (err) return done(err)
@@ -63,7 +63,7 @@ describe('API Orders Routes', function () {
       done()
     })
 
-    it('should respond with 200 on a page', function (done) {
+    it('responds with 200 on a page', function (done) {
       agent.get('/api/orders/' + testOrder1.id)
       .expect(200)
       .end((err, res) => {
