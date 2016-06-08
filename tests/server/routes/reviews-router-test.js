@@ -47,11 +47,6 @@ describe('GET /reviews', function () {
 
 describe('GET /reviews/:reviewId', function () {
 
-  it('responds with 404 on page that does not exist', function (done) {
-       agent.get('/api/reviews/randomFakeId').expect(404);
-       done();
-  });
-
   it('should respond with 200 on a page', function (done) {
     console.log(testReview.id);
     agent.get('/api/reviews/' + testReview.id)

@@ -7,9 +7,9 @@ var User = require('./models/user')(db);
 const OrderDetail = require('./models/order_detail')(db);
 const Order = require('./models/order')(db);
 
+Order.hasMany(OrderDetail)
 OrderDetail.belongsTo(Kit)
 OrderDetail.belongsTo(Order)
-Order.hasMany(OrderDetail)
 // Kit.belongsToMany(Item)
 // Kit.hasMany(Review)
 // Kit.belongsToMany(Order)
