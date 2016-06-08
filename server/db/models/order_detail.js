@@ -4,8 +4,8 @@ const Sequelize = require('sequelize')
 
 module.exports = function (db) {
 
-  return db.define('order_detail', {
-    price: {
+  return db.define('orderDetail', {
+    unitPrice: {
       type: Sequelize.FLOAT,
       allowNull: false,
       validate: {
@@ -19,13 +19,10 @@ module.exports = function (db) {
   }, {
     getterMethods: {
       subtotal: function () {
-        return this.price * this.quantity
+        return this.unitPrice * this.quantity
       }
     },
     classMethods: {
-      findByOrderId: function (orderId) {
-        return this.findAll({ where: { orderId: orderId }})
-      }
     }
   })
 

@@ -10,21 +10,27 @@ module.exports = function (db) {
     },
     shippedDate: {
       type: Sequelize.DATE
+    },
+    status: {
+      type: Sequelize.STRING
     }
   }, {
     getterMethods: {
-      total: function () {
-        return this.getOrderDetails()
-        .then((orderDetails) => {
-          return orderDetails.map((orderDetail) => {return orderDetail.subtotal })
-                             .reduce((prev, current) => { return prev + current }, 0)
-        })
-      },
       paid: function () {
         return this.paymentDate !== null
       },
       shipped: function () {
         return this.shippedDate !== null
+      }
+    },
+    instanceMethods: {
+      getTotal: function () {
+        return this.getOrderDetails()
+        .then((orderDetails) => {
+          return orderDetails.reduce((prev, curr) => {
+            return prev.subtotal + curr.subtotal
+          })
+        })
       }
     }
   })

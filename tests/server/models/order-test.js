@@ -5,7 +5,7 @@ chai.use(require('chai-things'))
 const expect = chai.expect
 const db = require('../../../server/db')
 const Promise = require('sequelize').Promise
-const OrderDetail = db.model('order_detail')
+const OrderDetail = db.model('orderDetail')
 const Order = db.model('order')
 
 describe('Order model', function () {
@@ -16,22 +16,22 @@ describe('Order model', function () {
     return db.sync({ force: true })
   })
 
-  beforeEach('Create OrderDetails', function () {
-    return Promise.all([
-      OrderDetail.create({
-        price: 10.00,
-        quantity: 1
-      }),
-      OrderDetail.create({
-        price: 10.00,
-        quantity: 2
-      })
-    ])
-    .spread((orderDetail1, orderDetail2) => {
-      testOrderDetail1 = orderDetail1
-      testOrderDetail2 = orderDetail2
-    })
-  })
+  // beforeEach('Create OrderDetails', function () {
+  //   return Promise.all([
+  //     OrderDetail.create({
+  //       price: 10.00,
+  //       quantity: 1
+  //     }),
+  //     OrderDetail.create({
+  //       price: 10.00,
+  //       quantity: 2
+  //     })
+  //   ])
+  //   .spread((orderDetail1, orderDetail2) => {
+  //     testOrderDetail1 = orderDetail1
+  //     testOrderDetail2 = orderDetail2
+  //   })
+  // })
 
   afterEach('Sync DB', function () {
     return db.sync({ force: true })
@@ -44,22 +44,22 @@ describe('Order model', function () {
       return Order.create(fields)
     }
 
-    xdescribe('total method', function () {
-      let order
+    // describe('total method', function () {
+    //   let order
 
-      return createOrder()
-      .then((createdOrder) => {
-        order = createdOrder
+    //   return createOrder()
+    //   .then((createdOrder) => {
+    //     order = createdOrder
 
-        return Promise.all([
-          testOrderDetail1.setOrder(order),
-          testOrderDetail2.setOrder(order)
-        ])
-      })
-      .spread((orderDetail1, orderDetail2) => {
-        expect(order.total).to.equal(30)
-      })
-    })
+    //     return Promise.all([
+    //       testOrderDetail1.setOrder(order),
+    //       testOrderDetail2.setOrder(order)
+    //     ])
+    //   })
+    //   .spread((orderDetail1, orderDetail2) => {
+    //     expect(order.total).to.equal(30)
+    //   })
+    // })
 
     describe('paid method', function () {
 
