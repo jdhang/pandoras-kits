@@ -1,0 +1,16 @@
+<div id="container" class="kit">
+  <div>
+  	<h3>{{ kit.name.toUpperCase() }}</h3>
+  	<small>Rating: 4 stars (placeholder)</small>
+  </div>
+  <div class="row">
+    <div class="col-xs-8">
+        <img ng-src="{{ kit.imageUrl }}">
+    </div>
+    <div class="col-xs-4">
+    	<p>Description: {{ kit.description }}</p>
+    	<p>Price: ${{ kit.price }}</p>
+        <p>Qty: {{ kit.quantity }}</p>
+    </div>
+  </div>
+</div>

@@ -19,7 +19,7 @@ module.exports = function (db) {
         },
         imageUrl: {
             type: Sequelize.STRING,
-            defaultValue: 'PLACEHOLDER: questionmarkimage.jpg' 
+            defaultValue: 'js/kit/images/placeholderkitsimage.jpg'
         },
         categories: {
             type: Sequelize.ARRAY(Sequelize.STRING)
@@ -32,11 +32,11 @@ module.exports = function (db) {
         instanceMethods: {
         },
         classMethods: {
-            findByCategory: function(category) {  // in wikistack, we had this in a tagArray... if this doesn't work, perhaps turn it into a categoryArray
+            findByCategory: function(category) {
                 return this.findAll({
                     where: {
                         categories: {
-                            $overlap: [category]   //categoryArray?
+                            $overlap: [category]
                         }
                     }
                 });
