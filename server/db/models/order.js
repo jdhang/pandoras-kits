@@ -10,21 +10,32 @@ module.exports = function (db) {
     },
     shippedDate: {
       type: Sequelize.DATE
+    },
+    status: {
+      type: Sequelize.ENUM('Created', 'Processing', 'Cancelled', 'Completed'),
+      defaultValue: 'Created'
     }
   }, {
     getterMethods: {
-      total: function () {
-        return this.getOrderDetails()
-        .then((orderDetails) => {
-          return orderDetails.map((orderDetail) => {return orderDetail.subtotal })
-                             .reduce((prev, current) => { return prev + current }, 0)
-        })
-      },
       paid: function () {
         return this.paymentDate !== null
       },
       shipped: function () {
         return this.shippedDate !== null
+      }
+    },
+    instanceMethods: {
+      getTotal: function () {
+        return this.getOrderDetails()
+        .then((orderDetails) => {
+          return orderDetails.map((orderDetail) => { return orderDetail.subtotal })
+            .reduce((prev, curr) => { return prev + curr })
+        })
+      }
+    },
+    classMethods: {
+      findByStatus: function (status) {
+        return this.findAll({ where: { status: status }})
       }
     }
   })

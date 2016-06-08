@@ -9,6 +9,7 @@ const Order = require('./models/order')(db);
 
 OrderDetail.belongsTo(Kit)
 OrderDetail.belongsTo(Order)
+Order.hasMany(OrderDetail)
 // Kit.belongsToMany(Item)
 // Kit.hasMany(Review)
 // Kit.belongsToMany(Order)
