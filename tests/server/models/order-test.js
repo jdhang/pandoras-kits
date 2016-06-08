@@ -10,56 +10,20 @@ const Order = db.model('order')
 
 describe('Order model', function () {
 
-  let testOrderDetail1, testOrderDetail2
-
   beforeEach('Sync DB', function () {
     return db.sync({ force: true })
   })
-
-  // beforeEach('Create OrderDetails', function () {
-  //   return Promise.all([
-  //     OrderDetail.create({
-  //       price: 10.00,
-  //       quantity: 1
-  //     }),
-  //     OrderDetail.create({
-  //       price: 10.00,
-  //       quantity: 2
-  //     })
-  //   ])
-  //   .spread((orderDetail1, orderDetail2) => {
-  //     testOrderDetail1 = orderDetail1
-  //     testOrderDetail2 = orderDetail2
-  //   })
-  // })
 
   afterEach('Sync DB', function () {
     return db.sync({ force: true })
   })
 
+  let createOrder = function (additionalFields) {
+    let fields = Object.assign({}, additionalFields)
+    return Order.create(fields)
+  }
+
   describe('Getter Methods', function () {
-
-    let createOrder = function (additionalFields) {
-      let fields = Object.assign({}, additionalFields)
-      return Order.create(fields)
-    }
-
-    // describe('total method', function () {
-    //   let order
-
-    //   return createOrder()
-    //   .then((createdOrder) => {
-    //     order = createdOrder
-
-    //     return Promise.all([
-    //       testOrderDetail1.setOrder(order),
-    //       testOrderDetail2.setOrder(order)
-    //     ])
-    //   })
-    //   .spread((orderDetail1, orderDetail2) => {
-    //     expect(order.total).to.equal(30)
-    //   })
-    // })
 
     describe('paid method', function () {
 
@@ -100,6 +64,90 @@ describe('Order model', function () {
   })
 
   describe('Instance Methods', function () {
+
+    describe('getTotal method', function () {
+
+      let testOrder, testOrderDetail1, testOrderDetail2
+
+      beforeEach(function () {
+        return Promise.all([
+          createOrder(),
+          OrderDetail.create({
+            unitPrice: 10.00,
+            quantity: 2
+          }),
+          OrderDetail.create({
+            unitPrice: 10.00,
+            quantity: 1
+          })
+        ])
+        .spread((order, orderDetail1, orderDetail2) => {
+          return Promise.all([
+            order.addOrderDetails([orderDetail1, orderDetail2]),
+            orderDetail1.setOrder(order),
+            orderDetail2.setOrder(order)
+          ])
+        })
+        .spread((order, orderDetail1, orderDetail2) => {
+          testOrder = order
+          testOrderDetail1 = orderDetail1
+          testOrderDetail2 = orderDetail2
+        })
+      })
+
+
+      it('should exist', function (done) {
+        expect(testOrder.getTotal).to.be.a('Function')
+        done()
+      })
+
+      xit('should return a promise', function (done) {
+        expect(testOrder.getTotal().then).to.be.a('Function')
+        done()
+      })
+
+      it('should return a number when the promise is resolved', function () {
+        return testOrder.getTotal()
+        .then((total) => {
+          expect(total).to.be.a('Number')
+        })
+      })
+
+      it('should return the correct total when the promise is resolved', function () {
+        return testOrder.getTotal()
+        .then((total) => {
+          expect(total).to.equal(30)
+        })
+      })
+
+    })
+
+  })
+
+  describe('Class Methods', function () {
+
+    describe('findByStatus method', function () {
+
+      beforeEach(function () {
+        return createOrder()
+      })
+
+      it('returns empty array with invalid status', function () {
+        return Order.findByStatus('Processing')
+        .then((orders) => {
+          expect(orders).to.have.length(0)
+        })
+      })
+
+      it('returns orders with correct input status', function () {
+        return Order.findByStatus('Created')
+        .then((orders) => {
+          expect(orders).to.have.length(1)
+        })
+      })
+
+    })
+
   })
 
   describe('Validations', function () {
