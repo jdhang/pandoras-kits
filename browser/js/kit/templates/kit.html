@@ -12,11 +12,12 @@
       	<p>Price: ${{ kit.price }}</p>
         <form>
           <div ng-show="{{ kit.quantity > 0 }}">
-            <p>Qty: <input type="number" ng-model="userQty" min="1" required></p>
+            <p>Qty: <input type="number" value="{{ initialValue }}" ng-model="userQty" min="1" required></p>
             <button>ADD TO CART</button>
           </div>
           <p class="soldout" ng-hide="{{ kit.quantity > 0 }}">SOLD OUT</p>
         </form>
+        <br><p>Subtotal: {{ userQty * kit.price }}</p>
       </div>
     </div>
 </div>
