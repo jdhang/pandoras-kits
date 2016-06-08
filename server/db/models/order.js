@@ -34,5 +34,9 @@ module.exports = function (db) {
       }
     },
     classMethods: {}
+  }, {
+    defaultScope: {
+      include: [{ model: 'OrderDetail' }]
+    }
   })
 }
