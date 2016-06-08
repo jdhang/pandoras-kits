@@ -67,7 +67,6 @@ module.exports = function (app, db) {
         req.logout();
         res.status(200).end();
     });
-    console.log("I'm here at auth");
     // Each strategy enabled gets registered.
     ENABLED_AUTH_STRATEGIES.forEach(function (strategyName) {
         require(path.join(__dirname, strategyName))(app, db);
