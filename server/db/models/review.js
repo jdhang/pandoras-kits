@@ -13,10 +13,10 @@ module.exports = function (db) {
             validate:{ min: 1, max: 5}
         },
         content: {
-            type: Sequelize.TEXT
-            // validate:{
-
-            // }
+            type: Sequelize.TEXT,
+            validate:{
+                len: 20
+            }
         }
     }, {
         instanceMethods: {
