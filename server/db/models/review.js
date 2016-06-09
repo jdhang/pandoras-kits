@@ -14,6 +14,9 @@ module.exports = function (db) {
         },
         content: {
             type: Sequelize.TEXT
+            // validate:{
+
+            // }
         }
     }, {
         instanceMethods: {
