@@ -1,5 +1,4 @@
-app.controller('CategoryCtrl',function($scope, allKits,category){
-	$scope.kits= allKits;
+app.controller('CategoryCtrl',function($scope, allCategoryKits,category){
+	$scope.kits= allCategoryKits;
 	$scope.category= category;
-	console.log('the kits: ',$scope.kits);
 });
