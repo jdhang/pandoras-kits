@@ -14,6 +14,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 { label: 'Members Only', state: 'membersOnly', auth: true }
             ];
 
+            scope.categories= ['Travel', 'Life Essentials', 'Parent Life', 'Emergencies', 'First Impressions'];
+
             scope.user = null;
 
             scope.isLoggedIn = function () {
