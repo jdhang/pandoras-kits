@@ -2,13 +2,13 @@ app.config(function ($stateProvider) {
 
     $stateProvider.state('category', {
         url: '/category/:category',
-        templateUrl: 'js/categories/templates/category.html',
+        templateUrl: 'js/kit/templates/kits.html',
         controller: 'CategoryCtrl',
         resolve: {
         	allCategoryKits: function(CategoryFactory, $stateParams) {
         		return CategoryFactory.getKits($stateParams.category);
         	},
-            category: function($stateParams){
+            title: function($stateParams){
                 return $stateParams.category;
             }
         }
