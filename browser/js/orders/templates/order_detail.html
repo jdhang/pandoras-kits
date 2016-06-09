@@ -21,7 +21,10 @@
       </div>
     </div>
     <div class='panel-body'>
-      <pre>{{ order | json }}</pre>
+      <!-- <pre>{{ order | json }}</pre> -->
+      <div ng-repeat='orderDetail in order.orderDetails'>
+        <pre>{{ orderDetail | json }}</pre>
+      </div>
     </div>
   </div>
 </div>
