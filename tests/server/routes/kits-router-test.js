@@ -45,6 +45,10 @@ describe('Kits Route', function () {
         })
     });
 
+    after('reset database', function() {
+    	return db.sync({ force: true });
+    })
+
 	describe('`/kits` URI', function() {
 		it('GET responds with an array of all kits', function(done) {
 	      agent
@@ -70,9 +74,12 @@ describe('Kits Route', function () {
 	        .expect('Content-Type', /json/)
 	        .end(function(err, res) {
 	        	if (err) return done(err);
-				expect(res.body.id).to.eql(testKits.length+1);
-				expect(res.body.name).to.eql('newkit');
-				done()
+	        	Kit.findAll().then(function(kits) {
+	        		expect(res.body.id).to.eql(testKits.length+1);
+					expect(res.body.name).to.eql('newkit');
+					expect(kits.length).to.eql(testKits.length+1);
+					done()	
+	        	})
 	        });
 	    });
     });
