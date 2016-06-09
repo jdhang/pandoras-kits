@@ -1,4 +1,22 @@
 <div id='order-detail' class='container'>
-  <h2>DETAIL OF ORDER : {{ order.id }}</h2>
-  <pre>{{ order | json }}</pre>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <div class='row'>
+        <div class='col-xs-8'>
+          <h3>DETAIL OF ORDER : {{ order.id }}</h3>
+        </div>
+        <div class='col-xs-4'>
+          <select class='form-control' ng-model='order.status'>
+            <option value='created'>Created</option>
+            <option value='processing'>Processing</option>
+            <option value='completed'>Completed</option>
+            <option value='cancelled'>Cancelled</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class='panel-body'>
+      <pre>{{ order | json }}</pre>
+    </div>
+  </div>
 </div>
