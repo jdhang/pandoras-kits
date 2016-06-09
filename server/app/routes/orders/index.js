@@ -60,7 +60,6 @@ router.delete('/:orderId', function (req, res, next) {
   .catch(next)
 })
 
-//liz edits for cart:
 router.post('/cart/add', function(req, res) {
   Order.findOrCreate({
     where: {
@@ -68,16 +67,29 @@ router.post('/cart/add', function(req, res) {
       status: 'created'
     }
   }).then(function(order) {
-    return OrderDetail.create({
-      unitPrice: req.body.kit.price,
-      quantity: req.body.qty,
-      orderId: order[0].id,
-      kitId: req.body.kit.id
+    return OrderDetail.findOne({
+      where: {
+        orderId: order[0].id,
+        kitId: req.body.kit.id
+      }
+    }).then(function(orderDetail) {
+      if (orderDetail) {
+        return orderDetail.update({
+          unitPrice: req.body.kit.price,
+          quantity: orderDetail.quantity + req.body.qty
+        })
+      } else {
+        return OrderDetail.create({
+          unitPrice: req.body.kit.price,
+          quantity: req.body.qty,
+          orderId: order[0].id,
+          kitId: req.body.kit.id
+        })
+      }
     })
   }).then(function(orderDetail) {
     res.status(204).json(orderDetail);
   })
 })
-//end liz edits for cart:
 
 module.exports = router

@@ -11,6 +11,6 @@ app.controller('KitController', function ($scope, KitsFactory, AuthService, theK
     });
 
 	$scope.kit = theKit;
-	$scope.initialValue = 1;
+	$scope.initialValue = 0;
 	$scope.addToCart = KitsFactory.addToCart;
 });
