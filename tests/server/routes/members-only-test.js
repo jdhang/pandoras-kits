@@ -21,6 +21,7 @@ describe('Members Route', function () {
 		var guestAgent;
 
 		beforeEach('Create guest agent', function () {
+			console.log("I AM HERE");
 			guestAgent = supertest.agent(app);
 		});
 
@@ -43,6 +44,7 @@ describe('Members Route', function () {
 
 		beforeEach('Create a user', function (done) {
 			return User.create(userInfo).then(function (user) {
+				console.log("LOOK AT USER", user);
                 done();
             }).catch(done);
 		});
