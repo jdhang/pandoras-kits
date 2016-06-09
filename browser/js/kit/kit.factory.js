@@ -13,6 +13,12 @@ app.factory('KitsFactory', function ($http) {
 		})
 	}
 
+	obj.addToCart = function(kit, qty, user) {
+		return $http.post('/api/orders/cart/add', { kit: kit, qty: qty, user: user }).then(function(res) {
+			return res.data
+		})
+	}
+
 	return obj;
 
 });

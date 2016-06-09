@@ -13,7 +13,7 @@
         <form>
           <div ng-show="{{ kit.quantity > 0 }}">
             <p>Qty: <input type="number" value="{{ initialValue }}" ng-model="userQty" min="1" required></p>
-            <button>ADD TO CART</button>
+            <button ng-click="addToCart(kit, userQty, user)">ADD TO CART</button>
           </div>
           <p class="soldout" ng-hide="{{ kit.quantity > 0 }}">SOLD OUT</p>
         </form>

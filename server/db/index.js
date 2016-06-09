@@ -16,6 +16,6 @@ Review.belongsTo(Kit);
 // Kit.hasMany(Review)
 // Kit.belongsToMany(Order)
 // Item.belongsToMany(Kit)
-// Order.belongsTo(User)
+Order.belongsTo(User)
 
 module.exports = db;

@@ -2,6 +2,7 @@
 
 const router = require('express').Router()
 const Order = require('../../../db').model('order')
+const OrderDetail = require('../../../db').model('orderDetail')
 
 router.param('orderId', function (req, res, next, id) {
   Order.findById(id)
@@ -58,5 +59,25 @@ router.delete('/:orderId', function (req, res, next) {
   .then(() => res.sendStatus(204))
   .catch(next)
 })
+
+//liz edits for cart:
+router.post('/cart/add', function(req, res) {
+  Order.findOrCreate({
+    where: {
+      userId: req.body.user.id,
+      status: 'created'
+    }
+  }).then(function(order) {
+    return OrderDetail.create({
+      unitPrice: req.body.kit.price,
+      quantity: req.body.qty,
+      orderId: order[0].id,
+      kitId: req.body.kit.id
+    })
+  }).then(function(orderDetail) {
+    res.status(204).json(orderDetail);
+  })
+})
+//end liz edits for cart:
 
 module.exports = router
