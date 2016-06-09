@@ -52,10 +52,10 @@ gulp.task('buildJS', ['lintJS'], function () {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./public'));
 });
-
+// './tests/server/**/*.js'
 gulp.task('testServerJS', function () {
     require('babel-register');
-	return gulp.src('./tests/server/**/*.js', {
+	return gulp.src('./tests/server/routes/members-only-test.js', {
 		read: false
 	}).pipe(mocha({ reporter: 'spec' }));
 });
