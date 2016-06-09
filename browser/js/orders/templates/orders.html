@@ -1,0 +1,26 @@
+<div id='orders' class='container'>
+  <h2>ORDERS</h2>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <table class='table table-hover'>
+        <tr>
+          <th>ID</th>
+          <th>Order Date</th>
+          <th>Status</th>
+          <th>Paid</th>
+          <th>Shipped</th>
+          <th>Payment Date</th>
+          <th>Shipped Date</th>
+        </tr>
+        <tr ng-repeat='order in orders' ui-sref='orderDetail({ orderId: order.id })'>
+          <td>{{ order.id }}</td>
+          <td>{{ order.createdAt | date:'MM-dd-yyyy' }}</td>
+          <td>{{ order.status }}</td>
+          <td>{{ order.paid }}</td>
+          <td>{{ order.shipped | date:'MM-dd-yyyy' }}</td>
+          <td>{{ order.paymentDate | date:'MM-dd-yyyy' }}</td>
+          <td>{{ order.shippedDate | date:'MM-dd-yyyy' }}</td>
+      </table>
+    </div>
+  </div>
+</div>
