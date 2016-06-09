@@ -15,7 +15,7 @@ module.exports = function (app, db) {
                 }
             })
             .then(function (user) {
-                // user.correctPassword is a method from the User schema.
+                // user.correctPassword is a method from the User schema
                 if (!user || !user.correctPassword(password)) {
                     done(null, false);
                 } else {
@@ -30,9 +30,7 @@ module.exports = function (app, db) {
 
     // A POST /login route is created to handle login.
     app.post('/login', function (req, res, next) {
-
         var authCb = function (err, user) {
-
             if (err) return next(err);
 
             if (!user) {
