@@ -55,7 +55,7 @@ gulp.task('buildJS', ['lintJS'], function () {
 // './tests/server/**/*.js'
 gulp.task('testServerJS', function () {
     require('babel-register');
-	return gulp.src('./tests/server/routes/members-only-test.js', {
+	return gulp.src('./tests/server/**/*.js', {
 		read: false
 	}).pipe(mocha({ reporter: 'spec' }));
 });
