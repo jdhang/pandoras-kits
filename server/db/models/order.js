@@ -32,6 +32,6 @@ module.exports = function (db) {
             .reduce((prev, curr) => prev + curr)
         })
       }
-    },
+    }
   })
 }

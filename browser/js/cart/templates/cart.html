@@ -1,0 +1,14 @@
+<div id="container" class="kits">
+  <h3>CART</h3>
+  <div class="row" ng-repeat="orderDetail in cartOrder">
+    <div class="col-xs-4">
+      <a class="thumbnail" ui-sref="kit({kitId: kit.id})">
+        <img ng-src="{{ kit.imageUrl }}">
+      </a>
+    </div>
+    <div class="caption" class="col-xs-8">
+      <h5>Name: {{ kit.name.toUpperCase() }}</h5>
+      <p>Price: ${{ kit.price }}</p>
+    </div>
+  </div>
+</div>

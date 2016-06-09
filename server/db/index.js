@@ -16,6 +16,6 @@ OrderDetail.belongsTo(Order)
 // Review.belongsTo(User)
 // Review.belongsTo(Kit)
 // Item.belongsToMany(Kit)
-// Order.belongsTo(User)
+Order.belongsTo(User)
 
 module.exports = db;
