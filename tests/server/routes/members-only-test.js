@@ -21,7 +21,6 @@ describe('Members Route', function () {
 		var guestAgent;
 
 		beforeEach('Create guest agent', function () {
-			console.log("I AM HERE");
 			guestAgent = supertest.agent(app);
 		});
 
