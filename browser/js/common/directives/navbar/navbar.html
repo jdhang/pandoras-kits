@@ -15,4 +15,10 @@
             <a ng-click="logout()">Logout</a>
         </div>
     </div>
-</nav> 
+    <hr>
+    <ul class="nav navbar-nav">
+        <li ng-repeat="category in categories">
+            <a ui-sref="category({category: category})">{{category}}</a>
+        </li>
+    </ul>
+</nav>
