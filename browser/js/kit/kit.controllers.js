@@ -33,6 +33,6 @@ app.controller('KitController', function ($scope, KitsFactory, AuthService, theK
     });
 
 	$scope.kit = theKit;
-	$scope.initialValue = 0;
+	$scope.userQty = 1;
 	$scope.addToCart = KitsFactory.addToCart;
 });

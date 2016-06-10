@@ -1,0 +1,51 @@
+#orders {
+
+  @include clearfix;
+
+}
+
+.a-column {
+  margin-right: 2%;
+  float: left;
+  min-height: 1px;
+  overflow: visible;
+}
+
+#order-detail {
+
+  .splitter {
+    color: #DDD;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .order-header {
+    margin-bottom: 15px;
+  }
+
+  .od-summary {
+
+    .a-row {
+      width: 100%;
+
+      @for $i from 1 through 12 {
+        .a-span#{$i} {
+          width: 98% / (12 / $i);
+        }
+      }
+
+
+    }
+  }
+
+  .od-info {
+
+    margin-bottom: 15px;
+
+    .subtotal {
+      font-weight: bold;
+    }
+
+  }
+
+}
