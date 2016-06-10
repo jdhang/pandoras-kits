@@ -9,4 +9,5 @@ app.directive('ordersList', () => {
     },
     templateUrl: 'js/orders/templates/orders-list.html'
   }
+
 })
