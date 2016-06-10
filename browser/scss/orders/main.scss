@@ -1,0 +1,29 @@
+#orders {
+
+  @include clearfix;
+
+}
+
+#order-detail {
+
+  .splitter {
+    color: #DDD;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .order-header {
+    margin-bottom: 15px;
+  }
+
+  .order-detail-info {
+
+    margin-bottom: 15px;
+
+    .subtotal {
+      font-weight: bold;
+    }
+
+  }
+
+}

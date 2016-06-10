@@ -1,8 +1,9 @@
 'use strict'
 
 const router = require('express').Router()
-const Order = require('../../../db').model('order')
-const OrderDetail = require('../../../db').model('orderDetail')
+const db = require('../../../db')
+const Order = db.model('order')
+const OrderDetail = db.model('orderDetail')
 
 router.param('orderId', function (req, res, next, id) {
   Order.findById(id)
