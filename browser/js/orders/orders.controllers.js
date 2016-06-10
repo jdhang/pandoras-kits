@@ -6,8 +6,8 @@ app.controller('OrdersController', (orders, $scope) => {
 
 })
 
-app.controller('OrderDetailController', (order, $scope, OrdersFactory) => {
-
+app.controller('OrderDetailController', (order, $scope) => {
+	console.log(order)
   $scope.order = order
   $scope.order.subtotal = order.orderDetails.length
                           ? order.orderDetails

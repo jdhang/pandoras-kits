@@ -4,7 +4,7 @@
     <div class='od-info row' ng-if='details.length !==
     0' ng-repeat='orderDetail in details'>
       <div class='detail-img col-xs-2'>
-        <img src='http://www.placehold.it/90x90' class='center-block img-responsive' />
+        <img ng-src="{{ orderDetail.kit.imageUrl }}" class='center-block img-responsive' />
       </div>
       <div class='detail-info col-xs-10'>
         <div class='detail-info-kit col-xs-7'>

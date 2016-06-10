@@ -3,6 +3,18 @@
 const router = require('express').Router()
 const Order = require('../../db').model('order')
 const OrderDetail = require('../../db').model('orderDetail')
+module.exports = router;
+
+router.get('/:userId', function(req, res) {
+  Order.findOne({
+    where: {
+      userId: req.params.userId,
+      status: 'created'
+    }
+  }).then(function(order) {
+    res.json(order)
+  })
+})
 
 router.post('/add/:userId', function(req, res, next) {
   Order.findOrCreate({
@@ -35,5 +47,3 @@ router.post('/add/:userId', function(req, res, next) {
     res.status(204).json(orderDetail);
   }).catch(next)
 })
-
-module.exports = router;
