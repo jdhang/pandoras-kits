@@ -1,4 +1,4 @@
-app.factory('KitsFactory', function ($http) {
+app.factory('KitsFactory', function ($http, $kookies) {
 	var obj = {};
 
 	obj.getAll = function() {
@@ -14,9 +14,39 @@ app.factory('KitsFactory', function ($http) {
 	}
 
 	obj.addToCart = function(kit, qty, user) {
-		return $http.post('/api/orders/cart/add', { kit: kit, qty: qty, user: user }).then(function(res) {
-			return res.data
-		})
+		if (user) {
+			return $http.post('/api/orders/cart/add/'+user.id, { kit: kit, qty: qty }).then(function(res) {
+				return res.data
+			})
+		} else {
+			let kitToAddToCart = { kit: kit, qty: qty }
+			let currCart = $kookies.get('cart')
+
+			function checkForDuplicate() {
+				for (let i = 0; i < currCart.length; i++) {
+					if (currCart[i].kit.id === kit.id) {
+						return i;
+					}
+				}
+				return -1;
+			}
+
+		  	if (!currCart) {
+		    	$kookies.set('cart', [kitToAddToCart], {path: '/'});
+		  	} else {
+				let index = checkForDuplicate();
+				if (index > -1) {
+					console.log('updating')
+					currCart[index].qty += qty;
+				} else {
+					console.log('pushing')
+					currCart.push(kitToAddToCart);
+				}
+				$kookies.set('cart', currCart, {path: '/'});
+			}
+
+			console.log($kookies.get('cart'))
+		}
 	}
 
 	return obj;

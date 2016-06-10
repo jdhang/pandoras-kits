@@ -60,10 +60,33 @@ router.delete('/:orderId', function (req, res, next) {
   .catch(next)
 })
 
-router.post('/cart/add', function(req, res) {
+// router.post('/cart/add', function(req, res) {
+  
+//   function checkForDuplicate(cart, kitId) {
+//     for (let i = 0; i < cart.length; i++) {
+//       if (cart[i].kit.id === kitId) {
+//         return i;
+//       }
+//     }
+//     return false;
+//   }
+
+//   if (!req.session.cart) {
+//     req.session.cart = [req.body];
+//   } else {
+//     let cart = req.session.cart;
+//     let index = checkForDuplicate(cart, req.body.kit.id);
+//     if (index !== false) cart[index].qty = cart[index].qty + req.body.qty;
+//     else cart.push(req.body);
+//   }
+
+//   res.send(req.session.cart);
+// })
+
+router.post('/cart/add/:userId', function(req, res, next) {
   Order.findOrCreate({
     where: {
-      userId: req.body.user.id,
+      userId: req.params.userId,
       status: 'created'
     }
   }).then(function(order) {
@@ -89,7 +112,7 @@ router.post('/cart/add', function(req, res) {
     })
   }).then(function(orderDetail) {
     res.status(204).json(orderDetail);
-  })
+  }).catch(next)
 })
 
 module.exports = router
