@@ -43,15 +43,15 @@
             </dd>
             <dt>Paid: </dt>
             <dd>
-              <span class='glyphicon' ng-class="{'glyphicon-ok': order.paid,
-                'glyphicon-remove': !order.paid}"></span>
+              <span ng-class="{'glyphicon glyphicon-ok': order.paid,
+                'glyphicon glyphicon-remove': !order.paid}"></span>
             </dd>
             <dt>Payment Date</dt>
             <dd>{{ order.paymentDate || '-' | date: 'MM-dd-yyyy' }}</dd>
             <dt>Shipped: </dt>
             <dd>
-              <span class='glyphicon' ng-class="{'glyphicon-ok': order.shipped,
-                'glyphicon-remove': !order.shipped}"></span>
+              <span ng-class="{'glyphicon glyphicon-ok': order.shipped,
+                'glyphicon glyphicon-remove': !order.shipped}"></span>
             </dd>
             <dt>Shipped Date</dt>
             <dd>{{ order.shippedDate || '-' | date: 'MM-dd-yyyy' }}</dd>
