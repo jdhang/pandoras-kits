@@ -19,6 +19,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+	console.log("In the post route for kits");
 	Kit.create(req.body).then(function(kit){
 		res.status(201).json(kit);
 	}).catch(next)
