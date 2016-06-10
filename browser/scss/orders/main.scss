@@ -4,6 +4,13 @@
 
 }
 
+.a-column {
+  margin-right: 2%;
+  float: left;
+  min-height: 1px;
+  overflow: visible;
+}
+
 #order-detail {
 
   .splitter {
@@ -16,7 +23,22 @@
     margin-bottom: 15px;
   }
 
-  .order-detail-info {
+  .od-summary {
+
+    .a-row {
+      width: 100%;
+
+      @for $i from 1 through 12 {
+        .a-span#{$i} {
+          width: 98% / (12 / $i);
+        }
+      }
+
+
+    }
+  }
+
+  .od-info {
 
     margin-bottom: 15px;
 
