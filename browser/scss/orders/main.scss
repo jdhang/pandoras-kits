@@ -5,10 +5,20 @@
 }
 
 .a-column {
-  margin-right: 2%;
+  margin-right: 3%;
   float: left;
   min-height: 1px;
   overflow: visible;
+}
+.a-row {
+  width: 100%;
+
+  @for $i from 1 through 12 {
+    .a-span#{$i} {
+      width: 93% / (12 / $i);
+    }
+  }
+
 }
 
 #order-detail {
@@ -24,18 +34,6 @@
   }
 
   .od-summary {
-
-    .a-row {
-      width: 100%;
-
-      @for $i from 1 through 12 {
-        .a-span#{$i} {
-          width: 98% / (12 / $i);
-        }
-      }
-
-
-    }
   }
 
   .od-info {
