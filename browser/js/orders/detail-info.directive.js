@@ -1,6 +1,6 @@
 'use strict'
 
-app.directive('orderDetailInfo', () => {
+app.directive('detailInfo', () => {
 
   return {
     restrict: 'E',
