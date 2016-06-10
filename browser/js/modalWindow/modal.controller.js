@@ -16,7 +16,10 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, ModalFa
   $scope.post= function(){
     $scope.kit.categories= $scope.kit.categories.split(",");
     ModalFactory.postKit($scope.kit)
-    .then(()=> $scope.ok())
+    .then(()=> {
+     $scope.ok()
+     $scope.digest(); 
+    })
     .catch(function (err) {
       console.log('SOMETHING WENT TERRIBLY WRONG');
     });
