@@ -14,7 +14,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
     $scope.error = null;
 
     $scope.sendLogin = function (loginInfo) {
-
+console.log("DID I REACH LOGIN 1", loginInfo);
         $scope.error = null;
 
         AuthService.login(loginInfo).then(function () {

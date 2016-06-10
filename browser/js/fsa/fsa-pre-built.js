@@ -87,6 +87,7 @@
         };
 
         this.login = function (credentials) {
+            console.log("AUTHSERVICE.login");
             return $http.post('/login', credentials)
                 .then(onSuccessfulLogin)
                 .catch(function () {

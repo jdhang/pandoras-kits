@@ -1,5 +1,7 @@
 <div id="container" class="kits">
-  <h3>{{title}}</h3>
+  <h3 class='kits'>{{title}}</h3>
+    <a  ng-show= 'user.isAdmin'class='glyphicon glyphicon-plus-sign add-product' ng-click='open()'></a>
+
   <div class="row">
     <div class="col-xs-4" ng-repeat="kit in kits">
       <a class="thumbnail" ui-sref="kit({kitId: kit.id})">
@@ -12,3 +14,9 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+

@@ -15,6 +15,10 @@ module.exports = function (db) {
         salt: {
             type: Sequelize.STRING
         },
+        isAdmin:{
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        },
         twitter_id: {
             type: Sequelize.STRING
         },
@@ -30,6 +34,7 @@ module.exports = function (db) {
                 return _.omit(this.toJSON(), ['password', 'salt']);
             },
             correctPassword: function (candidatePassword) {
+                console.log(typeof candidatePassword);
                 return this.Model.encryptPassword(candidatePassword, this.salt) === this.password;
             }
         },
@@ -41,11 +46,13 @@ module.exports = function (db) {
                 var hash = crypto.createHash('sha1');
                 hash.update(plainText);
                 hash.update(salt);
+                console.log("encryptPassword", typeof plainText);
                 return hash.digest('hex');
             }
         },
         hooks: {
             beforeValidate: function (user) {
+                console.log("beforeValidate");
                 if (user.changed('password')) {
                     user.salt = user.Model.generateSalt();
                     user.password = user.Model.encryptPassword(user.password, user.salt);

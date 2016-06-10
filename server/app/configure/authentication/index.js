@@ -13,6 +13,7 @@ var ENABLED_AUTH_STRATEGIES = [
 
 module.exports = function (app, db) {
 
+
     var dbStore = new SequelizeStore({
         db: db
     });
