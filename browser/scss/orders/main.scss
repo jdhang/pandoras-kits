@@ -10,6 +10,7 @@
   min-height: 1px;
   overflow: visible;
 }
+
 .a-row {
   width: 100%;
 
@@ -19,6 +20,10 @@
     }
   }
 
+}
+
+.od-subtotal {
+  padding-right: 0px;
 }
 
 #order-detail {
