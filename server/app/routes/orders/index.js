@@ -21,18 +21,7 @@ router.get('/', function (req, res, next) {
       where: req.query
     }
   }
-  // Order.findAll(options)
-  // .then(_orders_ => {
-  //   orders = _orders_
-  //   return Promise.all(orders.map(order => { return order.getOrderDetails() }))
-  // })
-  // .then(orderDetails => {
-  //   res.json(orders.map((order, i) => {
-  //     order.orderDetails = orderDetails[i]
-  //     return order
-  //   }))
-  // })
-  // .catch(next)
+  
   Order.findAll(options)
   .then(orders => { res.json(orders) })
   .catch(next)
@@ -58,61 +47,6 @@ router.delete('/:orderId', function (req, res, next) {
   req.order.destroy()
   .then(() => res.sendStatus(204))
   .catch(next)
-})
-
-// router.post('/cart/add', function(req, res) {
-  
-//   function checkForDuplicate(cart, kitId) {
-//     for (let i = 0; i < cart.length; i++) {
-//       if (cart[i].kit.id === kitId) {
-//         return i;
-//       }
-//     }
-//     return false;
-//   }
-
-//   if (!req.session.cart) {
-//     req.session.cart = [req.body];
-//   } else {
-//     let cart = req.session.cart;
-//     let index = checkForDuplicate(cart, req.body.kit.id);
-//     if (index !== false) cart[index].qty = cart[index].qty + req.body.qty;
-//     else cart.push(req.body);
-//   }
-
-//   res.send(req.session.cart);
-// })
-
-router.post('/cart/add/:userId', function(req, res, next) {
-  Order.findOrCreate({
-    where: {
-      userId: req.params.userId,
-      status: 'created'
-    }
-  }).then(function(order) {
-    return OrderDetail.findOne({
-      where: {
-        orderId: order[0].id,
-        kitId: req.body.kit.id
-      }
-    }).then(function(orderDetail) {
-      if (orderDetail) {
-        return orderDetail.update({
-          unitPrice: req.body.kit.price,
-          quantity: orderDetail.quantity + req.body.qty
-        })
-      } else {
-        return OrderDetail.create({
-          unitPrice: req.body.kit.price,
-          quantity: req.body.qty,
-          orderId: order[0].id,
-          kitId: req.body.kit.id
-        })
-      }
-    })
-  }).then(function(orderDetail) {
-    res.status(204).json(orderDetail);
-  }).catch(next)
 })
 
 module.exports = router

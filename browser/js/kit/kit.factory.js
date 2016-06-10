@@ -15,7 +15,7 @@ app.factory('KitsFactory', function ($http, $kookies) {
 
 	obj.addToCart = function(kit, qty, user) {
 		if (user) {
-			return $http.post('/api/orders/cart/add/'+user.id, { kit: kit, qty: qty }).then(function(res) {
+			return $http.post('/api/cart/add/'+user.id, { kit: kit, qty: qty }).then(function(res) {
 				return res.data
 			})
 		} else {
