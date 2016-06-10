@@ -22,18 +22,7 @@ router.get('/', function (req, res, next) {
       where: req.query
     }
   }
-  // Order.findAll(options)
-  // .then(_orders_ => {
-  //   orders = _orders_
-  //   return Promise.all(orders.map(order => { return order.getOrderDetails() }))
-  // })
-  // .then(orderDetails => {
-  //   res.json(orders.map((order, i) => {
-  //     order.orderDetails = orderDetails[i]
-  //     return order
-  //   }))
-  // })
-  // .catch(next)
+  
   Order.findAll(options)
   .then(orders => { res.json(orders) })
   .catch(next)
@@ -59,38 +48,6 @@ router.delete('/:orderId', function (req, res, next) {
   req.order.destroy()
   .then(() => res.sendStatus(204))
   .catch(next)
-})
-
-router.post('/cart/add', function(req, res) {
-  Order.findOrCreate({
-    where: {
-      userId: req.body.user.id,
-      status: 'created'
-    }
-  }).then(function(order) {
-    return OrderDetail.findOne({
-      where: {
-        orderId: order[0].id,
-        kitId: req.body.kit.id
-      }
-    }).then(function(orderDetail) {
-      if (orderDetail) {
-        return orderDetail.update({
-          unitPrice: req.body.kit.price,
-          quantity: orderDetail.quantity + req.body.qty
-        })
-      } else {
-        return OrderDetail.create({
-          unitPrice: req.body.kit.price,
-          quantity: req.body.qty,
-          orderId: order[0].id,
-          kitId: req.body.kit.id
-        })
-      }
-    })
-  }).then(function(orderDetail) {
-    res.status(204).json(orderDetail);
-  })
 })
 
 module.exports = router
