@@ -36,15 +36,14 @@ app.factory('KitsFactory', function ($http, $kookies) {
 		  	} else {
 				let index = checkForDuplicate();
 				if (index > -1) {
-					console.log('updating')
 					currCart[index].qty += qty;
 				} else {
-					console.log('pushing')
 					currCart.push(kitToAddToCart);
 				}
 				$kookies.set('cart', currCart, {path: '/'});
 			}
 
+			console.log('kookies done!')
 			console.log($kookies.get('cart'))
 		}
 	}
