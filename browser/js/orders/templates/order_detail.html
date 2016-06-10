@@ -12,24 +12,52 @@
   <div class='panel panel-default'>
     <div class='panel-body'>
       <div class='row'>
-        <div class='order-status col-lg-4'>
-          <span>Status: </Span>
-          <select ng-model='order.status'>
-            <option value='created'>Created</option>
-            <option value='processing'>Processing</option>
-            <option value='cancelled'>Cancelled</option>
-            <option value='completed'>Completed</option>
-          </select>
+        <div class='col-lg-2'>
+          <dl>
+            <dt>Shipping Address</dt>
+            <dd>Omri Bernstein</dd>
+            <dd>5 Hanover Square</dd>
+            <dd>New York, NY 10004</dd>
+            <dd>United States</dd>
+          </dl>
         </div>
-        <div class='col-lg-4'>
+        <div class='col-lg-2'>
+          <dl>
+            <dt>Billing Address</dt>
+            <dd>Omri Bernstein</dd>
+            <dd>5 Hanover Square</dd>
+            <dd>New York, NY 10004</dd>
+            <dd>United States</dd>
+          </dl>
+        </div>
+        <div class='order-status col-lg-5'>
           <dl class='dl-horizontal'>
+            <dt>Status: </dt>
+            <dd>
+              <select ng-model='order.status'>
+                <option value='created'>Created</option>
+                <option value='processing'>Processing</option>
+                <option value='cancelled'>Cancelled</option>
+                <option value='completed'>Completed</option>
+              </select>
+            </dd>
+            <dt>Paid: </dt>
+            <dd>
+              <span ng-class="{'glyphicon glyphicon-ok': order.paid,
+                'glyphicon glyphicon-remove': !order.paid}"></span>
+            </dd>
             <dt>Payment Date</dt>
             <dd>{{ order.paymentDate || '-' | date: 'MM-dd-yyyy' }}</dd>
+            <dt>Shipped: </dt>
+            <dd>
+              <span ng-class="{'glyphicon glyphicon-ok': order.shipped,
+                'glyphicon glyphicon-remove': !order.shipped}"></span>
+            </dd>
             <dt>Shipped Date</dt>
             <dd>{{ order.shippedDate || '-' | date: 'MM-dd-yyyy' }}</dd>
           </dl>
         </div>
-        <div class='order-summary col-lg-4'>
+        <div class='order-summary col-lg-3'>
           <h5 class='text-center'>Order Summary</h5>
           <dl class='dl-horizontal'>
             <dt>Item(s) Subtotal:</dt>
@@ -72,7 +100,6 @@
 
     <div class='panel-footer'>
       <button type='button' class='btn btn-success'>Save</button>
-      <button type='button' class='btn btn-default'>Cancel</button>
     </div>
 
   </div>
