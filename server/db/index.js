@@ -22,5 +22,6 @@ Order.belongsTo(User)
 
 // Attaching defaultScopes to certain models
 Order.addScope('defaultScope', { include: [{ model: OrderDetail }] }, { override: true })
+OrderDetail.addScope('defaultScope', { include: [{ model: Kit }]}, { override: true })
 
 module.exports = db;
