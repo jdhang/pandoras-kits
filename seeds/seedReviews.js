@@ -1,6 +1,6 @@
 'use strict'
 
-const Promise = require('sequelize').Primise
+const Promise = require('sequelize').Promise
 const Review = require('../server/db').model('review')
 
 module.exports = function () {

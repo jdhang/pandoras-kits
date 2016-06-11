@@ -8,20 +8,15 @@ var User = require('./models/user')(db);
 const OrderDetail = require('./models/order_detail')(db);
 const Order = require('./models/order')(db);
 
-// Setting Associations between models
 Order.hasMany(OrderDetail);
 OrderDetail.belongsTo(Kit);
 OrderDetail.belongsTo(Order);
 Review.belongsTo(User);
-Review.belongsTo(Kit);
-// Kit.belongsToMany(Item)
-// Kit.hasMany(Review)
-// Kit.belongsToMany(Order)
-// Item.belongsToMany(Kit)
+Kit.hasMany(Review)
 Order.belongsTo(User)
 
-// Attaching defaultScopes to certain models
 Order.addScope('defaultScope', { include: [{ model: OrderDetail }] }, { override: true })
 OrderDetail.addScope('defaultScope', { include: [{ model: Kit }]}, { override: true })
+Kit.addScope('defaultScope', { include: [{ model: Review }]}, { override: true })
 
 module.exports = db;
