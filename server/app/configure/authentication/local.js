@@ -9,7 +9,6 @@ module.exports = function (app, db) {
     // When passport.authenticate('local') is used, this function will receive
     // the email and password to run the actual authentication logic.
     var strategyFn = function (email, password, done) {
-        console.log("strategyFn",email);
         User.findOne({
                 where: {
                     email: email

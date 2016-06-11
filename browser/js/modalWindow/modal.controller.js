@@ -1,9 +1,4 @@
-app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, ModalFactory) {
-
-  // $scope.items = items;
-  // $scope.selected = {
-  //   item: $scope.items[0]
-  // };
+app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, ModalFactory, $log) {
 
   $scope.ok = function () {
     $uibModalInstance.close();
@@ -20,9 +15,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, ModalFa
      $scope.ok();
      // $scope.$digest();  how do i make the digest work upon adding a new page?
     })
-    .catch(function (err) {
-      console.log('SOMETHING WENT TERRIBLY WRONG');
-    });
+    .catch($log.error);
   }
 
 });
