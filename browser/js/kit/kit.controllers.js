@@ -12,5 +12,7 @@ app.controller('KitController', function ($scope, KitsFactory, AuthService, theK
 
 	$scope.kit = theKit;
 	$scope.userQty = 1;
+	if ($scope.kit.quantity < 5) $scope.warning = true;
 	$scope.addToCart = KitsFactory.addToCart;
+
 });
