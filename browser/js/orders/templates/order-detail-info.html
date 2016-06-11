@@ -1,35 +1,48 @@
-+<div class='panel panel-default'>
- +  <div class='panel-body'>
- +    <h1 class='text-center' ng-if='details.length === 0'>No Items in this Order</h1>
- +    <div class='od-info row' ng-if='details.length !==
- +    0' ng-repeat='orderDetail in details'>
- +      <div class='detail-img col-xs-2'>
- +        <img src='http://www.placehold.it/90x90' class='center-block img-responsive' />
- +      </div>
- +      <div class='detail-info col-xs-10'>
- +        <div class='detail-info-kit col-xs-7'>
- +          <div>
- +            <a ui-sref='kit({ kitId: {{ orderDetail.kit.id }}})'>
- +              {{ orderDetail.kit.name }}
- +            </a>
- +          </div>
- +        </div>
- +        <div class='col-xs-5'>
- +          <dl class='dl-horizontal'>
- +            <dt>Unit Price</dt>
- +            <dd class='text-right'>{{ orderDetail.unitPrice | currency }}</dd>
- +            <dt>Quantity</dt>
- +            <dd class='text-right'>{{ orderDetail.quantity }}</dd>
- +            <dt>Subtotal</dt>
- +            <dd class='text-right subtotal'>{{ orderDetail.subtotal | currency }}</dd>
- +          </dl>
- +        </div>
- +      </div>
- +    </div>
- +  </div>
- +
- +  <div class='panel-footer'>
- +    <button type='button' class='btn btn-success'>Save</button>
- +  </div>
- +
- +</div>
+
+<div class='panel panel-default'>
+  <div class='panel-body'>
+    <h1 class='text-center' ng-if='details.length === 0'>No Items in this Order</h1>
+    <div class='od-info row' ng-if='details.length !==
+    0' ng-repeat='orderDetail in details'>
+      <div class='detail-img col-xs-2'>
+        <img ng-src="{{ orderDetail.kit.imageUrl }}" class='center-block img-responsive' />
+      </div>
+      <div class='detail-info col-xs-10'>
+        <div class='detail-info-kit col-xs-9'>
+          <div>
+            <a ui-sref='kit({ kitId: {{ orderDetail.kit.id }}})'>
+              {{ orderDetail.kit.name }}
+            </a>
+          </div>
+        </div>
+        <div class='col-xs-3 od-subtotal text-right'>
+          <div class='a-row'>
+            <div class='a-column a-span8'>
+              <span>Unit Price:</span>
+            </div>
+            <div class='a-column a-span4'>
+              <span>{{ orderDetail.unitPrice | currency }}</span>
+            </div>
+            <div class='a-column a-span8'>
+              <span>Quantity:</span>
+            </div>
+            <div class='a-column a-span4'>
+              <span>{{ orderDetail.quantity }}</span>
+            </div>
+            <div class='a-column a-span8'>
+              <span>Subtotal:</span>
+            </div>
+            <div class='a-column a-span4'>
+              <span>{{ orderDetail.subtotal | currency }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='panel-footer'>
+    <button type='button' class='btn btn-success'>Save</button>
+  </div>
+
+</div>
