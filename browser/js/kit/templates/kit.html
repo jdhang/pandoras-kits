@@ -17,7 +17,7 @@
               <input type="number" ng-model="userQty" min="1" required>
               <span class="alert alert-danger" ng-show="warning">Only {{ kit.quantity }} left!</span>
             </p>
-            <button ng-click="addToCart(kit, userQty, user)" ng-disabled="addToCartForm.$invalid">ADD TO CART</button>
+            <button class="btn btn-primary" ng-click="addToCart(kit, userQty, user)" ng-disabled="addToCartForm.$invalid">ADD TO CART</button>
           </div>
           <p class="alert alert-danger" ng-hide="{{ kit.quantity > 0 }}">SOLD OUT</p>
         </form>
