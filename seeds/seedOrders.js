@@ -1,5 +1,6 @@
 'use strict'
 
+const Promise = require('sequelize').Promise
 const Order = require('../server/db').model('order')
 
 module.exports = function () {
@@ -16,7 +17,10 @@ module.exports = function () {
     },
     { status: 'completed' },
     { status: 'cancelled' },
-    { status: 'processing' },
+    {
+      status: 'processing',
+      paymentDate: Date.now()
+    },
     { status: 'processing' },
     { status: 'processing' },
     { status: 'processing' },

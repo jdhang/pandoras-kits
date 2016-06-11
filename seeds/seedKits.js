@@ -1,10 +1,29 @@
 'use strict'
 
+const Promise = require('sequelize').Promise
 const Kit = require('../server/db').model('kit')
 
 module.exports = function () {
 
   let kits = [
+    {
+      name: 'foobar',
+      price: 10,
+      description: 'lorem ipsum, foobar',
+      categories: [ 'foo', 'bar' ]
+    },
+    {
+      name: 'foo',
+      price: 10,
+      description: 'lorem ipsum, foo',
+      categories: [ 'foo' ]
+    },
+    {
+      name: 'bar',
+      price: 10,
+      description: 'lorem ipsum, bar',
+      categories: [ 'bar' ]
+    },
     {
       name: 'Test Kit 1',
       description: 'Bacon ipsum dolor amet cow pork filet mignon ham bresaola shankle sausage rump flank chicken pancetta. Ham hock ribeye flank cow. Leberkas fatback t-bone, kielbasa shankle biltong bresaola boudin pig ham hock pork belly. Pancetta ball tip tongue short ribs capicola andouille. Meatball tongue picanha rump, drumstick ham beef ribs andouille short ribs alcatra. Sirloin sausage pancetta short loin, pork bresaola venison spare ribs.',
