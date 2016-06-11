@@ -1,85 +1,11 @@
 'use strict'
 
 const Promise = require('sequelize').Promise
-const db = require('../server/db')
-const Kit = db.model('kit')
-const Order = db.model('order')
+const seedOrders = require('./seedOrders')
+const seedKits = require('./seedKits')
+const seedReviews = require('./seedReviews')
 const OrderDetail = db.model('orderDetail')
-
-let seedOrders = function () {
-
-  let orders = [
-    {
-      status: 'processing',
-      paymentDate: Date.now()
-    },
-    {
-      status: 'completed'
-    },
-    {
-      status: 'processing',
-      shippedDate: Date.now()
-    },
-    {
-      status: 'cancelled'
-    }
-  ]
-
-  let creatingOrders = orders.map((orderObj) => {
-    return Order.create(orderObj)
-  })
-
-  return Promise.all(creatingOrders)
-
-}
-
-let seedKits = function () {
-
-  let kits = [
-    {
-      name: 'Test Kit 1',
-      description: 'Bacon ipsum dolor amet cow pork filet mignon ham bresaola shankle sausage rump flank chicken pancetta. Ham hock ribeye flank cow. Leberkas fatback t-bone, kielbasa shankle biltong bresaola boudin pig ham hock pork belly. Pancetta ball tip tongue short ribs capicola andouille. Meatball tongue picanha rump, drumstick ham beef ribs andouille short ribs alcatra. Sirloin sausage pancetta short loin, pork bresaola venison spare ribs.',
-      price: 10.00,
-      categories: ['Travel', 'Parent Life'],
-      quantity: 20
-    },
-    {
-      name: 'Test Kit 2',
-      description: 'Bacon ipsum dolor amet cow pork filet mignon ham bresaola shankle sausage rump flank chicken pancetta. Ham hock ribeye flank cow. Leberkas fatback t-bone, kielbasa shankle biltong bresaola boudin pig ham hock pork belly. Pancetta ball tip tongue short ribs capicola andouille. Meatball tongue picanha rump, drumstick ham beef ribs andouille short ribs alcatra. Sirloin sausage pancetta short loin, pork bresaola venison spare ribs.',
-      price: 5.00,
-      categories: ['First Impressions', 'Awkward Moments'],
-      quantity: 5
-    },
-    {
-      name: 'Test Kit 3',
-      description: 'Bacon ipsum dolor amet cow pork filet mignon ham bresaola shankle sausage rump flank chicken pancetta. Ham hock ribeye flank cow. Leberkas fatback t-bone, kielbasa shankle biltong bresaola boudin pig ham hock pork belly. Pancetta ball tip tongue short ribs capicola andouille. Meatball tongue picanha rump, drumstick ham beef ribs andouille short ribs alcatra. Sirloin sausage pancetta short loin, pork bresaola venison spare ribs.',
-      price: 10.00,
-      categories: ['Parent Life', 'Emergencies'],
-      quantity: 10
-    },
-    {
-      name: 'Test Kit 4',
-      description: 'Bacon ipsum dolor amet cow pork filet mignon ham bresaola shankle sausage rump flank chicken pancetta. Ham hock ribeye flank cow. Leberkas fatback t-bone, kielbasa shankle biltong bresaola boudin pig ham hock pork belly. Pancetta ball tip tongue short ribs capicola andouille. Meatball tongue picanha rump, drumstick ham beef ribs andouille short ribs alcatra. Sirloin sausage pancetta short loin, pork bresaola venison spare ribs.',
-      price: 10.00,
-      categories: ['Travel'],
-      quantity: 5
-    },
-    {
-      name: 'Test Kit 5',
-      description: 'Bacon ipsum dolor amet cow pork filet mignon ham bresaola shankle sausage rump flank chicken pancetta. Ham hock ribeye flank cow. Leberkas fatback t-bone, kielbasa shankle biltong bresaola boudin pig ham hock pork belly. Pancetta ball tip tongue short ribs capicola andouille. Meatball tongue picanha rump, drumstick ham beef ribs andouille short ribs alcatra. Sirloin sausage pancetta short loin, pork bresaola venison spare ribs.',
-      price: 20.00,
-      categories: ['Emergencies', 'Life Essentials'],
-      quantity: 10
-    }
-  ]
-
-  let creatingKits = kits.map((kitObj) => {
-    return Kit.create(kitObj)
-  })
-
-  return Promise.all(creatingKits)
-
-}
+const Review = db.model('review')
 
 let seedOrderDetails = function () {
 
@@ -117,40 +43,45 @@ let seedOrderDetails = function () {
 let seedAssociations = function () {
 
   return Promise.all([
-    Order.findById(1),
-    Order.findById(2),
-    Order.findById(3),
-    Order.findById(4),
-    Kit.findById(1),
-    Kit.findById(2),
-    Kit.findById(3),
-    OrderDetail.findById(1),
-    OrderDetail.findById(2),
-    OrderDetail.findById(3),
-    OrderDetail.findById(4),
-    OrderDetail.findById(5),
+    Order.findAll(),
+    Kit.findAll(),
+    OrderDetail.findAll(),
+    Review.findAll(),
+    User.findAll()
   ])
-  .spread((order1, order2, order3, order4, kit1, kit2, kit3, orderDetail1, orderDetail2, orderDetail3, orderDetail4, orderDetail5) => {
+  .spread((orders, kits, orderDetails, reviews, users) => {
     return Promise.all([
       // kit2 and orderDetail2 are 5.00
       // ORDER 1
-      orderDetail1.setOrder(order1),
-      orderDetail2.setOrder(order1),
-      orderDetail1.setKit(kit1),
-      orderDetail2.setKit(kit2),
-      order1.addOrderDetails([orderDetail1, orderDetail2]),
+      orderDetails[0].setOrder(orders[0]),
+      orderDetails[1].setOrder(orders[0]),
+      orderDetails[0].setKit(kit[0]),
+      orderDetails[1].setKit(kit[0]),
+      orders[0].addOrderDetails([orderDetails[0], orderDetails[1]]),
       // ORDER 2
-      orderDetail3.setOrder(order2),
-      orderDetail3.setKit(kit1),
-      order2.addOrderDetail(orderDetail3),
+      orderDetails[2].setOrder(orders[1]),
+      orderDetails[2].setKit(kits[0]),
+      orders[1].addOrderDetail(orderDetails[2]),
       // ORDER 3
-      orderDetail4.setOrder(order2),
-      orderDetail4.setKit(kit3),
-      order3.addOrderDetail(orderDetail4),
+      orderDetails[3].setOrder(orders[1]),
+      orderDetails[3].setKit(kits[2]),
+      orders[2].addOrderDetail(orderDetails[3]),
       // ORDER 4
-      orderDetail5.setOrder(order4),
-      orderDetail5.setKit(kit3),
-      order4.addOrderDetail(orderDetail5)
+      orderDetails[4].setOrder(orders[3]),
+      orderDetails[4].setKit(kits[2]),
+      orders[3].addOrderDetail(orderDetails[4]),
+      // User to Reviews
+      reviews[0].setUser(users[0]),
+      reviews[1].setUser(users[0]),
+      reviews[2].setUser(users[0]),
+      reviews[3].setUser(users[0]),
+      reviews[4].setUser(users[0]),
+      reviews[5].setUser(users[0]),
+      reviews[6].setUser(users[0]),
+      reviews[7].setUser(users[0]),
+      reviews[8].setUser(users[0]),
+      reviews[9].setUser(users[0]),
+      // Kit Reviews
     ])
   })
 
@@ -158,6 +89,7 @@ let seedAssociations = function () {
 
 module.exports = {
   Kits: seedKits,
+  Reviews: seedReviews,
   Orders: seedOrders,
   OrderDetails: seedOrderDetails,
   Associations: seedAssociations
