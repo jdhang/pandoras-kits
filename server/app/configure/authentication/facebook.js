@@ -16,7 +16,6 @@ module.exports = function (app, db) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
-        console.log("verify callback?");
         User.findOne({
                 where: {
                     facebook_id: profile.id
@@ -26,7 +25,6 @@ module.exports = function (app, db) {
                 if (user) {
                     return user;
                 } else {
-                    console.log("I AM HERE", profile);
                     return User.create({
                         email: profile.emails[0].value,
                         facebook_id: profile.id

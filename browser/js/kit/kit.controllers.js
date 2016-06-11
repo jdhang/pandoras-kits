@@ -11,17 +11,10 @@ app.controller('KitsController', function ($scope, allKits, allKitImages, AuthSe
 	      templateUrl: './js/modalWindow/modal.html',
 	      controller: 'ModalInstanceCtrl',
 	      size: size,
-	      // resolve: {
-	      //   items: function () {
-	      //     return $scope.items;
-	      //   }
-	      // }
 	    });
 
 	    modalInstance.result.then(function (selectedItem) {
 	      $scope.selected = selectedItem;
-	    }, function () {
-	      $log.info('Modal dismissed at: ' + new Date());
 	    });
 	  };
 

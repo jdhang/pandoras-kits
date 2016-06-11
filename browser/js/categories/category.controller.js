@@ -9,12 +9,7 @@ app.controller('CategoryCtrl',function($scope, allCategoryKits, title, AuthServi
 	      animation: $scope.animationsEnabled,
 	      templateUrl: './js/modalWindow/modal.html',
 	      controller: 'ModalInstanceCtrl',
-	      size: size,
-	      // resolve: {
-	      //   items: function () {
-	      //     return $scope.items;
-	      //   }
-	      // }
+	      size: size
 	    });
 
 	    modalInstance.result.then(function (selectedItem) {
