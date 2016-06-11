@@ -71,7 +71,7 @@ gulp.task('testServerJSWithCoverage', function (done) {
                 .pipe(mocha({reporter: 'spec'}))
                 .pipe(istanbul.writeReports({
                     dir: './coverage/server/',
-                    reporters: ['html', 'text']
+                    reporters: ['lcov', 'html', 'text']
                 }))
                 .on('end', done);
         });
