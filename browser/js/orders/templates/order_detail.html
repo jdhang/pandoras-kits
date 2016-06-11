@@ -1,66 +1,6 @@
 <div class='container' id='order-detail'>
 
-  <div class='row order-header'>
-    <div class='col-lg-12'>
-      <h2>Order Details</h2>
-      <span>Ordered on {{ order.createdAt | date: 'mediumDate' }}</span>
-      <span class='splitter'>|</span>
-      <span>Order# {{ order.id }}</span>
-    </div>
-  </div>
-
-  <div class='panel panel-default'>
-    <div class='panel-body'>
-      <div class='row'>
-        <div class='col-lg-2'>
-          <dl>
-            <dt>Shipping Address</dt>
-            <dd>Omri Bernstein</dd>
-            <dd>5 Hanover Square</dd>
-            <dd>New York, NY 10004</dd>
-            <dd>United States</dd>
-          </dl>
-        </div>
-        <div class='od-status col-lg-4'>
-          <dl class='dl-horizontal'>
-            <dt>Status: </dt>
-            <dd>
-              <select ng-model='order.status'>
-                <option value='created'>Created</option>
-                <option value='processing'>Processing</option>
-                <option value='cancelled'>Cancelled</option>
-                <option value='completed'>Completed</option>
-              </select>
-            </dd>
-            <dt>Paid: </dt>
-            <dd>
-              <span ng-class="{'glyphicon glyphicon-ok': order.paid,
-                'glyphicon glyphicon-remove': !order.paid}"></span>
-            </dd>
-            <dt>Payment Date</dt>
-            <dd>{{ order.paymentDate || '-' | date: 'MM-dd-yyyy' }}</dd>
-            <dt>Shipped: </dt>
-            <dd>
-              <span ng-class="{'glyphicon glyphicon-ok': order.shipped,
-                'glyphicon glyphicon-remove': !order.shipped}"></span>
-            </dd>
-            <dt>Shipped Date</dt>
-            <dd>{{ order.shippedDate || '-' | date: 'MM-dd-yyyy' }}</dd>
-          </dl>
-        </div>
-        <div class='od-summary col-lg-4'>
-          <h5>Order Summary</h5>
-          <div class='a-row'>
-            <div class='a-column a-span8'>
-              <span>Item(s) Subtotal:</span>
-            </div>
-            <div class='a-column a-span4'>{{ order.subtotal | currency }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <order-detail-status order='order'></order-detail-status>
   <detail-info details='order.orderDetails'></detail-info>
 
 </div>
