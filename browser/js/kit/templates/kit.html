@@ -19,7 +19,7 @@
             </p>
             <button ng-click="addToCart(kit, userQty, user)" ng-disabled="addToCartForm.$invalid">ADD TO CART</button>
           </div>
-          <p class="soldout" ng-hide="{{ kit.quantity > 0 }}">SOLD OUT</p>
+          <p class="alert alert-danger" ng-hide="{{ kit.quantity > 0 }}">SOLD OUT</p>
         </form>
       </div>
     </div>
