@@ -17,8 +17,8 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, ModalFa
     $scope.kit.categories= $scope.kit.categories.split(",");
     ModalFactory.postKit($scope.kit)
     .then(()=> {
-     $scope.ok()
-     $scope.digest(); 
+     $scope.ok();
+     // $scope.$digest();  how do i make the digest work upon adding a new page?
     })
     .catch(function (err) {
       console.log('SOMETHING WENT TERRIBLY WRONG');
