@@ -3,7 +3,6 @@
 const router = require('express').Router()
 const db = require('../../../db')
 const Order = db.model('order')
-const OrderDetail = db.model('orderDetail')
 
 router.param('orderId', function (req, res, next, id) {
   Order.findById(id)
