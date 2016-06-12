@@ -1,5 +1,8 @@
 <div class='container' id='reviews'>
-  <h3>Customer Reviews ({{ reviews.length }})</h3>
+  <div class='reviews-header'>
+    <div class='reviews-title'>Customer Reviews ({{ reviews.length }})</div>
+    <a href="#" class='btn btn-success create-review-btn'>Write a customer review</a>
+  </div>
   <div class='row'>
     <div ng-repeat='review in reviews'>
       <div class='col-xs-6'>
