@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, $uibModal) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, $uibModal, CategoryFactory) {
 
     return {
         restrict: 'E',
@@ -16,7 +16,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                 { label: 'Cart', state: 'cart' }
             ];
 
-            scope.categories= ['Travel', 'Life Essentials', 'Parent Life', 'Emergencies', 'First Impressions'];
+            CategoryFactory.getCategories()
+            .then(function(categories){
+                scope.categories= categories;
+            });
 
             scope.user = null;
 
@@ -39,6 +42,20 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
             var removeUser = function () {
                 scope.user = null;
             };
+
+            scope.open = function (size) {
+            var modalInstance = $uibModal.open({
+              animation: scope.animationsEnabled,
+              templateUrl: './js/modalWindow/modalForCategory.html',
+              scope: scope,
+              controller: 'ModalInstanceCtrl',
+              size: size
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+              scope.selected = selectedItem;
+            });
+          };
 
             setUser();
 
