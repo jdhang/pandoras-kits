@@ -2,6 +2,8 @@
 
     <div>
     	<h3>{{ kit.name.toUpperCase() }}</h3>
+      <a  ng-show= 'user.isAdmin' ng-click='deleteKit(kit)'><span class="glyphicon glyphicon-remove-sign"></span>Delete Kit</a>
+
     	<small>Rating: 4 stars (placeholder)</small>
     </div>
     <div class="row">

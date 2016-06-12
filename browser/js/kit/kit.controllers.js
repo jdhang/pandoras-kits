@@ -12,10 +12,6 @@ app.controller('KitsController', function ($scope, allKits, allKitImages, AuthSe
 	      controller: 'ModalInstanceCtrl',
 	      size: size,
 	    });
-
-	    modalInstance.result.then(function (selectedItem) {
-	      $scope.selected = selectedItem;
-	    });
 	  };
 
 });
@@ -30,4 +26,6 @@ app.controller('KitController', function ($scope, KitsFactory, AuthService, theK
 	if ($scope.kit.quantity < 5) $scope.warning = true;
 	$scope.addToCart = KitsFactory.addToCart;
 
-});	
+	$scope.deleteKit= KitsFactory.deleteKit;
+
+});

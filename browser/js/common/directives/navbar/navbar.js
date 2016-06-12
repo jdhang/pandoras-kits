@@ -52,9 +52,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
               size: size
             });
 
-            modalInstance.result.then(function (selectedItem) {
-              scope.selected = selectedItem;
-            });
           };
 
             setUser();

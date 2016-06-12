@@ -9,7 +9,6 @@
 		.then(res => res.data);
 	}
 	obj.postCategory= function(categoryName){
-		console.log("Did i reach here?", categoryName);
 		return $http.post('/api/categories/', {name: categoryName})
 		.then(res => res.data);
 	}

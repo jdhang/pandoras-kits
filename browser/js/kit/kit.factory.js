@@ -56,6 +56,13 @@ app.factory('KitsFactory', function ($http, $kookies, $state) {
 			});
 		}
 
+	obj.deleteKit= function(kit){
+		$http.delete('/api/kits/'+kit.id)
+		.then(function(){
+			$state.go('kits');
+		});
+	}
+
 	return obj;
 
 });

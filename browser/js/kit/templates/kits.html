@@ -1,6 +1,6 @@
 <div id="container" class="kits">
   <h3 class='kits kitHdr'>{{title}}</h3>
-    <a  ng-show= 'user.isAdmin'class='glyphicon glyphicon-plus-sign add-product' ng-click='open()'></a>
+    <a  ng-show= 'user.isAdmin'class='add-product' ng-click='open()'>Create Kit</a>
 
   <div class="row">
     <div class="col-xs-4" ng-repeat="kit in kits | orderBy: 'id'">
