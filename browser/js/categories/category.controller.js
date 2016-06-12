@@ -14,8 +14,6 @@ app.controller('CategoryCtrl',function($scope, allCategoryKits, title, AuthServi
 
 	    modalInstance.result.then(function (selectedItem) {
 	      $scope.selected = selectedItem;
-	    }, function () {
-	      $log.info('Modal dismissed at: ' + new Date());
 	    });
 	  };
 });

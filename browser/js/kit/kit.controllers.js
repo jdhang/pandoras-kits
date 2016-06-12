@@ -2,9 +2,9 @@ app.controller('KitsController', function ($scope, allKits, allKitImages, AuthSe
 	AuthService.getLoggedInUser().then(function(user){
 		$scope.user= user;
 	})
-	$scope.kits = allKits
-	$scope.images = allKitImages
-	$scope.title= 'All Kits'
+	$scope.kits = allKits;
+	$scope.images = allKitImages;
+	$scope.title= 'All Kits';
 	$scope.open = function (size) {
 	    var modalInstance = $uibModal.open({
 	      animation: $scope.animationsEnabled,
@@ -30,4 +30,4 @@ app.controller('KitController', function ($scope, KitsFactory, AuthService, theK
 	if ($scope.kit.quantity < 5) $scope.warning = true;
 	$scope.addToCart = KitsFactory.addToCart;
 
-});
+});	

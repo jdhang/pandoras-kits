@@ -1,4 +1,4 @@
-app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, ModalFactory, $log, $state) {
+app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, KitsFactory, $log, $state) {
 
   $scope.ok = function () {
     $uibModalInstance.close();
@@ -10,12 +10,10 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, ModalFa
 
   $scope.post= function(){
     $scope.kit.categories= $scope.kit.categories.split(",");
-    ModalFactory.postKit($scope.kit)
-    .then(()=> {
+    KitsFactory.postKit($scope.kit)
+    .then((kit)=> {
      $scope.ok();
-     console.log("hello");
-     $state.go('kit');
-     // $scope.$digest();  how do i make the digest work upon adding a new page?
+     $state.go('kit',{kitId: kit.id});
     })
     .catch($log.error);
   }

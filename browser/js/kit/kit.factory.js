@@ -49,6 +49,13 @@ app.factory('KitsFactory', function ($http, $kookies, $state) {
 		}
 	}
 
+	obj.postKit= function(kit){
+			return $http.post('/api/kits/', kit)
+			.then(function(res){
+				return res.data;
+			});
+		}
+
 	return obj;
 
 });
