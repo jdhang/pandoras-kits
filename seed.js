@@ -47,6 +47,7 @@ db.sync({ force: true })
     .then(function () {
       return Promise.all([
         seedUsers(),
+        seed.Users(),
         seed.Kits(),
         seed.Orders(),
         seed.OrderDetails(),

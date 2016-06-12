@@ -1,0 +1,6 @@
+<div class='stars'>
+  <div class='star' ng-repeat='star in fiveStars() track by $index'>
+    <span ng-show='$index < stars' class='glyphicon glyphicon-star'></span>
+    <span ng-show='$index >= stars' class='glyphicon glyphicon-star-empty'></span>
+  </div>
+</div>
