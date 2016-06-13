@@ -1,6 +1,6 @@
 <div class='container' id='reviews'>
   <div class='reviews-header'>
-    <div class='reviews-title'>Customer Reviews ({{ reviews.length }})</div>
+    <div class='reviews-title'>Customer Reviews ({{ reviews.length || 0 }})</div>
     <a ng-click='open()' ng-if='user && notReviewed' class='btn btn-success create-review-btn'>Write a review</a>
   </div>
   <div class='row'>
