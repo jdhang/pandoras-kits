@@ -64,7 +64,7 @@ app.factory('KitsFactory', function ($http, $kookies, $state) {
 	}
 
 	obj.updateKit= function(kit){
-		console.log("updating kit");
+		console.log("updating kit", kit);
 		$http.put('/api/kits/'+kit.id, kit);
 	}
 
