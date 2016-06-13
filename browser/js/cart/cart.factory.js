@@ -2,7 +2,7 @@
 
 app.factory('CartFactory', ($http, $kookies, $q) => {
 	let obj = {};
-
+    
 	obj.getUserCart = function(userId) {
 		return $http.get('/api/cart/' + userId).then(function(res){
 			let order = {};

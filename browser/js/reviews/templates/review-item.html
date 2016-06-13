@@ -1,0 +1,20 @@
+<div class='review'>
+  <div class='review-header'>
+    <div class='review-rating'>
+      <stars-rating ng-model='review.num_stars'></stars-rating>
+    </div>
+    <div class='review-title'>
+      {{ review.title | limitTo: 65 }}<span ng-show='review.title.length > 65'>...</span>
+    </div>
+    <div class='review-details'>
+      <span>By </span>
+      <a class='finger'>{{ review.user.email }}</a>
+      <span>on {{ review.createdAt | date:'longDate' }}</span>
+      <div class='review-edit' ng-if='user && userReviewed'>
+        <span class='splitter'>|</span>
+        <a class='finger' ng-click='open()'>Edit Review</a>
+      </div>
+    </div>
+  </div>
+  <div>{{ review.content }}</div>
+</div>

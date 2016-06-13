@@ -4,6 +4,8 @@ var Sequelize = require('sequelize');
 
 module.exports = function (db) {
 
+  let OrderDetail = db.model('orderDetail')
+
     return db.define('kit', {
         name: {
             type: Sequelize.STRING,
@@ -38,7 +40,14 @@ module.exports = function (db) {
             }
         }
     }, {
-        instanceMethods: {
+      instanceMethods: {
+        toOrderDetail: function (qty) {
+          return OrderDetail.create({
+            unitPrice: this.price,
+            quantity: qty
+          })
+          .then(orderDetail => orderDetail.setKit(this))
+        },
         },
         classMethods: {
             findByCategory: function(category) {

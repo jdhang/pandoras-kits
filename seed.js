@@ -18,10 +18,9 @@ name in the environment files.
 */
 
 var chalk = require('chalk');
-var db = require('./server/db');
-var User = db.model('user');
-var Kit = db.model('kit');  // Liz edit
-var Promise = require('sequelize').Promise;
+const db = require('./server/db');
+const User = db.model('user');
+const Promise = require('sequelize').Promise;
 const seed = require('./seeds')
 
 var seedUsers = function () {
@@ -40,41 +39,20 @@ var seedUsers = function () {
 
     var creatingUsers = User.bulkCreate(users);
 
-    /////////LIZ EDIT:  SEED FOR KITS //////////
-    var kits = [
-        {   name: 'foobar',
-            price: 10,
-            description: 'lorem ipsum, foobar',
-            categories: [ 'foo', 'bar' ]
-        },
-        {   name: 'foo',
-            price: 10,
-            description: 'lorem ipsum, foo',
-            categories: [ 'foo' ]
-        },
-        {   name: 'bar',
-            price: 10,
-            description: 'lorem ipsum, bar',
-            categories: [ 'bar' ]
-        }
-    ]
-
-    var creatingKits = Kit.bulkCreate(kits)
-    /////////LIZ EDIT:  SEED FOR KITS //////////
-
-    return Promise.all([creatingUsers, creatingKits]);  //Liz edit: added the creatingKits element to the array
+    return Promise.all([creatingUsers])
 
 };
-
 
 db.sync({ force: true })
     .then(function () {
       return Promise.all([
         seedUsers(),
+        seed.Users(),
         seed.Kits(),
         seed.Orders(),
         seed.OrderDetails(),
-        seed.Category()
+        seed.Reviews(),
+        seed.Categories()
       ]);
     })
     .then(function () {

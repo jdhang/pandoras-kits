@@ -1,4 +1,4 @@
-<div id="container" class="kit">
+<div class="container" class="kit">
 
     <div class='kitHdr'>
     	<h3 contenteditable='{{ user.isAdmin || false}}' ng-model='kit.name'>{{ kit.name.toUpperCase() }}</h3>
@@ -42,8 +42,9 @@
           </div>
         </form>
       </div>
-    </div>
+
+    <hr class='separator' />
+
+    <reviews-list reviews='kit.reviews' dataid='kit.id'></reviews-list>
+
 </div>
-
-
-
