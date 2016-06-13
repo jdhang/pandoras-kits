@@ -1,6 +1,5 @@
 # Pandora's Kits
-[Code Climate]
+[![Code Climate](https://codeclimate.com/github/jdhang/pandoras-kits/badges/gpa.svg)](https://codeclimate.com/github/jdhang/pandoras-kits)
 
 Stack Store
 
-[![Code Climate](https://codeclimate.com/github/jdhang/pandoras-kits/badges/gpa.svg)](https://codeclimate.com/github/jdhang/pandoras-kits)
