@@ -1,16 +1,15 @@
 <div id="container" class="kit">
 
-    <div>
+    <div class='kitHdr'>
     	<h3>{{ kit.name.toUpperCase() }}</h3>
-      <a  ng-show= 'user.isAdmin' ng-click='deleteKit(kit)'><span class="glyphicon glyphicon-remove-sign"></span>Delete Kit</a>
-
     	<small>Rating: 4 stars (placeholder)</small>
     </div>
+    <a  ng-show= 'user.isAdmin' ng-click='deleteKit(kit)' class='deleteKit'><span class="glyphicon glyphicon-remove-sign"></span>Delete Kit</a>
     <div class="row">
       <div class="col-xs-8">
           <img ng-src="{{ kit.imageUrl }}">
       </div>
-      <div class="col-xs-4">
+      <div class="col-xs-4" contenteditable='{{ user.isAdmin}}'>
       	<p>Description: {{ kit.description }}</p>
       	<p>Price: {{ kit.price | currency }}</p>
         <form name="addToCartForm">

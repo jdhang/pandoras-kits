@@ -1,4 +1,4 @@
-app.controller('KitsController', function ($scope, allKits, allKitImages, AuthService, $uibModal, $log) {
+app.controller('KitsController', function ($scope, allKits, allKitImages, AuthService, $uibModal, $log, CategoryFactory) {
 	AuthService.getLoggedInUser().then(function(user){
 		$scope.user= user;
 	})

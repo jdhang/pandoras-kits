@@ -8,9 +8,13 @@
 		return $http.get('/api/categories/')
 		.then(res => res.data);
 	}
+	obj.getCategory= function(){
+		return $http.get('ap');
+	}
 	obj.postCategory= function(categoryName){
 		return $http.post('/api/categories/', {name: categoryName})
 		.then(res => res.data);
 	}
+
 	return obj;
 });
