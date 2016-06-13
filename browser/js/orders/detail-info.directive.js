@@ -7,7 +7,8 @@ app.directive('detailInfo', (OrderDetailFactory, $state) => {
     scope: {
       details: '=',
       editable: '=?',
-      buttonName: '@'
+      buttonName: '@',
+      buttonFunction: '='
     },
     templateUrl: 'js/orders/templates/order-detail-info.html',
     link: function(scope, element, attrs) {

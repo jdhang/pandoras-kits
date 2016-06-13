@@ -1,0 +1,50 @@
+<div id="container">
+    <div class="row cart-body">
+      <div class="col-lg-6 panel panel-info">
+      		<h2>Order Form</h2>
+            <form name=purchaseForm>
+    			<div class="section">
+    			  	<h3>Payment Information</h3>
+    			  	<div class="col-sm-12">
+    	            	<p>Credit Card #:</p>
+    	            	<input class="form-control" required></input>
+    	            </div>
+    	            <div class="col-sm-6">
+    	            	<p>Security Code:</p>
+    	            	<input class="form-control"></input>
+    	            </div>
+    	            <div class="col-sm-6">
+    	            	<p>Merchant:</p>
+    	            	<select class="form-control" name="merchant">
+                            <option value="Visa">Visa</option>
+                            <option value="MasterCard">MasterCard</option>
+                            <option value="Amex">Amex</option>
+                            <option value="Discover">Discover</option>
+                        </select>
+    	            </div>
+    	            <div class="col-sm-6">
+    	            	<p>Expiration Month:</p>
+                        <select class="form-control" ng-model="month" ng-options="i for i in range(1, 12)"></select>
+    	            </div>
+                	<div class="col-sm-6">
+                		<p>Expiration Year:</p>
+                        <select class="form-control" ng-model="year" ng-options="i for i in range(2016, 2026)"></select>
+                    </div>
+                </div>
+                <div class="section">
+    			  	<h3>Billing Information</h3>
+    			  	<address-form></address-form>
+                </div>
+                <div class="section">
+    			  	<h3>Shipping Information</h3>
+    			  	<address-form></address-form>
+          		</div>
+            </form>
+            <button class="btn btn-primary section" ng-click="submitOrder(order)" ng-disabled="purchaseForm.$invalid">Submit Order</button>
+      </div>
+      <div class="col-lg-6 panel panel-info">
+      	<h2>Order Total: {{ order.subtotal | currency }}</h2>
+        <detail-info button-name="Edit Cart" button-function="goToCart" details='order.orderDetails'></detail-info>
+      </div>
+    </div>
+</div>

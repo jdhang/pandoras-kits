@@ -1,8 +1,8 @@
 'use strict'
 
-app.factory('CartFactory', ($http, $kookies, $q) => {
+app.factory('CartFactory', ($http, $kookies, $q, AuthService) => {
 	let obj = {};
-
+    
 	obj.getUserCart = function(userId) {
 		return $http.get('/api/cart/' + userId).then(function(res){
 			let order = {};
