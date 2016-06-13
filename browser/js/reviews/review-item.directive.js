@@ -11,8 +11,6 @@ app.directive('reviewItem', (AuthService, $uibModal) => {
       AuthService.getLoggedInUser()
       .then(user => {
         scope.user = user
-        c
-        
       })
 
       scope.open = (size) => {

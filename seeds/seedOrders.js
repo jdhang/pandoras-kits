@@ -48,15 +48,6 @@ module.exports = function () {
       status: 'processing',
       createdAt: today.setDate(today.getDate() - 6)
     },
-    { status: 'completed' },
-    { status: 'cancelled' },
-    {
-      status: 'processing',
-      paymentDate: Date.now()
-    },
-    { status: 'processing' },
-    { status: 'processing' },
-    { status: 'processing' },
     { status: 'processing' },
     {
       status: 'processing',

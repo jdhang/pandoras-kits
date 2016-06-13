@@ -1,9 +1,11 @@
 .stars {
 
+  display: inline-block;
   color: #FDAD01;
   margin: 0px 5px 0px 0px;
 
   .star {
     padding: 0px 1px;
+    font-size: 18px;
   }
 }
