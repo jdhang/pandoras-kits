@@ -10,8 +10,8 @@
           <img ng-src="{{ kit.imageUrl }}">
       </div>
       <div class="col-xs-4">
-        Description: <p contenteditable='{{ user.isAdmin}}' ng-model='kit.description' ng-model-options="{debounce: 500}" ng-change='update(kit)'> {{ kit.description }}</p>
-        Price: <p contenteditable='{{ user.isAdmin}}'> {{ kit.price | currency }}</p>
+        Description: <p contenteditable='{{ user.isAdmin}}' ng-model='kit.description' > {{ kit.description }}</p>
+        Price: <p contenteditable='{{ user.isAdmin}}' ng-model='kit.price'> {{ kit.price | currency }}</p>
         <form name="addToCartForm">
           <div ng-show="{{ kit.quantity > 0 }}">
             <p>

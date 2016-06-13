@@ -28,8 +28,6 @@ app.controller('KitController', function ($scope, KitsFactory, AuthService, kit)
 
 	$scope.deleteKit= KitsFactory.deleteKit;
 
-	$scope.update= KitsFactory.updateKit;
-
 	$scope.$watch('kit', function () {
 		console.log("Kit changed");
     	KitsFactory.updateKit($scope.kit);
