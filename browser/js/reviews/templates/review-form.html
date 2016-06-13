@@ -1,0 +1,35 @@
+<div>
+  <div class='modal-header'>
+    <h3 class='modal-title'>My Review</h3>
+  </div>
+  <div class='modal-body'>
+    <form name='reviewForm'>
+      <div class='form-group'>
+        <label>Rating</label>
+        <div class='form-rating'>
+          <stars-rating ng-model='review.num_stars' readonly='false'></stars-rating>
+        </div>
+      </div>
+      <div class='form-group'>
+        <label>Review Title</label>
+        <input type='text' class='form-control'
+          placeholder='Example: Awesome Kit!' ng-model='review.title'
+          required />
+      </div>
+      <div class='form-group'>
+        <label>Review</label>
+        <textarea rows='6' class='form-control'
+          placeholder='Example: The contents of this kit were perfectly put...'
+          ng-model='review.content' ng-min='20' required ></textarea>
+      </div>
+    </form>
+  </div>
+  <div class='modal-footer'>
+    <button type='button'
+      class='btn btn-primary'
+      ng-click='createReview()'>Post Review</button>
+    <button type='button'
+      class='btn btn-default'
+      ng-click='cancel()'>Cancel</button>
+  </div>
+</div>

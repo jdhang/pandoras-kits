@@ -19,19 +19,19 @@ module.exports = function () {
       name: 'foobar',
       price: 10,
       description: 'lorem ipsum, foobar',
-      categories: [ 'foo', 'bar' ]
+      categories: [ 'Travel', 'Emergencies' ]
     },
     {
       name: 'foo',
       price: 10,
       description: 'lorem ipsum, foo',
-      categories: [ 'foo' ]
+      categories: [Faker.random.arrayElement(categories)]
     },
     {
       name: 'bar',
       price: 10,
       description: 'lorem ipsum, bar',
-      categories: [ 'bar' ]
+      categories: [Faker.random.arrayElement(categories)]
     },
     {
       name: 'Test Kit 1',
