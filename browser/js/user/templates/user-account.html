@@ -1,0 +1,27 @@
+<div class='container'>
+  <h1>Account</h1>
+  <div class='row'>
+
+    <div class='col-xs-2'>
+      <ul class='nav nav-pills nav-stacked'>
+        <li><a class='finger'>Profile</a></li>
+        <li><a class='finger'>Orders</a></li>
+        <li><a class='finger'>Reviews</a></li>
+      </ul>
+    </div>
+
+    <div class='col-xs-10'>
+
+      <div>
+        <orders-list orders='user.orders'></orders-list>
+      </div>
+      <hr class='separator' />
+      <div>
+        <reviews-list reviews='user.reviews'></reviews-list>
+      </div>
+      <hr class='separator' />
+
+    </div>
+
+  </div>
+</div>
