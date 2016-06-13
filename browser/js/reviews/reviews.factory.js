@@ -10,6 +10,8 @@ app.factory('ReviewsFactory', ($http) => {
 
   reviewObj.create = review => $http.post(baseUrl, review).then(getData)
 
+  reviewObj.update = review => $http.put(baseUrl + review.id, review).then(getData)
+
   return reviewObj
 
 })

@@ -23,6 +23,16 @@ body {
   border-top: 1px solid #DDD;
 }
 
+.splitter {
+  color: #DDD;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.finger {
+  cursor: pointer;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';

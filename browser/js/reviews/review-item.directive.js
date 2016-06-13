@@ -11,6 +11,8 @@ app.directive('reviewItem', (AuthService, $uibModal) => {
       AuthService.getLoggedInUser()
       .then(user => {
         scope.user = user
+        scope.userReviewed = scope.review.userId === scope.user.id
+        scope.mode = scope.userReviewed ? 'update' : 'create'
       })
 
       scope.open = (size) => {
