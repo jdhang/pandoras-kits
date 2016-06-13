@@ -19,6 +19,10 @@ body {
   margin: 0 auto;
 }
 
+.separator {
+  border-top: 1px solid #DDD;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
@@ -27,3 +31,5 @@ body {
 @import 'kit/main';
 @import 'signup/main';
 @import 'orders/main';
+@import 'starsRating/main';
+@import 'reviews/main';

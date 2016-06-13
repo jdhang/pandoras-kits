@@ -1,0 +1,52 @@
+.form-rating {
+  font-size: 24px;
+}
+
+.form-messages {
+  font-weight: 500;
+  color: red;
+}
+
+.reviews-header {
+
+  margin-bottom: 10px;
+
+  .reviews-title, .create-review-btn {
+    display: inline-block;
+  }
+
+  .reviews-title {
+    font-size: 24px;
+    font-weight: 400;
+    margin-right: 20px;
+  }
+}
+
+.review {
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .review-header {
+
+    margin-bottom: 7px;
+
+    .review-rating, .review-title {
+      display: inline-block;
+    }
+
+    .review-rating {
+      font-size: 18px;
+    }
+
+    .review-title {
+      font-size: 13px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .review-details {
+      color: #555;
+    }
+  }
+}
