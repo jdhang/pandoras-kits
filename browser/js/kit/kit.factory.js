@@ -1,4 +1,4 @@
-app.factory('KitsFactory', function ($http, $kookies, $state, $q) {
+app.factory('KitsFactory', function ($http) {
 	var obj = {};
 
 	obj.getAll = function() {
