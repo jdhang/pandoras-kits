@@ -5,7 +5,6 @@
   </div>
   <div class='row'>
     <div ng-class='{ row: ($index % 2 !== 0) }' ng-repeat='review in reviews'>
-    <a ng-click='open()' class='btn btn-success create-review-btn'>Write a review</a>
       <div class='col-xs-6 col-lg-6'>
         <review-item review='review'></review-item>
       </div>
