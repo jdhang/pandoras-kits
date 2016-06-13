@@ -25,18 +25,18 @@ router.post('/', function(req, res, next) {
 	}).catch(next)
 });
 
-router.get('/:UserId', function(req, res) {
+router.get('/:userId', function(req, res) {
 	res.json(req.user);
 });
 
-router.put('/:UserId', function(req, res, next) {
-	req.User.update(req.body).then(function(user){
+router.put('/:userId', function(req, res, next) {
+	req.user.update(req.body).then(function(user){
 		res.status(200).json(user);
 	}).catch(next)
 });
 
-router.delete('/:UserId', function(req, res, next) {
-	req.User.destroy().then(function(){
+router.delete('/:userId', function(req, res, next) {
+	req.user.destroy().then(function(){
 		res.sendStatus(204);
 	}).catch(next)
 });
