@@ -5,6 +5,7 @@ const db = require('../server/db')
 const Kit = db.model('kit')
 const Order = db.model('order')
 const OrderDetail = db.model('orderDetail')
+const Category= db.model('category');
 
 let seedOrders = function () {
 
@@ -114,6 +115,30 @@ let seedOrderDetails = function () {
 
 }
 
+let seedCategories= function(){
+  let categories= [
+  {
+    name: 'Travel'
+  },
+  {
+    name:'Life Essentials'
+  },
+  {
+    name:'Parent Life'
+  },
+  {
+    name:'Emergencies'
+  },
+  {
+    name:'First Impressions'
+  }
+  ]
+  let creatingCategories= categories.map(categoriesObj => {
+    return Category.create(categoriesObj);
+  });
+  return Promise.all(creatingCategories)
+}
+
 let seedAssociations = function () {
 
   return Promise.all([
@@ -160,5 +185,6 @@ module.exports = {
   Kits: seedKits,
   Orders: seedOrders,
   OrderDetails: seedOrderDetails,
-  Associations: seedAssociations
+  Associations: seedAssociations,
+  Category: seedCategories
 }
