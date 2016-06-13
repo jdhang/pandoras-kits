@@ -16,7 +16,7 @@ app.controller('KitsController', function ($scope, allKits, allKitImages, AuthSe
 
 });
 
-app.controller('KitController', function ($scope, CartFactory, AuthService, kit, $state) {
+app.controller('KitController', function ($scope, CartFactory, KitsFactory, AuthService, kit, $state) {
 
 	AuthService.getLoggedInUser().then(function (user) {
 		$scope.user = user;
