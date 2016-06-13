@@ -10,8 +10,8 @@ const Order = require('./models/order')(db);
 const Kit = require('./models/kit')(db);
 
 Order.hasMany(OrderDetail);
-Order.belongsTo(User)
 OrderDetail.belongsTo(Kit);
+Order.belongsTo(User)
 OrderDetail.belongsTo(Order);
 Review.belongsTo(User);
 Review.belongsTo(Kit);
