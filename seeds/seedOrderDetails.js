@@ -7,24 +7,9 @@ module.exports = function () {
 
   let orderDetails = [
     {
+      kitId: 1,
       unitPrice: 10.00,
       quantity: 1
-    },
-    {
-      unitPrice: 5.00,
-      quantity: 2
-    },
-    {
-      unitPrice: 10.00,
-      quantity: 1
-    },
-    {
-      unitPrice: 10.00,
-      quantity: 1
-    },
-    {
-      unitPrice: 10.00,
-      quantity: 2
     }
   ]
 
