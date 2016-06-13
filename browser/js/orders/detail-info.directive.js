@@ -11,11 +11,9 @@ app.directive('detailInfo', (OrderDetailFactory, $state) => {
     templateUrl: 'js/orders/templates/order-detail-info.html',
     link: function(scope, element, attrs) {
     	scope.delete = function(id) {
-        return OrderDetailFactory.delete(id).then(function() {
-          scope.details = scope.details.filter(function(orderDetail) {
-            return orderDetail.id !== id;
-          })
-        })
+        if (scope.editable) {
+          return OrderDetailFactory.delete(id)
+        }
       }
     }
   }
