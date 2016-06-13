@@ -1,0 +1,14 @@
+<div class='review'>
+  <div class='review-header'>
+    <div class='review-title'>
+      <stars-rating stars='review.num_stars'></stars-rating>
+      {{ review.title | limitTo: 65 }}<span ng-show='review.title.length > 65'>...</span>
+    </div>
+    <div class='review-details'>
+      <span>By </span>
+      <a href="#">{{ review.user.email }}</a>
+      <span>on {{ review.createdAt | date:'longDate' }}</span>
+    </div>
+  </div>
+  <div>{{ review.content }}</div>
+</div>

@@ -1,9 +1,18 @@
 'use strict'
 
+const Faker = require('faker')
 const Promise = require('sequelize').Promise
 const Kit = require('../server/db').model('kit')
 
 module.exports = function () {
+
+  let categories = [
+    'Travel',
+    'Life Essentials',
+    'Parent Life',
+    'Emergencies',
+    'First Impression'
+  ]
 
   let kits = [
     {
@@ -58,6 +67,14 @@ module.exports = function () {
       price: 20.00,
       categories: ['Emergencies', 'Life Essentials'],
       quantity: 10
+    },
+    {
+      name: Faker.commerce.productName(),
+      description: Faker.lorem.paragraph(),
+      price: Faker.commerce.price(),
+      categories: [Faker.random.arrayElement(categories)],
+      quantity: 10,
+      imageUrl: Faker.random.image()
     }
   ]
 

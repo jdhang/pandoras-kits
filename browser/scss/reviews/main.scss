@@ -1,0 +1,20 @@
+.review {
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .review-header {
+
+    margin-bottom: 7px;
+
+    .review-title {
+      font-size: 13px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .review-details {
+      color: #555;
+    }
+  }
+}

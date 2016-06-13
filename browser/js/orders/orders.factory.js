@@ -6,9 +6,7 @@ app.factory('OrdersFactory', ($http) => {
 
   let baseUrl = '/api/orders/'
 
-  let getData = (res) => {
-    return res.data
-  }
+  let getData = res => res.data
 
   orderObj.getAll = () => {
     return $http.get(baseUrl).then(getData)
