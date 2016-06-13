@@ -1,3 +1,7 @@
+.form-rating {
+  font-size: 24px;
+}
+
 .reviews-header {
 
   margin-bottom: 10px;
@@ -9,7 +13,7 @@
   .reviews-title {
     font-size: 24px;
     font-weight: 400;
-    margin-right: 25px;
+    margin-right: 20px;
   }
 }
 
@@ -21,6 +25,14 @@
   .review-header {
 
     margin-bottom: 7px;
+
+    .review-rating, .review-title {
+      display: inline-block;
+    }
+
+    .review-rating {
+      font-size: 18px;
+    }
 
     .review-title {
       font-size: 13px;
