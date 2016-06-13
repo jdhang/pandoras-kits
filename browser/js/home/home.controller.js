@@ -10,6 +10,7 @@ app.controller('HomeCtrl', function($scope, AuthService, $uibModal){
 	    var modalInstance = $uibModal.open({
 	      animation: $scope.animationsEnabled,
 	      templateUrl: './js/modalWindow/modalForReset.html',
+	      scope: $scope,
 	      controller: 'ModalInstanceCtrl',
 	      size: size,
 	    });
