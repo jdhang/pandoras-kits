@@ -16,16 +16,23 @@ app.controller('KitsController', function ($scope, allKits, allKitImages, AuthSe
 
 });
 
-app.controller('KitController', function ($scope, KitsFactory, AuthService, theKit) {
+app.controller('KitController', function ($scope, KitsFactory, AuthService, kit) {
 	AuthService.getLoggedInUser().then(function (user) {
 		$scope.user = user;
     });
 
-	$scope.kit = theKit;
+	$scope.kit = kit;
 	$scope.userQty = 1;
 	if ($scope.kit.quantity < 5) $scope.warning = true;
 	$scope.addToCart = KitsFactory.addToCart;
 
 	$scope.deleteKit= KitsFactory.deleteKit;
+
+	$scope.update= KitsFactory.updateKit;
+
+	$scope.$watch('kit', function () {
+		console.log("Kit changed");
+    	KitsFactory.updateKit($scope.kit);
+  }, true);
 
 });
