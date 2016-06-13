@@ -27,4 +27,10 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, KitsFac
     });
   }
 
+  // $scope.updatePassword= function(){
+  
+  // }
+
+
+
 });

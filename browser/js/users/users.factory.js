@@ -8,12 +8,6 @@ app.factory('UsersFactory', function ($http, $state) {
 		})
 	}
 
-	obj.getById = function(id) {
-		return $http.get('/api/kits/' + id).then(function(res) {
-			return res.data
-		})
-	}
-
 	// obj.postKit= function(kit){
 	// 		return $http.post('/api/kits/', kit)
 	// 		.then(function(res){
@@ -28,9 +22,9 @@ app.factory('UsersFactory', function ($http, $state) {
 		});
 	}
 
-	// obj.updateKit= function(kit){
-	// 	$http.put('/api/kits/'+kit.id, kit);
-	// }
+	obj.updateUser= function(user){
+		return $http.put('/api/users/'+user.id, user);
+	}
 
 	return obj;
 

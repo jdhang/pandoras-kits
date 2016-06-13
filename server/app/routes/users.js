@@ -30,6 +30,7 @@ router.get('/:userId', function(req, res) {
 });
 
 router.put('/:userId', function(req, res, next) {
+	console.log("Reached put request!", req.body)
 	req.user.update(req.body).then(function(user){
 		res.status(200).json(user);
 	}).catch(next)
