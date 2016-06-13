@@ -15,6 +15,10 @@ module.exports = function (db) {
         salt: {
             type: Sequelize.STRING
         },
+        isAdmin:{
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        },
         twitter_id: {
             type: Sequelize.STRING
         },

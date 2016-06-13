@@ -1,26 +1,36 @@
 <div id="container" class="kit">
-    <div>
-    	<h3>{{ kit.name.toUpperCase() }}</h3>
+
+    <div class='kitHdr'>
+    	<h3 contenteditable='{{ user.isAdmin}}' ng-model='kit.name'>{{ kit.name.toUpperCase() }}</h3>
     	<small>Rating: 4 stars (placeholder)</small>
     </div>
+    <a  ng-show= 'user.isAdmin' ng-click='deleteKit(kit)' class='deleteKit'><span class="glyphicon glyphicon-remove-sign"></span>Delete Kit</a>
     <div class="row">
       <div class="col-xs-8">
           <img ng-src="{{ kit.imageUrl }}">
       </div>
       <div class="col-xs-4">
-      	<p>Description: {{ kit.description }}</p>
-      	<p>Price: {{ kit.price | currency }}</p>
+        Description: <p contenteditable='{{ user.isAdmin}}' ng-model='kit.description' > {{ kit.description }}</p>
+        Price: <p contenteditable='{{ user.isAdmin}}' ng-model='kit.price'> {{ kit.price | currency }}</p>
         <form name="addToCartForm">
-          <div ng-show="{{ kit.quantity > 0 }}">
+          <div ng-show=" kit.quantity > 0 && !user.isAdmin ">
             <p>
-              Qty: 
+              Qty:
               <input type="number" ng-model="userQty" min="1" required>
               <span class="alert alert-danger" ng-show="warning">Only {{ kit.quantity }} left!</span>
             </p>
             <button class="btn btn-primary" ng-click="addToCart(kit, userQty, user)" ng-disabled="addToCartForm.$invalid">ADD TO CART</button>
           </div>
           <p class="alert alert-danger" ng-hide="{{ kit.quantity > 0 }}">SOLD OUT</p>
+          <div ng-show="user.isAdmin">
+            <label for="qty">In Stock</label>
+            <input type="number" ng-model="kit.quantity" id='qty' min="1" required>
+            <br>
+            <label for="imgUrl">Image Url</label>
+            <input type="text" ng-model='kit.imageUrl' id='imgUrl'></input>
+          </div>
         </form>
       </div>
     </div>
 </div>
+

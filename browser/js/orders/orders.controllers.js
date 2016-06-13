@@ -6,6 +6,7 @@ app.controller('OrdersController', (orders, $scope) => {
 
 })
 
+
 app.controller('OrderDetailController', (order, $scope) => {
   $scope.order = order
   $scope.order.subtotal = order.orderDetails.length
