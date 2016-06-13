@@ -9,7 +9,7 @@ app.controller('ReviewFormCtrl', ($scope, $uibModalInstance, $state, ReviewsFact
   $scope.cancel = () => $uibModalInstance.dismiss('cancel')
 
   $scope.createReview = () => {
-    if ($scope.user) {
+    if ($scope.user && $scope.notReviewed) {
       $scope.review.userId = $scope.user.id
       ReviewsFactory.create($scope.review)
       .then(() => {
