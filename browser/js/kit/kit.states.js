@@ -25,7 +25,7 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/kit/templates/kit.html',
         controller: 'KitController',
         resolve: {
-        	theKit: function(KitsFactory, $stateParams) {
+        	kit: function(KitsFactory, $stateParams) {
         		return KitsFactory.getById($stateParams.kitId)
         	}
         }

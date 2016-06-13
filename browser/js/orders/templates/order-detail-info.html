@@ -1,3 +1,4 @@
+
 <div class='panel panel-default'>
   <div class='panel-body'>
     <h1 class='text-center' ng-if='details.length === 0'>No Items in this Order</h1>
@@ -35,13 +36,14 @@
               <span>{{ orderDetail.subtotal | currency }}</span>
             </div>
           </div>
+          <button ng-if="editable" class="btn btn-primary" ng-click="delete(orderDetail)">Delete</button>
         </div>
       </div>
     </div>
   </div>
 
   <div class='panel-footer'>
-    <button type='button' class='btn btn-success'>Save</button>
+    <button type='button' class='btn btn-success'>{{ buttonName }}</button>
   </div>
 
 </div>

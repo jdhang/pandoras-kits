@@ -29,6 +29,7 @@ router.get('/:kitId', function(req, res) {
 });
 
 router.put('/:kitId', function(req, res, next) {
+	console.log("I am here");
 	req.kit.update(req.body).then(function(kit){
 		res.status(200).json(kit);
 	}).catch(next)
