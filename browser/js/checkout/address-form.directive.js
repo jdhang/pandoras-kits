@@ -6,8 +6,9 @@ app.directive('addressForm', (AuthService) => {
     restrict: 'E',
     templateUrl: 'js/checkout/templates/address-form.html',
     link: function(scope, element, attrs) {
-    	scope.user = AuthService.getLoggedInUser()
-    	console.log(scope.user)
+    	AuthService.getLoggedInUser().then(function(user) {
+    		scope.user = user;
+    	})
     }
   }
 
