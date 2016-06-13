@@ -6,6 +6,9 @@
     <div class='review-title'>
       {{ review.title | limitTo: 65 }}<span ng-show='review.title.length > 65'>...</span>
     </div>
+    <div class='review-edit'>
+      <a ng-click='open()' ng-if='user && userReview'>Edit Review</a>
+    </div>
     <div class='review-details'>
       <span>By </span>
       <a href="#">{{ review.user.email }}</a>

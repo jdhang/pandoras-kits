@@ -2,8 +2,10 @@
 
 app.controller('ReviewFormCtrl', ($scope, $uibModalInstance, $state, ReviewsFactory, AuthService) => {
 
-  $scope.review = {
-    kitId: $scope.dataid
+  if (!$scope.review) {
+    $scope.review = {
+      kitId: $scope.dataid
+    }
   }
 
   $scope.cancel = () => $uibModalInstance.dismiss('cancel')
