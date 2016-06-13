@@ -6,7 +6,7 @@ app.directive('reviewsList', (AuthService, $uibModal) => {
     restrict: 'E',
     scope: {
       reviews: '=',
-      dataid: '='
+      dataid: '=?'
     },
     templateUrl: 'js/reviews/templates/reviews-list.html',
     link: (scope) => {
@@ -14,9 +14,11 @@ app.directive('reviewsList', (AuthService, $uibModal) => {
       AuthService.getLoggedInUser()
       .then(user => {
         scope.user = user
-        scope.notReviewed = scope.reviews.filter(review => {
-          return review.userId === scope.user.id
-        }).length === 0
+        if (scope.dataid !== undefined) {
+          scope.notReviewed = scope.reviews.filter(review => {
+            return review.userId === scope.user.id
+          }).length === 0
+        }
       })
 
 
