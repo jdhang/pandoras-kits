@@ -9,9 +9,8 @@ app.controller('OrdersController', (orders, $scope) => {
 app.controller('OrderDetailController', (order, $scope) => {
   $scope.order = order
   $scope.order.subtotal = order.orderDetails.length
-                          ? order.orderDetails
-                            .map((orderDetail) => orderDetail.subtotal )
-                            .reduce((prev, curr) => prev + curr )
-                          : 0
-
+					      ? order.orderDetails
+					        .map((orderDetail) => orderDetail.subtotal )
+					        .reduce((prev, curr) => prev + curr )
+					      : 0
 })
