@@ -13,7 +13,9 @@ app.directive('detailInfo', (OrderDetailFactory, $state) => {
     link: function(scope, element, attrs) {
     	scope.delete = function(id) {
         if (scope.editable) {
-          return OrderDetailFactory.delete(id)
+          return OrderDetailFactory.delete(id).then(function() {
+            return $state.go($state.current, {}, { reload: true })
+          })
         }
       }
     }

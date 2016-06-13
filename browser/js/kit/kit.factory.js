@@ -1,4 +1,4 @@
-app.factory('KitsFactory', function ($http, $kookies, $state) {
+app.factory('KitsFactory', function ($http, $kookies, $state, $q) {
 	var obj = {};
 
 	obj.getAll = function() {
@@ -15,9 +15,7 @@ app.factory('KitsFactory', function ($http, $kookies, $state) {
 
 	obj.addToCart = function(kit, qty, user) {
 		if (user) {
-			return $http.post('/api/cart/add/'+user.id, { kit: kit, qty: qty }).then(function(res) {
-				return $state.go('cart');
-			})
+			return $http.post('/api/cart/add/'+user.id, { kit: kit, qty: qty })
 		} else {
 			let kitToAddToCart = { kit: kit, qty: qty }
 			let currCart = $kookies.get('cart')
@@ -42,7 +40,7 @@ app.factory('KitsFactory', function ($http, $kookies, $state) {
 				}
 				$kookies.set('cart', currCart, {path: '/'});
 			}
-			return $state.go('cart')
+			return $q.resolve(true);
 		}
 	}
 

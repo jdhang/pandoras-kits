@@ -13,9 +13,7 @@ app.factory('OrderDetailFactory', ($http, $state) => {
   obj.getById = id => $http.get(baseUrl + id).then(getData)
 
   obj.delete = id => {
-    return $http.delete(baseUrl + id).then(function() {
-      return $state.go($state.current, {}, { reload: true })
-    })
+    return $http.delete(baseUrl + id)
   }
 
   return obj
