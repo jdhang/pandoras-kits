@@ -1,4 +1,4 @@
-app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, KitsFactory, $log, $state, CategoryFactory) {
+app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, KitsFactory, $log, $state, CategoryFactory, UsersFactory) {
 
   $scope.ok = function () {
     $uibModalInstance.close();
@@ -26,5 +26,16 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, KitsFac
       $state.go('category', {category: category.name});
     });
   }
+
+  $scope.updatePassword= function(user){
+    console.log("User: ", user);
+    user.passwordReset= false;
+    UsersFactory.updateUser(user)
+    .then(function(){
+      $scope.ok();
+    })
+  }
+
+
 
 });
