@@ -1,7 +1,6 @@
 app.controller('HomeCtrl', function($scope, AuthService, $uibModal){
 	AuthService.getLoggedInUser()
 	.then(function(user){
-		console.log("Im here", user);
 		$scope.user= user;
 		$scope.alertReset();
 	});
@@ -20,6 +19,5 @@ app.controller('HomeCtrl', function($scope, AuthService, $uibModal){
 		if($scope.user.passwordReset)
 		$scope.open();
 		}
-	// $scope.alertReset();
 
 })

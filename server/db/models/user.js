@@ -55,17 +55,14 @@ module.exports = function (db) {
         },
         hooks: {
             beforeCreate: function (user) {
-                console.log("Before validation: ");
                 if (user.changed('password')) {
                     user.salt = user.Model.generateSalt();
-                    console.log(user.salt);
                     user.password = user.Model.encryptPassword(user.password, user.salt);
                 }
             },
             beforeUpdate: function(user){
                 if (user.changed('password')) {
                     user.salt = user.Model.generateSalt();
-                    console.log(user.salt);
                     user.password = user.Model.encryptPassword(user.password, user.salt);
                 }
             }

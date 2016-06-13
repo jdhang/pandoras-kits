@@ -29,6 +29,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, KitsFac
 
   $scope.updatePassword= function(user){
     console.log("User: ", user);
+    user.passwordReset= false;
     UsersFactory.updateUser(user)
     .then(function(){
       $scope.ok();
