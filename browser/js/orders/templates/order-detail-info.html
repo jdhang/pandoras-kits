@@ -35,6 +35,7 @@
               <span>{{ orderDetail.subtotal | currency }}</span>
             </div>
           </div>
+          <button ng-show="editable" class="btn btn-primary" ng-click="delete(orderDetail.id)">Delete</button>
         </div>
       </div>
     </div>
