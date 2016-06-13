@@ -73,7 +73,8 @@ db.sync({ force: true })
         seedUsers(),
         seed.Kits(),
         seed.Orders(),
-        seed.OrderDetails()
+        seed.OrderDetails(),
+        seed.Category()
       ]);
     })
     .then(function () {
