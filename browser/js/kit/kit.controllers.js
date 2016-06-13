@@ -34,7 +34,8 @@ app.controller('KitController', function ($scope, CartFactory, AuthService, kit,
 	$scope.deleteKit= KitsFactory.deleteKit;
 
 	$scope.$watch('kit', function () {
-		console.log("Kit changed");
+		if(!Array.isArray($scope.kit.categories))
+		$scope.kit.categories= $scope.kit.categories.split(",");
     	KitsFactory.updateKit($scope.kit);
   }, true);
 
