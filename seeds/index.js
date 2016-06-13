@@ -13,5 +13,6 @@ module.exports = {
   Reviews: seedReviews,
   Orders: seedOrders,
   OrderDetails: seedOrderDetails,
-  Associations: seedAssociations
+  Associations: seedAssociations,
+  Category: seedCategories
 }
