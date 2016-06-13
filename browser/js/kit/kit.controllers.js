@@ -16,7 +16,8 @@ app.controller('KitsController', function ($scope, allKits, allKitImages, AuthSe
 
 });
 
-app.controller('KitController', function ($scope, KitsFactory, AuthService, kit) {
+app.controller('KitController', function ($scope, CartFactory, AuthService, kit, $state) {
+
 	AuthService.getLoggedInUser().then(function (user) {
 		$scope.user = user;
     });
@@ -24,7 +25,11 @@ app.controller('KitController', function ($scope, KitsFactory, AuthService, kit)
 	$scope.kit = kit;
 	$scope.userQty = 1;
 	if ($scope.kit.quantity < 5) $scope.warning = true;
-	$scope.addToCart = KitsFactory.addToCart;
+	$scope.addToCart = function(kit, qty, user) {
+		return CartFactory.addToCart(kit, qty, user).then(function() {
+			return $state.go('cart');
+		})
+	}
 
 	$scope.deleteKit= KitsFactory.deleteKit;
 
