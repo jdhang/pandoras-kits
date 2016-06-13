@@ -1,12 +1,22 @@
 'use strict'
 
-app.controller('ReviewFormCtrl', ($scope, $uibModalInstance, ReviewsFactory) => {
+app.controller('ReviewFormCtrl', ($scope, $uibModalInstance, $state, ReviewsFactory, AuthService) => {
+
+  $scope.review = {
+    kitId: $scope.dataid
+  }
 
   $scope.cancel = () => $uibModalInstance.dismiss('cancel')
 
   $scope.createReview = () => {
-    console.log($scope.review)
-    $uibModalInstance.close()
+    if ($scope.user) {
+      $scope.review.userId = $scope.user.id
+      ReviewsFactory.create($scope.review)
+      .then(() => {
+        $uibModalInstance.close()
+        $state.go($state.current, {}, { reload: true })
+      })
+    }
   }
 
 })
