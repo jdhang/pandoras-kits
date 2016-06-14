@@ -7,6 +7,12 @@
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
+            <li>
+                <a ui-sref-active="active" ui-sref="users" ng-show='user.isAdmin'>Users</a>
+            </li>
+            <li>
+                <a ui-sref-active="active" ui-sref="orders" ng-show='user.isAdmin'>Orders</a>
+            </li>
         </ul>
         <button ng-show="!user" ui-sref="signup" class="btn login-button">Signup</button>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
