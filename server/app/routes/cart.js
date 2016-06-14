@@ -21,7 +21,7 @@ router.post('/add/:userId', function(req, res, next) {
   let qty = req.body.qty;
   let userId = req.params.userId;
 
-  Order.updateCart(userId, kit, qty).then(function() {
-    res.sendStatus(204);
+  Order.updateCart(userId, kit, qty).then(function(orderDetail) {
+    res.status(204).json(orderDetail);
   }).catch(next)
 })

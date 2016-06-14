@@ -45,6 +45,11 @@
 
     <hr class='separator' />
 
-    <reviews-list reviews='kit.reviews' dataid='kit.id'></reviews-list>
+    <div class='reviews-header'>
+      <div class='reviews-title'>Customer Reviews ({{ kit.reviews.length || 0 }})</div>
+      <a ng-click='open()' ng-if='user && notReviewed' class='btn btn-success create-review-btn'>Write a review</a>
+    </div>
+
+    <reviews-list reviews='kit.reviews' dataid='kit.id' cols='2'></reviews-list>
 
 </div>

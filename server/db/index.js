@@ -20,6 +20,8 @@ Kit.hasMany(Review)
 Category.belongsToMany(Kit, {through: 'categoryKits'})
 Address.belongsTo(User);
 User.hasMany(Address);
+User.hasMany(Review)
+User.hasMany(Order)
 
 Order.addScope('defaultScope', { include: [{ model: OrderDetail }] }, { override: true })
 OrderDetail.addScope('defaultScope', { include: [{ model: Kit }]}, { override: true })
