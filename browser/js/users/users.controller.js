@@ -11,11 +11,11 @@ app.controller('UsersController', function ($scope, UsersFactory, users, $state)
 
 	$scope.triggerPasswordReset= function(user){
 		user.passwordReset= true;
-		UsersFactory.updateUser(user).
-		then(function(){
-			console.log("Came back!!");
-		});
+		UsersFactory.updateUser(user);
 
 	}
+
+	$scope.update= UsersFactory.updateUser;
+
 
 });

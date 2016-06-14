@@ -2,8 +2,10 @@ app.controller('HomeCtrl', function($scope, AuthService, $uibModal){
 	AuthService.getLoggedInUser()
 	.then(function(user){
 		$scope.user= user;
-		$scope.alertReset();
-	});
+		if($scope.user.passwordReset)
+			$scope.open();
+		});
+
 
 	$scope.open = function (size) {
 	    var modalInstance = $uibModal.open({
@@ -15,9 +17,9 @@ app.controller('HomeCtrl', function($scope, AuthService, $uibModal){
 	    });
 	  };
 
-	$scope.alertReset= function(){
-		if($scope.user.passwordReset)
-		$scope.open();
-		}
+	// $scope.alertReset= function(){
+	// 	if($scope.user.passwordReset)
+	// 	$scope.open();
+	// 	}
 
 })
