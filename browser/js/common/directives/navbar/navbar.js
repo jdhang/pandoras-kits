@@ -12,10 +12,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                 { label: 'About', state: 'about' },
                 { label: 'Documentation', state: 'docs' },
                 { label: 'Members Only', state: 'membersOnly', auth: true },
-                { label: 'Orders', state: 'orders' },
+                { label: 'Orders', state: 'orders', auth: true },
                 { label: 'Cart', state: 'cart' },
-                { label: 'Users', state: 'users' },
-                { label: 'Account', state: 'account' }
+                { label: 'Users', state: 'users', auth: true },
+                { label: 'Account', state: 'account', auth: true }
             ];
 
             CategoryFactory.getCategories()
