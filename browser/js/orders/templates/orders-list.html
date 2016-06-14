@@ -1,5 +1,13 @@
 <div>
   <h2>Orders</h2>
+  <p >Filter By Status</p>
+  <select ng-model='status'>
+    <option value=''>All</option>
+    <option value='created'>Created</option>
+    <option value='processing'>Processing</option>
+    <option value='cancelled'>Cancelled</option>
+    <option value='completed'>Completed</option>
+  </select>
   <div class='row'>
     <table class='table table-hover'>
       <th>Order#</th>
@@ -9,7 +17,7 @@
       <th>Shipped</th>
       <th>Payment Date</th>
       <th>Shipped Date</th>
-      <tr ng-repeat='order in orders | orderBy: "id"' ui-sref='orderDetail({ orderId: order.id })'>
+      <tr ng-repeat='order in orders | orderBy: "id"|filter: {status: status} ' ui-sref='orderDetail({ orderId: order.id })'>
         <td>{{ order.id }}</td>
         <td>{{ order.createdAt | date:'MM-dd-yyyy' }}</td>
         <td>{{ order.status }}</td>

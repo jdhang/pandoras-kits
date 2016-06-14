@@ -1,4 +1,4 @@
-app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, KitsFactory, $log, $state, CategoryFactory, UsersFactory) {
+app.controller('ModalInstanceCtrl', function ($rootScope, $scope, $uibModalInstance, KitsFactory, $log, $state, CategoryFactory, UsersFactory) {
 
   $scope.ok = function () {
     $uibModalInstance.close();
@@ -24,12 +24,13 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, KitsFac
       //How do I get my navbar to update also?
       $scope.ok();
       $state.go('category', {category: category.name});
+      $rootScope.$digest();
     });
   }
 
   $scope.updatePassword= function(user){
     console.log("User: ", user);
-    user.passwordReset= false;
+    user.resetPassword= false;
     UsersFactory.updateUser(user)
     .then(function(){
       $scope.ok();
