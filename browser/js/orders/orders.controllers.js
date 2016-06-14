@@ -17,7 +17,12 @@ app.controller('OrderDetailController', (order, $scope, $state, AuthService, Ord
 					      : 0
 
   $scope.checkout = function() {
-    return $state.go('checkout')
+    AuthService.getLoggedInUser().then(function(user) {
+      if (user) return $state.go('checkout')
+      else {
+        $state.go('signup')
+      }
+    })
   }
 
   $scope.goToCart = function() {
