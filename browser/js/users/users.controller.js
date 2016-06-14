@@ -51,7 +51,7 @@ app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService, $state, $s
     })
     .catch(() => {
       $scope.success = null
-      $scope.error = 'Current Password was invalid.'
+      $scope.error = 'Invalid password.'
       $state.go('account.password', { error: true })
     })
   }
