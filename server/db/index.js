@@ -8,6 +8,7 @@ const Category= require('./models/categories')(db)
 const OrderDetail = require('./models/order_detail')(db)
 const Order = require('./models/order')(db)
 const Kit = require('./models/kit')(db)
+const Address= require('./models/address')(db);
 
 Order.hasMany(OrderDetail)
 Order.belongsTo(User)
@@ -17,6 +18,7 @@ Review.belongsTo(Kit)
 Review.belongsTo(User)
 Kit.hasMany(Review)
 Category.belongsToMany(Kit, {through: 'categoryKits'})
+Address.belongsTo(User);
 
 Order.addScope('defaultScope', { include: [{ model: OrderDetail }] }, { override: true })
 OrderDetail.addScope('defaultScope', { include: [{ model: Kit }]}, { override: true })
