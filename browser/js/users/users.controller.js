@@ -1,7 +1,6 @@
-'use strict'
+app.controller('UsersController', function ($scope, UsersFactory, users, $state, currUser) {
 
-app.controller('UsersController', function ($scope, UsersFactory, users, $state) {
-
+	$scope.currUser=currUser;
 	$scope.users=users;
 
 	$scope.deleteUser= function(user){
