@@ -16,7 +16,7 @@ app.controller('KitsController', function ($scope, allKits, allKitImages, AuthSe
 
 });
 
-app.controller('KitController', function ($scope, CartFactory, KitsFactory, AuthService, kit, $state) {
+app.controller('KitController', function ($scope, CartFactory, KitsFactory, AuthService, kit, $state, $uibModal) {
 
 	AuthService.getLoggedInUser().then(function (user) {
 		$scope.user = user;
@@ -38,5 +38,25 @@ app.controller('KitController', function ($scope, CartFactory, KitsFactory, Auth
 		$scope.kit.categories= $scope.kit.categories.split(",");
     	KitsFactory.updateKit($scope.kit);
   }, true);
+
+
+  AuthService.getLoggedInUser()
+  .then(user => {
+    $scope.user = user
+    if ($scope.dataid !== undefined) {
+      $scope.notReviewed = kit.reviews.filter(review => {
+        return review.userId === $scope.user.id
+      }).length === 0
+    }
+  })
+
+  $scope.open = (size) => {
+    $uibModal.open({
+      templateUrl: '/js/reviews/templates/review-form.html',
+      controller: 'ReviewFormCtrl',
+      scope: $scope,
+      size: size
+    })
+  }
 
 });
