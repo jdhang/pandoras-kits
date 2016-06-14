@@ -1,6 +1,6 @@
 'use strict'
 
-app.factory('UsersFactory', function ($http, $state) {
+app.factory('UsersFactory', function ($http, $q) {
 
 	var obj = {};
 
@@ -20,7 +20,13 @@ app.factory('UsersFactory', function ($http, $state) {
 
   obj.getOrdersOf = id => $http.get(baseUrl + id + '/orders').then(getData)
 
-  obj.changePw = (id, op, np) => $http.put(baseUrl + id + '/changepw', { op, np }).then(getData)
+  obj.changePw = (id, op, np) => {
+    return $http.put(baseUrl + id + '/changepw', { op, np })
+    .then(getData)
+    .catch(() => {
+      return $q.reject({ message: 'Invalid password.' })
+    })
+  }
 
 	return obj;
 

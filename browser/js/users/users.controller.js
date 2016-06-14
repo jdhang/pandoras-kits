@@ -21,7 +21,7 @@ app.controller('UsersController', function ($scope, UsersFactory, users, $state,
 
 });
 
-app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService, $state) => {
+app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService, $state, $stateParams) => {
 
   AuthService.getLoggedInUser()
   .then(user => {
@@ -36,11 +36,23 @@ app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService, $state) =>
     $scope.user.orders = results[1]
   })
 
+  $scope.error = null
+  $scope.success = null
+
   $scope.changePw = (p) => {
+    $scope.error = null
+    $scope.success = null
+
     UsersFactory.changePw($scope.user.id, p.op, p.np)
-    .then((data) => {
-      console.log(data)
-      $state.go('account.password')
+    .then(() => {
+      $scope.error = null
+      $scope.success = 'Password change was successful.'
+      $state.go('account.password', { success: true })
+    })
+    .catch(() => {
+      $scope.success = null
+      $scope.error = 'Current Password was invalid.'
+      $state.go('account.password', { error: true })
     })
   }
 
