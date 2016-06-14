@@ -33,10 +33,4 @@ router.post('/', function (req, res, next) {
   
 })
 
-router.delete('/:orderId', function (req, res, next) {
-  req.order.destroy()
-  .then(() => res.sendStatus(204))
-  .catch(next)
-})
-
 module.exports = router
