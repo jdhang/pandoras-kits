@@ -37,4 +37,6 @@ app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService) => {
     $scope.user.orders = results[1]
   })
 
+  $scope.changePw = UsersFactory.changePw(user.id, $scope.op, $scope.np)
+
 })

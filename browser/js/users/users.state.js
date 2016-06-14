@@ -11,8 +11,21 @@ app.config(function ($stateProvider) {
 
   $stateProvider.state('account', {
     url: '/account',
-    templateUrl: 'js/user/templates/user-account.html',
+    templateUrl: 'js/users/templates/user-account.html',
     controller: 'AccountCtrl'
+  })
+
+  $stateProvider.state('account.info', {
+    url: '/info',
+    template: `
+      <h1>Account Management</h1>
+      <hr class='separator' />
+      <dl class='dl-horizontal'>
+        <dt>Email:</dt>
+        <dd>{{ user.email }}</dd>
+        <dt>Num. of Orders:</dt>
+        <dd>{{ user.orders.length }}</dd>
+      </dl>`
   })
 
   $stateProvider.state('account.reviews', {
@@ -31,6 +44,12 @@ app.config(function ($stateProvider) {
         <h3>Orders</h3>
         <orders-list orders='user.orders'></orders-list>
       </div>`
+  })
+
+
+  $stateProvider.state('account.password', {
+    url: '/changepassword',
+    templateUrl: 'js/users/templates/user-password-form.html'
   })
 
 })

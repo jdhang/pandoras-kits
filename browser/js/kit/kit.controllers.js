@@ -4,9 +4,10 @@ app.controller('KitsController', function ($scope, allKits, allKitImages, AuthSe
 	})
 	$scope.kits = allKits;
 	$scope.images = allKitImages;
-	$scope.title= 'All Kits';
-	$scope.open = function (size) {
-	    var modalInstance = $uibModal.open({
+  $scope.title= 'All Kits';
+
+  $scope.open = (size) => {
+	    $uibModal.open({
 	      animation: $scope.animationsEnabled,
 	      templateUrl: './js/modalWindow/modal.html',
 	      controller: 'ModalInstanceCtrl',
@@ -18,15 +19,17 @@ app.controller('KitsController', function ($scope, allKits, allKitImages, AuthSe
 
 app.controller('KitController', function ($scope, CartFactory, KitsFactory, AuthService, kit, $state, $uibModal) {
 
-  AuthService.getLoggedInUser()
-  .then(user => {
-    $scope.user = user
-    if ($scope.dataid !== undefined) {
-      $scope.notReviewed = $scope.kit.reviews.filter(review => {
-        return review.userId === $scope.user.id
-      }).length === 0
-    }
-  })
+  if (AuthService.isAuthenticated()) {
+    AuthService.getLoggedInUser()
+    .then(user => {
+      $scope.user = user
+      if ($scope.dataid !== undefined) {
+        $scope.notReviewed = $scope.kit.reviews.filter(review => {
+          return review.userId === $scope.user.id
+        }).length === 0
+      }
+    })
+  }
 
   $scope.kit = kit
 

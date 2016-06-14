@@ -15,7 +15,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                 { label: 'Orders', state: 'orders', auth: true },
                 { label: 'Cart', state: 'cart' },
                 { label: 'Users', state: 'users', auth: true },
-                { label: 'Account', state: 'account', auth: true }
+                { label: 'Account', state: 'account.info', auth: true }
             ];
 
             CategoryFactory.getCategories()

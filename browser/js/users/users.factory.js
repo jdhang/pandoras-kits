@@ -20,6 +20,8 @@ app.factory('UsersFactory', function ($http, $state) {
 
   obj.getOrdersOf = id => $http.get(baseUrl + id + '/orders').then(getData)
 
+  obj.changePw = (id, op, np) => $http.put(baseUrl + id + '/changepw', { op, np }).then(getData)
+
 	return obj;
 
 });

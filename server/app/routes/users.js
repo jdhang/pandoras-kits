@@ -53,3 +53,14 @@ router.get('/:userId/orders', (req, res, next) => {
   .then(orders => res.json(orders))
   .catch(next)
 })
+
+router.put('/:userId/changepw', (req, res, next) => {
+  if (req.user.correctPassword(req.body.op)) {
+    req.user.update({ password: req.body.np })
+    .then(user => res.json(user))
+    .catch(next)
+  } else {
+    res.sendStatus(400)
+  }
+
+}
