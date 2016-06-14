@@ -20,17 +20,19 @@ app.controller('SignupCtrl', function (AuthService, $scope, $state, $kookies, Ca
     .then(function () {
       return AuthService.getLoggedInUser().then(function(user) {
         let currCart = $kookies.get('cart')
-        if (currCart.length) {
-          CartFactory.addToCart(currCart[0].kit, currCart[0].qty, user).then(function() {
-            currCart.splice(0, 1);
-            currCart = currCart.map(function(e) {
-              return CartFactory.addToCart(e.kit, e.qty, user)
+        if (currCart) {
+          if (currCart.length) {
+            CartFactory.addToCart(currCart[0].kit, currCart[0].qty, user).then(function() {
+              currCart.splice(0, 1);
+              currCart = currCart.map(function(e) {
+                return CartFactory.addToCart(e.kit, e.qty, user)
+              })
+              $kookies.remove('cart')
+              return $q.all(currCart).then(function() {
+                $state.go('cart')
+              })
             })
-            $kookies.remove('cart')
-            return $q.all(currCart).then(function() {
-              $state.go('cart')
-            })
-          })
+          }
         } else {
           $state.go('home');
         }

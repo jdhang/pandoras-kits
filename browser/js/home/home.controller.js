@@ -2,7 +2,7 @@ app.controller('HomeCtrl', function($scope, AuthService, $uibModal){
 	AuthService.getLoggedInUser()
 	.then(function(user){
 		$scope.user= user;
-		if($scope.user.passwordReset)
+		if(user && $scope.user.passwordReset)
 			$scope.open();
 		});
 
