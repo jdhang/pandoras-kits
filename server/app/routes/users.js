@@ -62,5 +62,4 @@ router.put('/:userId/changepw', (req, res, next) => {
   } else {
     res.sendStatus(400)
   }
-
-}
+})
