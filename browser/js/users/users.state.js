@@ -50,7 +50,8 @@ app.config(function ($stateProvider) {
 
   $stateProvider.state('account.password', {
     url: '/changepassword',
-    templateUrl: 'js/users/templates/user-password-form.html'
+    templateUrl: 'js/users/templates/user-password-form.html',
+    params: { success: null, error: null }
   })
 
 })
