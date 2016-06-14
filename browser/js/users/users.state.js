@@ -5,7 +5,8 @@ app.config(function ($stateProvider) {
     templateUrl: 'js/users/templates/users.html',
     controller: 'UsersController',
     resolve: {
-      users: UsersFactory => UsersFactory.getAllUsers()
+      users: UsersFactory => UsersFactory.getAllUsers(),
+      currUser: AuthService => AuthService.getLoggedInUser()
     }
   })
 

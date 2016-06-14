@@ -1,4 +1,7 @@
-<div class='container'>
+<div ng-if="!currUser.isAdmin" class='container'>
+  <h2>Forbidden!</h2>
+</div>
+<div ng-if="currUser.isAdmin" class='container'>
   <h2>Users</h2>
   <div class='row'>
     <table class='table table-hover'>
@@ -15,4 +18,3 @@
     </table>
   </div>
 </div>
-
