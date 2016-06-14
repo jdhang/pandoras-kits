@@ -1,0 +1,30 @@
+<div class='container'>
+  <div class='row'>
+
+    <div class='col-xs-2'>
+      <ul class='nav nav-pills nav-stacked'>
+        <li><a class='finger'>Profile</a></li>
+        <li><a class='finger'>Orders</a></li>
+        <li><a class='finger'>Reviews</a></li>
+      </ul>
+    </div>
+
+    <div class='col-xs-10'>
+
+      <h1>Account Management</h1>
+      <hr class='separator' />
+      <div>
+        <h3>Orders</h3>
+        <orders-list orders='user.orders'></orders-list>
+      </div>
+      <hr class='separator' />
+      <div>
+        <h3>Reviews ({{ user.reviews.length }})</h3>
+        <reviews-list reviews='user.reviews' cols='1'></reviews-list>
+      </div>
+      <hr class='separator' />
+
+    </div>
+
+  </div>
+</div>

@@ -12,7 +12,7 @@ app.directive('reviewsList', () => {
     templateUrl: 'js/reviews/templates/reviews-list.html',
     link: (scope) => {
 
-      scope.colNum = 12 / scope.cols
+      scope.colSize = 12 / scope.cols
 
     }
   }

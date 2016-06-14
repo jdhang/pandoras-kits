@@ -1,7 +1,7 @@
 <div class='' id='reviews'>
   <div class='row'>
     <div ng-class='{ row: ($index % {{ cols }} !== 0) }' ng-repeat='review in reviews | orderBy: "updatedAt" : true '>
-      <div class='col-xs-{{ colNum }} col-lg-{{ colNum }}'>
+      <div class='col-xs-{{ colSize }} col-lg-{{ colSize }}'>
         <review-item review='review'></review-item>
       </div>
     </div>
