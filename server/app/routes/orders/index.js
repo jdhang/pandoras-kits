@@ -27,16 +27,6 @@ router.get('/', function (req, res, next) {
   .catch(next)
 })
 
-router.get('/user/:userId', function (req, res, next) {
-  Order.findAll({
-    where: {
-      userId: req.params.userId
-    }
-  }).then(function(orders) {
-    res.json(orders)
-  })
-})
-
 router.post('/', function (req, res, next) {
   Order.create(req.body)
   .then(order => res.status(201).json(order))
