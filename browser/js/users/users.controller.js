@@ -1,4 +1,7 @@
-app.controller('UsersController', function ($scope, UsersFactory, users, $state) {
+app.controller('UsersController', function ($scope, UsersFactory, users, $state, AuthService) {
+	AuthService.getLoggedInUser().then(function(user) {
+		$scope.currUser = user;
+	})
 
 	$scope.users=users;
 

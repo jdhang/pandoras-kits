@@ -7,8 +7,20 @@ app.config(($stateProvider) => {
     templateUrl: 'js/orders/templates/orders.html',
     controller: 'OrdersController',
     resolve: {
-      orders: (OrdersFactory) => {
+      allOrders: (OrdersFactory) => {
         return OrdersFactory.getAll()
+      },
+      userOrders: (OrdersFactory, AuthService) => {
+        return AuthService.getLoggedInUser().then(function(user) {
+          if (user) {
+            return OrdersFactory.getUserOrders(user.id)
+          } else return null
+        })
+      },
+      user: AuthService => {
+        return AuthService.getLoggedInUser().then(function(user) {
+          return user
+        })
       }
     }
   })

@@ -12,6 +12,8 @@ app.factory('OrdersFactory', ($http) => {
 
   orderObj.getById = id => $http.get(baseUrl + id).then(getData)
 
+  orderObj.getUserOrders = userId => $http.get(baseUrl + 'user/' + userId).then(getData)
+
   orderObj.updateOrder = (id, updates) =>  $http.put(baseUrl + id, updates).then(getData)
 
   return orderObj

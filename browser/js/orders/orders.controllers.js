@@ -1,9 +1,13 @@
 'use strict'
 
-app.controller('OrdersController', (orders, $scope) => {
+app.controller('OrdersController', (allOrders, userOrders, user, $scope) => {
+  $scope.currUser = user;
 
-  $scope.orders = orders
-
+  if ($scope.currUser) {
+    if ($scope.currUser.isAdmin) $scope.orders = allOrders  
+    else $scope.orders = userOrders
+  }
+  
 })
 
 
