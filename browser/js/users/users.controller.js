@@ -21,7 +21,7 @@ app.controller('UsersController', function ($scope, UsersFactory, users, $state,
 
 });
 
-app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService, $state, $stateParams) => {
+app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService, $state) => {
 
   AuthService.getLoggedInUser()
   .then(user => {
