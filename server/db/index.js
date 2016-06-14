@@ -19,6 +19,8 @@ Review.belongsTo(User)
 Kit.hasMany(Review)
 Category.belongsToMany(Kit, {through: 'categoryKits'})
 Address.belongsTo(User);
+Order.belongsToMany(Address, {through: 'orderAddresses'});
+Address.belongsToMany(Order, {through: 'orderAddresses'});
 User.hasMany(Address);
 User.hasMany(Review)
 User.hasMany(Order)

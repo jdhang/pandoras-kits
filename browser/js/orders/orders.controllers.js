@@ -11,7 +11,7 @@ app.controller('OrdersController', (allOrders, userOrders, user, $scope) => {
 })
 
 
-app.controller('OrderDetailController', (order, $scope, $state, AuthService, OrdersFactory) => {
+app.controller('OrderDetailController', (order, $scope, $state, AuthService, OrdersFactory, AddressFactory, $q) => {
 
   $scope.order = order
   $scope.order.subtotal = order.orderDetails.length
@@ -24,7 +24,7 @@ app.controller('OrderDetailController', (order, $scope, $state, AuthService, Ord
     AuthService.getLoggedInUser().then(function(user) {
       if (user) return $state.go('checkout')
       else {
-        $state.go('signup')
+        $state.go('login')
       }
     })
   }
@@ -33,10 +33,24 @@ app.controller('OrderDetailController', (order, $scope, $state, AuthService, Ord
     return $state.go('cart')
   }
 
-  $scope.submitOrder = function(order) {
-    return OrdersFactory.updateOrder(order.id, { status: 'processing'}).then(function() {
-      return $state.go('success')
-    })
+  $scope.submitOrder = function(form) {
+
+    return AuthService.getLoggedInUser().then(function(user) {
+      form.billing.category = 'billing'
+      form.shipping.category = 'shipping'
+
+      var addBilling = AddressFactory.addAddress(form.billing, $scope.order).then(function(address){
+        return address
+      })
+
+      var addShipping = AddressFactory.addAddress(form.shipping, $scope.order).then(function(address){
+        return address
+      })
+
+      var updateOrder = OrdersFactory.updateOrder($scope.order.id, { status: 'processing'})
+      
+      return $q.all([addBilling, addShipping, updateOrder])
+    }).then(() => $state.go('success'))
   }
 
   $scope.range = function(start, end) {

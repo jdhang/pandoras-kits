@@ -3,7 +3,11 @@ const Sequelize = require('sequelize')
 module.exports = function (db) {
 
   return db.define('address', {
-    address: {
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    street: {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
@@ -21,6 +25,9 @@ module.exports = function (db) {
     zipCode: {
       type: Sequelize.STRING,
       allowNull: false
+    },
+    category: {
+      type: Sequelize.ENUM('billing', 'shipping')
     }
   },{
   	classMethods:{
