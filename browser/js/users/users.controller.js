@@ -38,7 +38,10 @@ app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService, $state) =>
 
   $scope.changePw = (p) => {
     UsersFactory.changePw($scope.user.id, p.op, p.np)
-    .then(() => $state.go('account.changePw'))
+    .then((data) => {
+      console.log(data)
+      $state.go('account.password')
+    })
   }
 
 })

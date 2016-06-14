@@ -60,6 +60,8 @@ router.put('/:userId/changepw', (req, res, next) => {
     .then(user => res.json(user))
     .catch(next)
   } else {
-    res.sendStatus(400)
+    let error = new Error('Invalid password entered.')
+    error.status = 401
+    next(error)
   }
 })
