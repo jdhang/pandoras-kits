@@ -22,7 +22,7 @@ app.controller('UsersController', function ($scope, UsersFactory, users, $state)
 
 });
 
-app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService) => {
+app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService, $state) => {
 
   AuthService.getLoggedInUser()
   .then(user => {
@@ -37,6 +37,9 @@ app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService) => {
     $scope.user.orders = results[1]
   })
 
-  $scope.changePw = UsersFactory.changePw(user.id, $scope.op, $scope.np)
+  $scope.changePw = (p) => {
+    UsersFactory.changePw($scope.user.id, p.op, p.np)
+    .then(() => $state.go('account.changePw'))
+  }
 
 })
