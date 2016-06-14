@@ -10,10 +10,10 @@ app.config(($stateProvider) => {
       allOrders: (OrdersFactory) => {
         return OrdersFactory.getAll()
       },
-      userOrders: (OrdersFactory, AuthService) => {
+      userOrders: (UsersFactory, AuthService) => {
         return AuthService.getLoggedInUser().then(function(user) {
           if (user) {
-            return OrdersFactory.getUserOrders(user.id)
+            return UsersFactory.getOrdersOf(user.id)
           } else return null
         })
       },

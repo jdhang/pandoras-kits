@@ -35,7 +35,6 @@ app.factory('CartFactory', ($http, $kookies, $q) => {
 		if (user) {
 			return $http.post('/api/cart/add/'+user.id, { kit: kit, qty: qty })
 		} else {
-			console.log('in factory')
 			let kitToAddToCart = { kit: kit, qty: qty }
 			let currCart = $kookies.get('cart')
 

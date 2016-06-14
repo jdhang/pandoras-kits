@@ -1,5 +1,6 @@
-app.controller('UsersController', function ($scope, UsersFactory, users, $state) {
+app.controller('UsersController', function ($scope, UsersFactory, users, $state, currUser) {
 
+	$scope.currUser=currUser;
 	$scope.users=users;
 
 	$scope.deleteUser= function(user){
