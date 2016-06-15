@@ -9,3 +9,5 @@ branches:
     - master
 services:
   - postgresql
+after_success:
+  - coveralls
