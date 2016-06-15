@@ -151,7 +151,7 @@ gulp.task('build', function () {
 });
 
 gulp.task('testAll', function () {
-  runSeq('testServerJSWithCoverage', 'testBrowserJS', 'mergeLcov')
+  runSeq('set-test-node-env', 'testServerJSWithCoverage', 'testBrowserJS', 'mergeLcov', 'reset-node-env')
 })
 
 gulp.task('default', function () {

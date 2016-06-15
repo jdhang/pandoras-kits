@@ -3,6 +3,8 @@ node_js:
   - "6"
 before_script:
   - npm install -g gulp
+  - psql -c 'create database testing-pandoras-kits;' -U postgres
+  - psql -c 'create database pandoras-kits;' -U postgres
 script: gulp build
 branches:
   only:
