@@ -50,7 +50,9 @@ app.controller('OrderDetailController', (order, $scope, $state, AuthService, Ord
       var updateOrder = OrdersFactory.updateOrder($scope.order.id, { status: 'processing'})
 
       return $q.all([addBilling, addShipping, updateOrder])
+
     }).then(() => $state.go('success'))
+
   }
 
   $scope.range = function(start, end) {

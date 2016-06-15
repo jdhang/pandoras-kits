@@ -18,7 +18,7 @@ app.config(function ($stateProvider) {
     });
 
     $stateProvider.state('success', {
-        url: '/success',
+        url: '/checkout/success',
         templateUrl: 'js/checkout/templates/order-processed.html'
     });
 
