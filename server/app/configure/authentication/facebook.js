@@ -11,11 +11,11 @@ module.exports = function (app, db) {
     var facebookCredentials = {
         clientID: facebookConfig.clientID,
         clientSecret: facebookConfig.clientSecret,
-        callbackURL: facebookConfig.callbackURL
+        callbackURL: facebookConfig.callbackURL,
+        profileFields: ['id','emails']
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
-
         User.findOne({
                 where: {
                     facebook_id: profile.id
@@ -26,6 +26,7 @@ module.exports = function (app, db) {
                     return user;
                 } else {
                     return User.create({
+                        email: profile.emails[0].value,
                         facebook_id: profile.id
                     });
                 }
@@ -42,7 +43,7 @@ module.exports = function (app, db) {
 
     passport.use(new FacebookStrategy(facebookCredentials, verifyCallback));
 
-    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email'}));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {failureRedirect: '/login'}),

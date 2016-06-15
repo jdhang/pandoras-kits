@@ -1,0 +1,26 @@
+<div id="container">
+    <div class="row cart-body">
+      <div class="col-lg-6 panel panel-info">
+      		<h2>Order Form</h2>
+            <form name=purchaseForm id='payment-form' action='/checkout' method="POST">
+                <input type='hidden' name='orderId' value='{{order.id}}'>
+                <h3>Proceed To Payment</h3>
+                <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_BDbesOBtm6tcJRe3BlqYy4Vd"
+                    data-amount="2000"
+                    data-name="Pandora's Kits"
+                    data-description="Payment Info"
+                    data-image=""
+                    data-locale="auto"
+                    data-shipping-address
+                    data-billing-address='true'>
+                  </script>
+            </form>
+      </div>
+      <div class="col-lg-6 panel panel-info">
+      	<h2>Order Total: {{ order.subtotal | currency }}</h2>
+        <detail-info button-name="Edit Cart" button-function="goToCart" details='order.orderDetails'></detail-info>
+      </div>
+    </div>
+</div>

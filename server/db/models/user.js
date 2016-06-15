@@ -10,10 +10,15 @@ module.exports = function (db) {
             type: Sequelize.STRING
         },
         password: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: true
         },
         salt: {
             type: Sequelize.STRING
+        },
+        isAdmin:{
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
         },
         twitter_id: {
             type: Sequelize.STRING
@@ -23,6 +28,10 @@ module.exports = function (db) {
         },
         google_id: {
             type: Sequelize.STRING
+        },
+        passwordReset: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
         }
     }, {
         instanceMethods: {
@@ -45,7 +54,13 @@ module.exports = function (db) {
             }
         },
         hooks: {
-            beforeValidate: function (user) {
+            beforeCreate: function (user) {
+                if (user.changed('password')) {
+                    user.salt = user.Model.generateSalt();
+                    user.password = user.Model.encryptPassword(user.password, user.salt);
+                }
+            },
+            beforeUpdate: function(user){
                 if (user.changed('password')) {
                     user.salt = user.Model.generateSalt();
                     user.password = user.Model.encryptPassword(user.password, user.salt);

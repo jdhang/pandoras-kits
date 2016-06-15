@@ -1,9 +1,10 @@
 'use strict';
-var crypto = require('crypto');
-var _ = require('lodash');
+
 var Sequelize = require('sequelize');
 
 module.exports = function (db) {
+
+  let OrderDetail = db.model('orderDetail')
 
     return db.define('kit', {
         name: {
@@ -39,7 +40,14 @@ module.exports = function (db) {
             }
         }
     }, {
-        instanceMethods: {
+      instanceMethods: {
+        toOrderDetail: function (qty) {
+          return OrderDetail.create({
+            unitPrice: this.price,
+            quantity: qty
+          })
+          .then(orderDetail => orderDetail.setKit(this))
+        },
         },
         classMethods: {
             findByCategory: function(category) {
@@ -50,13 +58,6 @@ module.exports = function (db) {
                         }
                     }
                 });
-            }
-        },
-        hooks: {
-            beforeValidate: function (kit) {
-                //if (kit) {
-                    //kit.change
-                //}
             }
         }
     });

@@ -11,48 +11,47 @@ const User = db.model('user')
 module.exports = function () {
 
   return Promise.all([
-    Order.findAll(),
     Kit.findAll(),
-    OrderDetail.findAll(),
     Review.findAll(),
     User.findAll()
   ])
-  .spread((orders, kits, orderDetails, reviews, users) => {
+  .spread((kits, reviews, users) => {
+    return Promise.all(
+      kits.map(kit => kit.toOrderDetail(1))
+      .concat(reviews.map((review, i) => review.setUser(users[i])))
+      .concat([
+        kits[0].addReviews([reviews[4], reviews[6]]),
+        kits[1].addReview(reviews[9]),
+        kits[2].addReviews([reviews[8], reviews[5]]),
+        kits[3].addReviews([reviews[0], reviews[2]]),
+        kits[4].addReviews([reviews[1], reviews[3], reviews[7]])
+      ])
+      .concat(kits.map(kit => kit.toOrderDetail(2)))
+    )
+  })
+  .then(() => {
     return Promise.all([
-      // kit2 and orderDetail2 are 5.00
-      // ORDER 1
-      orderDetails[0].setOrder(orders[0]),
-      orderDetails[1].setOrder(orders[0]),
-      orderDetails[0].setKit(kit[0]),
-      orderDetails[1].setKit(kit[0]),
-      orders[0].addOrderDetails([orderDetails[0], orderDetails[1]]),
-      // ORDER 2
-      orderDetails[2].setOrder(orders[1]),
-      orderDetails[2].setKit(kits[0]),
-      orders[1].addOrderDetail(orderDetails[2]),
-      // ORDER 3
-      orderDetails[3].setOrder(orders[1]),
-      orderDetails[3].setKit(kits[2]),
-      orders[2].addOrderDetail(orderDetails[3]),
-      // ORDER 4
-      orderDetails[4].setOrder(orders[3]),
-      orderDetails[4].setKit(kits[2]),
-      orders[3].addOrderDetail(orderDetails[4]),
-      // User to Reviews
-      reviews[0].setUser(users[0]),
-      reviews[1].setUser(users[0]),
-      reviews[2].setUser(users[0]),
-      reviews[3].setUser(users[0]),
-      reviews[4].setUser(users[0]),
-      reviews[5].setUser(users[0]),
-      reviews[6].setUser(users[0]),
-      reviews[7].setUser(users[0]),
-      reviews[8].setUser(users[0]),
-      reviews[9].setUser(users[0]),
-      // Kit Reviews
+      Order.findAll(),
+      OrderDetail.findAll()
     ])
+    .spread((orders, orderDetails) => {
+      return Promise.all(
+        orders.map((order, i) => order.addOrderDetail(orderDetails[i]))
+        .concat(
+          orders.map((order, i) => orderDetails[i].setOrder(order))
+        )
+        .concat([
+          orders[0].addOrderDetail(orderDetails[13]),
+          orderDetails[13].setOrder(orders[0]),
+          orders[1].addOrderDetail(orderDetails[14]),
+          orderDetails[14].setOrder(orders[1]),
+          orders[2].addOrderDetail(orderDetails[15]),
+          orderDetails[15].setOrder(orders[2]),
+          orders[3].addOrderDetail(orderDetails[16]),
+          orderDetails[16].setOrder(orders[3])
+        ])
+      )
+    })
   })
 
 }
-
-

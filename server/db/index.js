@@ -1,27 +1,33 @@
-'use strict';
+'use strict'
 
-var db = require('./_db');
-var Review = require('./models/review')(db);
-var Kit = require('./models/kit')(db);
-var Item = require('./models/item')(db);
-var User = require('./models/user')(db);
-const OrderDetail = require('./models/order_detail')(db);
-const Order = require('./models/order')(db);
+const db = require('./_db')
+const Review = require('./models/review')(db)
+const Item = require('./models/item')(db)
+const User = require('./models/user')(db)
+const Category= require('./models/categories')(db)
+const OrderDetail = require('./models/order_detail')(db)
+const Order = require('./models/order')(db)
+const Kit = require('./models/kit')(db)
+const Address= require('./models/address')(db);
 
-// Setting Associations between models
-Order.hasMany(OrderDetail);
-OrderDetail.belongsTo(Kit);
-OrderDetail.belongsTo(Order);
-Review.belongsTo(User);
-Review.belongsTo(Kit);
-// Kit.belongsToMany(Item)
-// Kit.hasMany(Review)
-// Kit.belongsToMany(Order)
-// Item.belongsToMany(Kit)
+Order.hasMany(OrderDetail)
 Order.belongsTo(User)
+OrderDetail.belongsTo(Kit)
+OrderDetail.belongsTo(Order)
+Review.belongsTo(Kit)
+Review.belongsTo(User)
+Kit.hasMany(Review)
+Category.belongsToMany(Kit, {through: 'categoryKits'})
+Address.belongsTo(User);
+Order.belongsToMany(Address, {through: 'orderAddresses'});
+Address.belongsToMany(Order, {through: 'orderAddresses'});
+User.hasMany(Address);
+User.hasMany(Review)
+User.hasMany(Order)
 
-// Attaching defaultScopes to certain models
 Order.addScope('defaultScope', { include: [{ model: OrderDetail }] }, { override: true })
 OrderDetail.addScope('defaultScope', { include: [{ model: Kit }]}, { override: true })
+Kit.addScope('defaultScope', { include: [{ model: Review }]}, { override: true })
+Review.addScope('defaultScope', { include: [{ model: User }]}, { override: true })
 
-module.exports = db;
+module.exports = db

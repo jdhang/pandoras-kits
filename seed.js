@@ -18,9 +18,9 @@ name in the environment files.
 */
 
 var chalk = require('chalk');
-var db = require('./server/db');
-var User = db.model('user');
-var Promise = require('sequelize').Promise;
+const db = require('./server/db');
+const User = db.model('user');
+const Promise = require('sequelize').Promise;
 const seed = require('./seeds')
 
 var seedUsers = function () {
@@ -28,7 +28,8 @@ var seedUsers = function () {
     var users = [
         {
             email: 'testing@fsa.com',
-            password: 'password'
+            password: 'password',
+            isAdmin: true
         },
         {
             email: 'obama@gmail.com',
@@ -42,14 +43,16 @@ var seedUsers = function () {
 
 };
 
-
 db.sync({ force: true })
     .then(function () {
       return Promise.all([
         seedUsers(),
+        seed.Users(),
         seed.Kits(),
         seed.Orders(),
-        seed.OrderDetails()
+        seed.OrderDetails(),
+        seed.Reviews(),
+        seed.Categories()
       ]);
     })
     .then(function () {

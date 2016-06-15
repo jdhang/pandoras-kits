@@ -7,8 +7,20 @@ app.config(($stateProvider) => {
     templateUrl: 'js/orders/templates/orders.html',
     controller: 'OrdersController',
     resolve: {
-      orders: (OrdersFactory) => {
+      allOrders: (OrdersFactory) => {
         return OrdersFactory.getAll()
+      },
+      userOrders: (UsersFactory, AuthService) => {
+        return AuthService.getLoggedInUser().then(function(user) {
+          if (user) {
+            return UsersFactory.getOrdersOf(user.id)
+          } else return null
+        })
+      },
+      user: AuthService => {
+        return AuthService.getLoggedInUser().then(function(user) {
+          return user
+        })
       }
     }
   })
@@ -17,6 +29,7 @@ app.config(($stateProvider) => {
     url: '/orders/:orderId',
     templateUrl: 'js/orders/templates/order_detail.html',
     controller: 'OrderDetailController',
+    params: { success: null },
     resolve: {
       order: (OrdersFactory, $stateParams) => {
         return OrdersFactory.getById($stateParams.orderId)

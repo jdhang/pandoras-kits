@@ -1,47 +1,61 @@
 <div class='panel panel-default'>
-  <div class='panel-body'>
-    <h1 class='text-center' ng-if='details.length === 0'>No Items in this Order</h1>
-    <div class='od-info row' ng-if='details.length !==
-    0' ng-repeat='orderDetail in details'>
-      <div class='detail-img col-xs-2'>
-        <img ng-src="{{ orderDetail.kit.imageUrl }}" class='center-block img-responsive' />
-      </div>
-      <div class='detail-info col-xs-10'>
-        <div class='detail-info-kit col-xs-9'>
-          <div>
-            <a ui-sref='kit({ kitId: {{ orderDetail.kit.id }}})'>
+
+  <h1 class='text-center' ng-if='details.length === 0'>No Items in this Order</h1>
+
+  <table class='table d-table' ng-if='details.length !== 0'>
+    <thead>
+      <tr class='d-header'>
+        <th></th>
+        <th></th>
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th class='text-right'>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat='orderDetail in details | orderBy: "createdAt" '>
+      <tr class='d-info'>
+        <td class='col-xs-2' rowspan='2'>
+          <img ng-src="{{ orderDetail.kit.imageUrl }}" class='img-responsive' />
+        </td>
+        <td class='col-xs-1'></td>
+        <td class='col-xs-5'>
+          <div class='d-name'>
+            <a ui-sref='kit({ kitId: {{ orderDetail.kit.id}}})'>
               {{ orderDetail.kit.name }}
             </a>
           </div>
-        </div>
-        <div class='col-xs-3 od-subtotal text-right'>
-          <div class='a-row'>
-            <div class='a-column a-span8'>
-              <span>Unit Price:</span>
-            </div>
-            <div class='a-column a-span4'>
-              <span>{{ orderDetail.unitPrice | currency }}</span>
-            </div>
-            <div class='a-column a-span8'>
-              <span>Quantity:</span>
-            </div>
-            <div class='a-column a-span4'>
-              <span>{{ orderDetail.quantity }}</span>
-            </div>
-            <div class='a-column a-span8'>
-              <span>Subtotal:</span>
-            </div>
-            <div class='a-column a-span4'>
-              <span>{{ orderDetail.subtotal | currency }}</span>
-            </div>
+        </td>
+        <td>{{ orderDetail.unitPrice | currency }}</td>
+        <td>
+          <input type='number' class='d-qty form-control' ng-if='editable' ng-model='orderDetail.quantity' />
+          <span ng-if='!editable'>{{ orderDetail.quantity }}</span>
+        </td>
+        <td class='d-subtotal text-right'>{{ orderDetail.subtotal | currency }}</td>
+      </tr>
+      <tr class='d-action' ng-class="{ 'no-border': !editable }">
+        <td></td>
+        <td>
+          <div class='d-remove'>
+            <a class='finger d-remove' ng-if='editable' ng-click='delete(orderDetail)'>Delete</a>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </td>
+        <td></td>
+        <td>
+          <a class='finger d-remove' ng-if='editable' ng-click='update(orderDetail)'>Update</a>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+    <tr class='d-footer'>
+      <td colspan='5' class='title text-right'>Total</td>
+      <td class='title text-right'>{{ total | currency }}</td>
+    </tr>
+  </table>
 
   <div class='panel-footer'>
-    <button type='button' class='btn btn-success'>Save</button>
+    <button type='button' ng-click="buttonFunction(order)" class='btn btn-success'>{{ buttonName }}</button>
+    <button type='button' ng-if='editable' ui-sref='kits' class='btn btn-default'>Continue Shopping</button>
   </div>
 
 </div>

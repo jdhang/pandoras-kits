@@ -1,14 +1,18 @@
 <div id="container" class="kits">
-  <h3>{{title}}</h3>
+  <h3 class='kits kitHdr'>{{title}}</h3>
+    <a  ng-show= 'user.isAdmin' ng-click='open()' class='add-product'><span class="glyphicon glyphicon-plus-sign "></span>Create Kit</a>
   <div class="row">
-    <div class="col-xs-4" ng-repeat="kit in kits">
+    <div class="col-xs-4" ng-repeat="kit in kits | orderBy: 'id'">
       <a class="thumbnail" ui-sref="kit({kitId: kit.id})">
         <img ng-src="{{ kit.imageUrl }}">
         <div class="caption">
           <h5>Name: {{ kit.name.toUpperCase() }}</h5>
-          <p>Price: ${{ kit.price }}</p>
+          <p>Price: {{ kit.price | currency }}</p>
         </div>
       </a>
     </div>
   </div>
 </div>
+
+
+

@@ -4,7 +4,9 @@
     <base href="/" />
     <title>Fullstack Academy Generated Application</title>
     <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/style.css" />
+    <script src='/jquery/dist/jquery.min.js'></script>
     <script src="/lodash/index.js"></script>
     <script src="/angular/angular.js"></script>
     <script src="/angular-animate/angular-animate.js"></script>
@@ -13,6 +15,10 @@
     <script src="/angular-ui-bootstrap/ui-bootstrap.js"></script>
     <script src="/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="/socket.io-client/socket.io.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+      Stripe.setPublishableKey('pk_test_BDbesOBtm6tcJRe3BlqYy4Vd');
+    </script>
     <script src="/main.js"></script>
 </head>
 <body ng-app="FullstackGeneratedApp">

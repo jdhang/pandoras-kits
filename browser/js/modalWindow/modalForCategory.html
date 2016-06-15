@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h3 class="modal-title">Create a Category</h3>
+</div>
+<div class="modal-body">
+    <form name="categoryForm">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" ng-model='category' required />
+      </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="addCategory()">Create</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
