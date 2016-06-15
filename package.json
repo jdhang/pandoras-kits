@@ -5,6 +5,7 @@
   "main": "server/start.js",
   "scripts": {
     "start": "nodemon --watch server -e js,html server/start.js",
+    "sendTestServerToCC": "CODECLIMATE_REPO_TOKEN=f2802a1b9ce4423f9e3bbc3481f7aa18be866bacad816d122b71a91a6855b9fa codeclimate-test-reporter < ./coverage/server/lcov.info",
     "postinstall": "gulp build"
   },
   "engines": {
