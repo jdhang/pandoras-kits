@@ -25,7 +25,7 @@ User.hasMany(Address);
 User.hasMany(Review)
 User.hasMany(Order)
 
-Order.addScope('defaultScope', { include: [{ model: OrderDetail }] }, { override: true })
+Order.addScope('defaultScope', { include: [{ model: OrderDetail }, { model: Address, where: {category: 'shipping'} }] }, { override: true })
 OrderDetail.addScope('defaultScope', { include: [{ model: Kit }]}, { override: true })
 Kit.addScope('defaultScope', { include: [{ model: Review }]}, { override: true })
 Review.addScope('defaultScope', { include: [{ model: User }]}, { override: true })

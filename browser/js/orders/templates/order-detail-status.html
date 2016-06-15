@@ -11,14 +11,13 @@
   <div class='panel panel-default'>
     <div class='panel-body'>
       <div class='row'>
-
         <div class='col-lg-2'>
           <dl>
             <dt>Shipping Address</dt>
-            <dd>Omri Bernstein</dd>
-            <dd>5 Hanover Square</dd>
-            <dd>New York, NY 10004</dd>
-            <dd>United States</dd>
+            <dd>{{order.addresses[0].name}}</dd>
+            <dd>{{order.addresses[0].street}}</dd>
+            <dd>{{order.addresses[0].city}}, {{order.addresses[0].state}} {{order.addresses[0].zipCode}}</dd>
+            <dd>{{order.addresses[0].country}}</dd>
           </dl>
         </div>
 

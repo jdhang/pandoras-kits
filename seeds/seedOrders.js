@@ -63,7 +63,7 @@ module.exports = function () {
   let creatingOrders = orders.map((orderObj) => {
     return Order.create(orderObj)
   })
-
+  
   return Promise.all(creatingOrders)
 
 }
