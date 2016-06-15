@@ -7,6 +7,7 @@ var stripe = require("stripe")("sk_test_XgiEaA9iBtEWcpfiFsvFBizL");
 const db= require('../../db');
 
 const Address= db.model('address');
+const Order= db.model('order');
 
 module.exports = router;
 
@@ -50,7 +51,10 @@ router.post('/', function(req, res, next) {
         .then(function(addresses){
           var shippingAddress= addresses[0][0];
           var billingAddress= addresses[1][0];
-          return Promise.all([shippingAddress.addOrders([orderId]), billingAddress.addOrders([orderId])]);
+          var updateOrder = Order.findById(orderId).then(function(order) {
+            return order.update({ status: "processing" })
+          })
+          return Promise.all([shippingAddress.addOrders([orderId]), billingAddress.addOrders([orderId]), updateOrder]);
         })
         .then(function(){
           res.redirect('/');

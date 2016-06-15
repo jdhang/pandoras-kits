@@ -34,8 +34,13 @@ app.directive('detailInfo', (OrderDetailFactory, $state) => {
         }
       }
 
-      scope.total = scope.details.map(detail => detail.subtotal)
-                                 .reduce((prev, curr) => prev + curr)
+      if (scope.details.length) {
+        scope.total = scope.details.map(detail => detail.subtotal)
+                                 .reduce((prev, curr) => prev + curr)  
+      } else {
+        scope.total = 0
+      }
+      
 
     }
   }
