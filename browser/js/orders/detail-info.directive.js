@@ -21,11 +21,15 @@ app.directive('detailInfo', (OrderDetailFactory, $state) => {
         return arr
       }
 
-    	scope.delete = function(orderDetail) {
+      scope.update = orderDetail => {
+        return OrderDetailFactory.update(orderDetail)
+        .then(() => $state.go($state.current, {}, { reload: true }))
+      }
+
+      scope.delete = orderDetail => {
         if (scope.editable) {
-          return OrderDetailFactory.delete(orderDetail).then(function() {
-            return $state.go($state.current, {}, { reload: true })
-          })
+          return OrderDetailFactory.delete(orderDetail)
+          .then(() => $state.go($state.current, {}, { reload: true }))
         }
       }
 

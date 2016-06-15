@@ -28,7 +28,15 @@
 }
 
 .d-table > tbody > tr > td {
-  vertical-align: middle
+  vertical-align: middle;
+}
+
+.d-table > thead > tr > th {
+  border: 0px;
+}
+
+.d-table > tbody + tbody {
+  border: 1px solid #DDD;
 }
 
 .d-info {
@@ -38,31 +46,27 @@
     font-weight: 400;
   }
 
-  .d-remove {
-    font-size: 12px;
-  }
-
   .d-qty {
 
     margin-bottom: 0px;
     max-width: 75px;
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 
   }
 
   .d-subtotal {
     font-size: 16px;
     font-weight: bold;
+  }
+
+}
+
+.d-action {
+
+  line-height: 10px;
+  vertical-align: top;
+
+  .d-remove {
+    font-size: 12px;
   }
 
 }

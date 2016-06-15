@@ -3,39 +3,53 @@
   <h1 class='text-center' ng-if='details.length === 0'>No Items in this Order</h1>
 
   <table class='table d-table' ng-if='details.length !== 0'>
-    <tr class='d-header'>
-      <th></th>
-      <th></th>
-      <th>Product</th>
-      <th>Unit Price</th>
-      <th>Quantity</th>
-      <th>Subtotal</th>
-    </tr>
-    <tr class='d-info' ng-repeat='orderDetail in details'>
-      <td class='col-xs-2'>
-        <img ng-src="{{ orderDetail.kit.imageUrl }}" class='img-responsive' />
-      </td>
-      <td class='col-xs-1'></td>
-      <td class='col-xs-5'>
-        <div class='d-name'>
-          <a ui-sref='kit({ kitId: {{ orderDetail.kit.id}}})'>
-            {{ orderDetail.kit.name }}
-          </a>
-        </div>
-        <div class='d-remove'>
-          <a class='finger d-remove' ng-if='editable'>Delete</a>
-        </div>
-      </td>
-      <td>{{ orderDetail.unitPrice | currency }}</td>
-      <td>
-        <input type='text' class='d-qty' ng-if='editable' ng-model='orderDetail.quantity' />
-        <span ng-if='!editable'>{{ orderDetail.quantity }}</span>
-      </td>
-      <td class='d-subtotal'>{{ orderDetail.subtotal | currency }}</td>
-    </tr>
+    <thead>
+      <tr class='d-header'>
+        <th></th>
+        <th></th>
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th class='text-right'>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat='orderDetail in details | orderBy: "createdAt" '>
+      <tr class='d-info'>
+        <td class='col-xs-2' rowspan='2'>
+          <img ng-src="{{ orderDetail.kit.imageUrl }}" class='img-responsive' />
+        </td>
+        <td class='col-xs-1'></td>
+        <td class='col-xs-5'>
+          <div class='d-name'>
+            <a ui-sref='kit({ kitId: {{ orderDetail.kit.id}}})'>
+              {{ orderDetail.kit.name }}
+            </a>
+          </div>
+        </td>
+        <td>{{ orderDetail.unitPrice | currency }}</td>
+        <td>
+          <input type='text' class='d-qty form-control' ng-if='editable' ng-model='orderDetail.quantity' />
+          <span ng-if='!editable'>{{ orderDetail.quantity }}</span>
+        </td>
+        <td class='d-subtotal text-right'>{{ orderDetail.subtotal | currency }}</td>
+      </tr>
+      <tr class='d-action'>
+        <td></td>
+        <td>
+          <div class='d-remove'>
+            <a class='finger d-remove' ng-if='editable' ng-click='delete(orderDetail)'>Delete</a>
+          </div>
+        </td>
+        <td></td>
+        <td>
+          <a class='finger d-remove' ng-click='update(orderDetail)'>Update</a>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
     <tr class='d-footer'>
-      <td colspan='5' class='title'>Total</td>
-      <td class='title'>{{ total | currency }}</td>
+      <td colspan='5' class='title text-right'>Total</td>
+      <td class='title text-right'>{{ total | currency }}</td>
     </tr>
   </table>
 
