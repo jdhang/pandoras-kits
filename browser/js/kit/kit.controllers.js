@@ -32,12 +32,15 @@ app.controller('KitController', function ($scope, CartFactory, KitsFactory, Auth
   }
 
   $scope.kit = kit
+  if ($scope.kit.reviews.length) {
+    var average = $scope.kit.reviews.map(function(e) {
+      return e.num_stars
+    }).reduce(function(a,b) { return a + b }) / $scope.kit.reviews.length
+    $scope.kit.reviews.average = Math.round(average)
+  } else {
+    $scope.kit.reviews.average = 0
+  }
   
-  var average = $scope.kit.reviews.map(function(e) {
-    return e.num_stars
-  }).reduce(function(a,b) { return a + b }) / $scope.kit.reviews.length
-  $scope.kit.reviews.average = Math.round(average)
-
   $scope.userQty = 1;
 
   if ($scope.kit.quantity < 5) $scope.warning = true
