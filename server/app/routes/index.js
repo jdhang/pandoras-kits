@@ -12,7 +12,6 @@ router.use('/orders', require('./orders'));
 router.use('/cart', require('./cart'));
 router.use('/categories', require('./category'));
 router.use('/order-details', require('./order-details'));
-router.use('/addresses', require('./addresses'));
 
 // Make sure this is after all of
 // the registered routes!
