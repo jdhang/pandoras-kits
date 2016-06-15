@@ -20,21 +20,21 @@ module.exports = function () {
       price: 10,
       description: 'lorem ipsum, foobar',
       categories: [ 'Travel', 'Emergencies' ],
-      imageUrl: Faker.random.image()
+      imageUrl: 'js/kit/images/1.jpeg'
     },
     {
       name: 'Foo',
       price: 10,
       description: 'lorem ipsum, foo',
       categories: [Faker.random.arrayElement(categories)],
-      imageUrl: Faker.random.image()
+      imageUrl: 'js/kit/images/2.jpeg'
     },
     {
       name: 'Bar',
       price: 10,
       description: 'lorem ipsum, bar',
       categories: [Faker.random.arrayElement(categories)],
-      imageUrl: Faker.random.image()
+      imageUrl: 'js/kit/images/3.jpeg'
     },
     {
       name: 'Test Kit 1',
@@ -42,7 +42,7 @@ module.exports = function () {
       price: 10.00,
       categories: ['Travel', 'Parent Life'],
       quantity: 20,
-      imageUrl: Faker.random.image()
+      imageUrl: 'js/kit/images/4.jpeg'
     },
     {
       name: 'Test Kit 2',
@@ -50,7 +50,7 @@ module.exports = function () {
       price: 5.00,
       categories: ['First Impressions', 'Awkward Moments'],
       quantity: 5,
-      imageUrl: Faker.random.image()
+      imageUrl: 'js/kit/images/5.jpeg'
     },
     {
       name: 'Test Kit 3',
@@ -58,7 +58,7 @@ module.exports = function () {
       price: 10.00,
       categories: ['Parent Life', 'Emergencies'],
       quantity: 10,
-      imageUrl: Faker.random.image()
+      imageUrl: 'js/kit/images/6.jpeg'
     },
     {
       name: 'Test Kit 4',
@@ -66,7 +66,7 @@ module.exports = function () {
       price: 10.00,
       categories: ['Travel'],
       quantity: 5,
-      imageUrl: Faker.random.image()
+      imageUrl: 'js/kit/images/7.jpeg'
     },
     {
       name: 'Test Kit 5',
@@ -74,7 +74,7 @@ module.exports = function () {
       price: 20.00,
       categories: ['Emergencies', 'Life Essentials'],
       quantity: 10,
-      imageUrl: Faker.random.image()
+      imageUrl: 'js/kit/images/example_kit.jpg'
     },
     {
       name: Faker.commerce.productName(),
@@ -82,7 +82,7 @@ module.exports = function () {
       price: Faker.commerce.price(),
       categories: [Faker.random.arrayElement(categories)],
       quantity: 10,
-      imageUrl: Faker.random.image()
+      imageUrl: 'js/kit/images/placeholderkitsimage.jpg'
     }
   ]
 
