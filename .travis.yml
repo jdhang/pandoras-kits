@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "6"
+  - "6.1"
+  - "5.11"
+  - "4.4"
+before_script:
+  - npm install -g gulp
+  - psql -c 'create database pandoras-kits;' -U postgresql
+script: gulp
+branches:
+  only:
+    - master
+services:
+  - postgresql
