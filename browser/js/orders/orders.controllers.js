@@ -4,10 +4,10 @@ app.controller('OrdersController', (allOrders, userOrders, user, $scope) => {
   $scope.currUser = user;
 
   if ($scope.currUser) {
-    if ($scope.currUser.isAdmin) $scope.orders = allOrders  
+    if ($scope.currUser.isAdmin) $scope.orders = allOrders
     else $scope.orders = userOrders
   }
-  
+
 })
 
 
@@ -48,7 +48,7 @@ app.controller('OrderDetailController', (order, $scope, $state, AuthService, Ord
       })
 
       var updateOrder = OrdersFactory.updateOrder($scope.order.id, { status: 'processing'})
-      
+
       return $q.all([addBilling, addShipping, updateOrder])
     }).then(() => $state.go('success'))
   }
@@ -60,5 +60,22 @@ app.controller('OrderDetailController', (order, $scope, $state, AuthService, Ord
     }
     return result;
   };
+
+  $scope.alert = null
+
+  $scope.update = order => {
+    $scope.alert = null
+    return OrdersFactory.updateOrder(order.id, order)
+    .then(() => {
+      $scope.alert = {
+        type: 'success',
+        msg: 'Order was successfully updated.'
+      }
+    })
+  }
+
+  $scope.close = () => {
+    $scope.alert = null
+  }
 
 })

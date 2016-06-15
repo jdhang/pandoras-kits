@@ -6,12 +6,13 @@ app.directive('detailInfo', (OrderDetailFactory, $state) => {
     restrict: 'E',
     scope: {
       details: '=',
+      order: '=?',
       editable: '=?',
       buttonName: '@',
       buttonFunction: '='
     },
     templateUrl: 'js/orders/templates/order-detail-info.html',
-    link: function(scope, element, attrs) {
+    link: scope => {
 
       scope.range = (min, max) => {
         let arr = []
