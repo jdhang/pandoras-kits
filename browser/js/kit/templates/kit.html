@@ -11,9 +11,9 @@
       </div>
       <div class="col-xs-4">
         Description: <p contenteditable='{{ user.isAdmin || false}}' ng-model='kit.description' > {{ kit.description }}</p>
-        Price: <p contenteditable='{{ user.isAdmin || false}}' ng-model='kit.price'> {{ kit.price | currency }}</p>
+        Price: <p  ng-model='kit.price'> {{ kit.price | currency}}</p>
         <form name="addToCartForm">
-          <div ng-show=" kit.quantity > 0 && !user.isAdmin ">
+          <div ng-show=" kit.quantity > 0">
             <p>
               Qty:
               <input type="number" ng-model="userQty" min="1" required>
@@ -21,6 +21,8 @@
             </p>
             <button class="btn btn-primary" ng-click="addToCart(kit, userQty, user)" ng-disabled="addToCartForm.$invalid">ADD TO CART</button>
           </div>
+          <br>
+          <hr>
           <p class="alert alert-danger" ng-hide="{{ kit.quantity > 0 }}">SOLD OUT</p>
           </form>
           <form ng-show="user.isAdmin">
