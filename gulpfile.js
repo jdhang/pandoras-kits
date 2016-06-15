@@ -16,6 +16,7 @@ var mocha = require('gulp-mocha');
 var karma = require('karma').server;
 var istanbul = require('gulp-istanbul');
 var notify = require('gulp-notify');
+var merger = require('lcov-result-merger')
 
 // Development tasks
 // --------------------------------------------------------------
@@ -84,6 +85,12 @@ gulp.task('testBrowserJS', function (done) {
     }, done);
 });
 
+gulp.task('mergeLcov', function () {
+  return gulp.src('./coverage/**/lcov.info')
+  .pipe(merger())
+  .pipe(gulp.dest('./coverage/'))
+})
+
 gulp.task('buildCSS', function () {
 
     var sassCompilation = sass();
@@ -142,6 +149,10 @@ gulp.task('build', function () {
         runSeq(['buildJS', 'buildCSS']);
     }
 });
+
+gulp.task('testAll', function () {
+  runSeq('testServerJSWithCoverage', 'testBrowserJS', 'mergeLcov')
+})
 
 gulp.task('default', function () {
 
