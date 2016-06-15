@@ -31,6 +31,10 @@
   vertical-align: middle;
 }
 
+.d-table > tbody > tr.no-border > td {
+  border: 0px;
+}
+
 .d-table > thead > tr > th {
   border: 0px;
 }

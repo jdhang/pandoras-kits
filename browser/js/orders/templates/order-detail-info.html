@@ -33,7 +33,7 @@
         </td>
         <td class='d-subtotal text-right'>{{ orderDetail.subtotal | currency }}</td>
       </tr>
-      <tr class='d-action'>
+      <tr class='d-action' ng-class="{ 'no-border': !editable }">
         <td></td>
         <td>
           <div class='d-remove'>
@@ -42,7 +42,7 @@
         </td>
         <td></td>
         <td>
-          <a class='finger d-remove' ng-click='update(orderDetail)'>Update</a>
+          <a class='finger d-remove' ng-if='editable' ng-click='update(orderDetail)'>Update</a>
         </td>
         <td></td>
       </tr>
@@ -55,6 +55,7 @@
 
   <div class='panel-footer'>
     <button type='button' ng-click="buttonFunction()" class='btn btn-success'>{{ buttonName }}</button>
+    <button type='button' ng-if='editable' ui-sref='kits' class='btn btn-default'>Continue Shopping</button>
   </div>
 
 </div>
