@@ -37,8 +37,8 @@ app.controller('KitController', function ($scope, CartFactory, KitsFactory, Auth
 
   if ($scope.kit.quantity < 5) $scope.warning = true
 
-	$scope.addToCart = function(kit, qty, user) {
-		return CartFactory.addToCart(kit, qty, user).then(function() {
+	$scope.addToCart = function(qty, user) {
+		return CartFactory.addToCart($scope.kit, qty, user).then(function() {
 			return $state.go('cart');
 		})
 	}

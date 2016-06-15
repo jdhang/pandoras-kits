@@ -11,7 +11,7 @@
                 <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="pk_test_BDbesOBtm6tcJRe3BlqYy4Vd"
-                    data-amount="2000"
+                    data-amount="{{ order.subtotal*100 }}"
                     data-name="Pandora's Kits"
                     data-description="Payment Info"
                     data-image=""
