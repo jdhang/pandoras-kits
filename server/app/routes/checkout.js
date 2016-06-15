@@ -4,19 +4,37 @@ const router = require('express').Router()
 
 var stripe = require("stripe")("sk_test_XgiEaA9iBtEWcpfiFsvFBizL");
 
+const db= require('../../db');
+
+const Address= db.model('address');
+
 module.exports = router;
 
-// router.param('categoryId', function(req, res, next, id) {
-//   Category.findById(id).then(function(category) {
-//     if (!category) res.sendStatus(404)
-//     req.category = category;
-//     next();
-//   }).catch(next)
-// })
 
 router.post('/', function(req, res, next) {
-  console.log(req.body.random);
+  var orderId= req.body.orderId;
    var stripeToken = req.body.stripeToken;
+   var shippingAddress={
+    name: req.body.stripeShippingName,
+    street: req.body.stripeShippingAddressLine1,
+    city: req.body.stripeShippingAddressCity,
+    state: req.body.stripeShippingAddressState,
+    zipCode: req.body.stripeShippingAddressZip,
+    category: 'shipping',
+    userId: req.user.id
+   }
+
+   var billingAddress={
+    name: req.body.stripeBillingName,
+    street: req.body.stripeBillingAddressLine1,
+    city: req.body.stripeBillingAddressCity,
+    state: req.body.stripeBillingAddressState,
+    zipCode: req.body.stripeBillingAddressZip,
+    category: 'billing',
+    userId: req.user.id
+   }
+
+
    var charge = stripe.charges.create({
      amount: 1000, // amount in cents, again
      currency: "usd",
@@ -25,39 +43,24 @@ router.post('/', function(req, res, next) {
    }, function(err, charge) {
      if (err && err.type === 'StripeCardError') {
        // The card has been declined
+       res.sendStatus(404);
      }
-   });
+     else{
+        return Promise.all([Address.findOrCreate({where: shippingAddress}),  Address.findOrCreate({where: billingAddress})])
+        .then(function(addresses){
+          var shippingAddress= addresses[0][0];
+          var billingAddress= addresses[1][0];
+          return Promise.all([shippingAddress.addOrders([orderId]), billingAddress.addOrders([orderId])]);
+        })
+        .then(function(){
+          res.redirect('/');
+        });
 
-  res.sendStatus(200);
+     }
+
+   });
 
 });
 
-// router.post('/', function(req, res, next) {
-//   Category.create(req.body)
-//   .then(category => res.send(category))
-//   .catch(next);
-// });
-
-// router.get('/:categoryId', function(req, res) {
-//   res.json(req.category);
-// });
-
-// router.put('/:categoryId', function(req, res, next) {
-//   req.category.update(req.body).then(function(category){
-//     res.status(200).json(category);
-//   }).catch(next)
-// });
-
-// router.delete('/:categoryId', function(req, res, next) {
-//   req.category.destroy().then(function(){
-//     res.sendStatus(204);
-//   }).catch(next)
-// });
-
-
-
-
-// (Assuming you're using express - expressjs.com)
-// Get the credit card details submitted by the form
 
 

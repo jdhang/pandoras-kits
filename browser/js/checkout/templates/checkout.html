@@ -2,28 +2,21 @@
     <div class="row cart-body">
       <div class="col-lg-6 panel panel-info">
       		<h2>Order Form</h2>
-            <form name=purchaseForm id='payment-form' action='/api/checkout' method="POST">
-    			  	<h3>Payment Information</h3>
-                    <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="pk_test_BDbesOBtm6tcJRe3BlqYy4Vd"
-                        data-amount="2000"
-                        data-name="Pandora's Kits"
-                        data-description="Payment Info"
-                        data-image=""
-                        data-locale="auto">
-                      </script>
-                <div class="section">
-    			  	<h3>Billing Information</h3>
-
-    			  	<address-form></address-form>
-                </div>
-                <div class="section">
-    			  	<h3>Shipping Information</h3>
-    			  	<address-form></address-form>
-          		</div>
+            <form name=purchaseForm id='payment-form' action='/checkout' method="POST">
+                <input type='hidden' name='orderId' value='{{order.id}}'>
+                <h3>Proceed To Payment</h3>
+                <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_BDbesOBtm6tcJRe3BlqYy4Vd"
+                    data-amount="2000"
+                    data-name="Pandora's Kits"
+                    data-description="Payment Info"
+                    data-image=""
+                    data-locale="auto"
+                    data-shipping-address
+                    data-billing-address='true'>
+                  </script>
             </form>
-            <button class="btn btn-primary section" ng-click="submitOrder(order)" ng-disabled="purchaseForm.$invalid">Submit Order</button>
       </div>
       <div class="col-lg-6 panel panel-info">
       	<h2>Order Total: {{ order.subtotal | currency }}</h2>
