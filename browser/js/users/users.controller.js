@@ -23,6 +23,8 @@ app.controller('UsersController', function ($scope, UsersFactory, users, $state,
 
 app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService, $state) => {
 
+  $scope.p = {}
+
   AuthService.getLoggedInUser()
   .then(user => {
     $scope.user = user
@@ -36,24 +38,23 @@ app.controller('AccountCtrl', ($scope, $q, UsersFactory, AuthService, $state) =>
     $scope.user.orders = results[1]
   })
 
-  $scope.error = null
-  $scope.success = null
-
   $scope.changePw = (p) => {
-    $scope.error = null
-    $scope.success = null
+    console.log($scope.p)
+    $scope.alert = null
 
     UsersFactory.changePw($scope.user.id, p.op, p.np)
     .then(() => {
-      $scope.error = null
-      $scope.success = 'Password change was successful.'
-      $state.go('account.password', { success: true })
+      $scope.alert = { type: 'success', msg: 'Password change was successful.' }
+      $scope.p = {}
     })
     .catch(() => {
-      $scope.success = null
-      $scope.error = 'Invalid password.'
-      $state.go('account.password', { error: true })
+      $scope.alert = { type: 'danger', msg: 'Invalid password.' }
+      $scope.p = {}
     })
+  }
+
+  $scope.close = () => {
+    $scope.alert = null
   }
 
 })
