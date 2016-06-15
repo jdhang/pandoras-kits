@@ -23,7 +23,7 @@ describe('Reviews Route', function () {
       return Review.create({
         title: 'Best Kit Ever',
         num_stars: 4,
-        content: 'Awesome kit!!'
+        content: 'Awesome kit test test test test!!'
       })
       .then(function(review){
         testReview= review;
