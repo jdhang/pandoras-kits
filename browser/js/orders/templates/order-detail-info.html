@@ -28,7 +28,7 @@
         </td>
         <td>{{ orderDetail.unitPrice | currency }}</td>
         <td>
-          <input type='text' class='d-qty form-control' ng-if='editable' ng-model='orderDetail.quantity' />
+          <input type='number' class='d-qty form-control' ng-if='editable' ng-model='orderDetail.quantity' />
           <span ng-if='!editable'>{{ orderDetail.quantity }}</span>
         </td>
         <td class='d-subtotal text-right'>{{ orderDetail.subtotal | currency }}</td>
