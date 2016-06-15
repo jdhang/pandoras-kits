@@ -7,7 +7,8 @@
     "start": "nodemon --watch server -e js,html server/start.js",
     "sendTestServerToCC": "CODECLIMATE_REPO_TOKEN=f2802a1b9ce4423f9e3bbc3481f7aa18be866bacad816d122b71a91a6855b9fa codeclimate-test-reporter < ./coverage/server/lcov.info",
     "postinstall": "gulp build",
-    "test": "mocha && istanbul report text-summary lcov"
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "engines": {
     "node": ">=4.0.0"
