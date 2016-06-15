@@ -56,9 +56,9 @@ gulp.task('buildJS', ['lintJS'], function () {
 
 gulp.task('testServerJS', function () {
     require('babel-register');
-	return gulp.src('./tests/server/**/*.js', {
-		read: false
-	}).pipe(mocha({ reporter: 'spec' }));
+	// return gulp.src('./tests/server/**/*.js', {
+	//   read: false
+	// }).pipe(mocha({ reporter: 'spec' }));
 });
 
 gulp.task('testServerJSWithCoverage', function (done) {
@@ -74,9 +74,17 @@ gulp.task('testServerJSWithCoverage', function (done) {
                     dir: './coverage/server/',
                     reporters: ['lcov', 'html', 'text']
                 }))
-                .on('end', done);
+                .on('end', function () {
+                  done()
+                })
         });
 });
+
+gulp.task('pre-test', function() {
+  return gulp.src('./server/**/*.js')
+  .pipe(istanbul({ includeUntested: true }))
+  .pipe(istanbul.hookRequire())
+})
 
 gulp.task('testBrowserJS', function (done) {
     karma.start({
@@ -108,11 +116,18 @@ gulp.task('buildCSS', function () {
 });
 
 gulp.task('set-test-node-env', function () {
-  return process.env.NODE_ENV = 'testing'
+  process.env.NODE_ENV = 'testing'
+  return
 })
 
 gulp.task('reset-node-env', function () {
-  return process.env.NODE_ENV = ''
+  process.env.NODE_ENV = ''
+  return
+})
+
+gulp.task('exit', function () {
+  process.exit(0)
+  return
 })
 
 // Production tasks
@@ -150,8 +165,8 @@ gulp.task('build', function () {
     }
 });
 
-gulp.task('testAll', function () {
-  runSeq('testServerJSWithCoverage', 'testBrowserJS', 'mergeLcov')
+gulp.task('testAll', function (done) {
+  runSeq('set-test-node-env', 'testServerJSWithCoverage', 'testBrowserJS', 'mergeLcov', 'reset-node-env', 'exit', done)
 })
 
 gulp.task('default', function () {
