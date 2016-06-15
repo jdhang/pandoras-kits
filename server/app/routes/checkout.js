@@ -49,10 +49,11 @@ router.post('/', function(req, res, next) {
      else{
         return Promise.all([Address.findOrCreate({where: shippingAddress}),  Address.findOrCreate({where: billingAddress})])
         .then(function(addresses){
+          var date = Date.now()
           var shippingAddress= addresses[0][0];
           var billingAddress= addresses[1][0];
           var updateOrder = Order.findById(orderId).then(function(order) {
-            return order.update({ status: "processing" })
+            return order.update({ status: "processing", paymentDate: date })
           })
           return Promise.all([shippingAddress.addOrders([orderId]), billingAddress.addOrders([orderId]), updateOrder]);
         })
