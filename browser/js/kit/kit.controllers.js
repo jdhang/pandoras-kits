@@ -23,11 +23,9 @@ app.controller('KitController', function ($scope, CartFactory, KitsFactory, Auth
     AuthService.getLoggedInUser()
     .then(user => {
       $scope.user = user
-      if ($scope.dataid !== undefined) {
-        $scope.notReviewed = $scope.kit.reviews.filter(review => {
-          return review.userId === $scope.user.id
-        }).length === 0
-      }
+      $scope.notReviewed = $scope.kit.reviews.filter(review => {
+        return review.userId === $scope.user.id
+      }).length === 0
     })
   }
 

@@ -4,7 +4,7 @@ app.controller('ReviewFormCtrl', ($scope, $uibModalInstance, $state, ReviewsFact
 
   if (!$scope.review) {
     $scope.review = {
-      kitId: $scope.dataid
+      kitId: $scope.kit.id
     }
   }
 
