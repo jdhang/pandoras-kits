@@ -52,7 +52,7 @@ router.post('/', function(req, res, next) {
           var shippingAddress= addresses[0][0];
           var billingAddress= addresses[1][0];
           var updateOrder = Order.findById(orderId).then(function(order) {
-            return order.update({ status: "processing" })
+            return order.update({ status: "processing", paymentDate: Date.now() })
           })
           return Promise.all([shippingAddress.addOrders([orderId]), billingAddress.addOrders([orderId]), updateOrder]);
         })
