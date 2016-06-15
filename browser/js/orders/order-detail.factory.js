@@ -12,6 +12,8 @@ app.factory('OrderDetailFactory', ($http, $kookies, $state, $q) => {
 
   obj.getById = id => $http.get(baseUrl + id).then(getData)
 
+  obj.update = orderDetail => $http.put(baseUrl + orderDetail.id, orderDetail).then(getData)
+
   obj.delete = orderDetail => {
   	if (orderDetail.id) return $http.delete(baseUrl + orderDetail.id);
   	else {
@@ -26,8 +28,8 @@ app.factory('OrderDetailFactory', ($http, $kookies, $state, $q) => {
 			return -1;
 		}
 
-		currCart.splice(indexOfKit(), 1);		
-		$kookies.set('cart', currCart, {path: '/'});
+		currCart.splice(indexOfKit(), 1)
+		$kookies.set('cart', currCart, {path: '/'})
 		return $q.resolve(true);
   	}
   }

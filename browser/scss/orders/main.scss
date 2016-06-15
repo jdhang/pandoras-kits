@@ -27,6 +27,63 @@
   padding-left: 0px;
 }
 
+.d-table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.d-table > tbody > tr.no-border > td {
+  border: 0px;
+}
+
+.d-table > thead > tr > th {
+  border: 0px;
+}
+
+.d-table > tbody + tbody {
+  border: 1px solid #DDD;
+}
+
+.d-info {
+
+  .d-name {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .d-qty {
+
+    margin-bottom: 0px;
+    max-width: 75px;
+
+  }
+
+  .d-subtotal {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+}
+
+.d-action {
+
+  line-height: 10px;
+  vertical-align: top;
+
+  .d-remove {
+    font-size: 12px;
+  }
+
+}
+
+.d-footer {
+
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+}
+
 #order-detail {
 
   .order-header {

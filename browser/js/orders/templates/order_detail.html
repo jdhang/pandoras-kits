@@ -1,6 +1,10 @@
 <div class='container' id='order-detail'>
+  <uib-alert ng-if='alert' type='{{ alert.type }}' close='close()'>{{ alert.msg }}</uib-alert>
 
   <order-detail-status order='order'></order-detail-status>
-  <detail-info button-name="Save" details='order.orderDetails'></detail-info>
+  <detail-info button-name="Save"
+    details='order.orderDetails'
+    button-function='update'
+    order='order'></detail-info>
 
 </div>

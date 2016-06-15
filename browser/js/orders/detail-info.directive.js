@@ -6,19 +6,37 @@ app.directive('detailInfo', (OrderDetailFactory, $state) => {
     restrict: 'E',
     scope: {
       details: '=',
+      order: '=?',
       editable: '=?',
       buttonName: '@',
       buttonFunction: '='
     },
     templateUrl: 'js/orders/templates/order-detail-info.html',
-    link: function(scope, element, attrs) {
-    	scope.delete = function(orderDetail) {
+    link: scope => {
+
+      scope.range = (min, max) => {
+        let arr = []
+        for (let i = min; i <= max; i++) {
+          arr.push(i)
+        }
+        return arr
+      }
+
+      scope.update = orderDetail => {
+        return OrderDetailFactory.update(orderDetail)
+        .then(() => $state.go($state.current, {}, { reload: true }))
+      }
+
+      scope.delete = orderDetail => {
         if (scope.editable) {
-          return OrderDetailFactory.delete(orderDetail).then(function() {
-            return $state.go($state.current, {}, { reload: true })
-          })
+          return OrderDetailFactory.delete(orderDetail)
+          .then(() => $state.go($state.current, {}, { reload: true }))
         }
       }
+
+      scope.total = scope.details.map(detail => detail.subtotal)
+                                 .reduce((prev, curr) => prev + curr)
+
     }
   }
 

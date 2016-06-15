@@ -29,6 +29,7 @@ app.config(($stateProvider) => {
     url: '/orders/:orderId',
     templateUrl: 'js/orders/templates/order_detail.html',
     controller: 'OrderDetailController',
+    params: { success: null },
     resolve: {
       order: (OrdersFactory, $stateParams) => {
         return OrdersFactory.getById($stateParams.orderId)
