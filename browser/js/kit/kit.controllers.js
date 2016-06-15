@@ -32,6 +32,11 @@ app.controller('KitController', function ($scope, CartFactory, KitsFactory, Auth
   }
 
   $scope.kit = kit
+  
+  var average = $scope.kit.reviews.map(function(e) {
+    return e.num_stars
+  }).reduce(function(a,b) { return a + b }) / $scope.kit.reviews.length
+  $scope.kit.reviews.average = Math.round(average)
 
   $scope.userQty = 1;
 
