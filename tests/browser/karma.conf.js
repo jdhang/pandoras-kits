@@ -38,6 +38,9 @@ module.exports = function (config) {
             }, {
                 type: 'html',
                 subdir: '.'
+            }, {
+              type: 'lcov',
+              subdir: '.'
             }]
         }
     };

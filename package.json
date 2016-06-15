@@ -7,8 +7,8 @@
     "start": "nodemon --watch server -e js,html server/start.js",
     "sendTestServerToCC": "CODECLIMATE_REPO_TOKEN=f2802a1b9ce4423f9e3bbc3481f7aa18be866bacad816d122b71a91a6855b9fa codeclimate-test-reporter < ./coverage/server/lcov.info",
     "postinstall": "gulp build",
-    "test": "gulp testServerJSWithCoverage",
-    "coveralls": "cat ./coverage/server/lcov.info | ./node_modules/.bin/coveralls"
+    "test": "gulp testAll",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -76,6 +76,7 @@
     "coveralls": "^2.11.9",
     "faker": "^3.1.0",
     "karma-phantomjs-launcher": "^1.0.0",
+    "lcov-result-merger": "^1.2.0",
     "mocha-lcov-reporter": "^1.2.0",
     "ngkookies": "^0.2.0",
     "phantomjs-prebuilt": "^2.1.7",
