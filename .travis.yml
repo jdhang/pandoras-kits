@@ -10,4 +10,6 @@ branches:
 services:
   - postgresql
 after_success:
+  - npm test
   - npm run coveralls
+  - rm -rf ./coverage
