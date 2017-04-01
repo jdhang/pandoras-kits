@@ -1,3 +1,6 @@
 machine:
   node:
     version: 6.1.0
+database:
+  override:
+    - createdb testing_pandoras_kits
