@@ -1,6 +1,3 @@
 module.exports = {
-    "extends": "fullstack",
-    "plugins": [
-        "import"
-    ]
+    "extends": "fullstack"
 };
