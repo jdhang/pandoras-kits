@@ -1,5 +1,3 @@
-'use strict'
-
 const Promise = require('sequelize').Promise
 const Order = require('../server/db').model('order')
 

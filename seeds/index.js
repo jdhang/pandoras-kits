@@ -1,5 +1,3 @@
-'use strict'
-
 const seedUsers = require('./seedUsers')
 const seedOrders = require('./seedOrders')
 const seedKits = require('./seedKits')

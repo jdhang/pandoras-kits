@@ -1,5 +1,3 @@
-'use strict'
-
 app.config(($stateProvider) => {
 
   $stateProvider.state('orders', {

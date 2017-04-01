@@ -1,4 +1,3 @@
-'use strict';
 module.exports = function (app, db) {
 
     // setValue and getValue are merely alias

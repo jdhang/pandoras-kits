@@ -1,4 +1,3 @@
-'use strict';
 var path = require('path');
 var session = require('express-session');
 var passport = require('passport');

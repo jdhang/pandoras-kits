@@ -1,5 +1,3 @@
-'use strict'
-
 app.factory('UsersFactory', function ($http, $q) {
 
 	var obj = {};

@@ -42,7 +42,7 @@ gulp.task('lintJS', function () {
 
 });
 
-gulp.task('buildJS', ['lintJS'], function () {
+gulp.task('buildJS', function () {
     return gulp.src(['./browser/js/app.js', './browser/js/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
@@ -62,6 +62,7 @@ gulp.task('testServerJS', function () {
 });
 
 gulp.task('testServerJSWithCoverage', function (done) {
+    require('babel-register');
     gulp.src('./server/**/*.js')
         .pipe(istanbul({
             includeUntested: true

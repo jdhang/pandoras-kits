@@ -1,5 +1,3 @@
-'use strict'
-
 const Faker = require('faker')
 const Promise = require('sequelize').Promise
 const Kit = require('../server/db').model('kit')

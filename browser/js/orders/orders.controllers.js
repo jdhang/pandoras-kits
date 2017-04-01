@@ -1,5 +1,3 @@
-'use strict'
-
 app.controller('OrdersController', (allOrders, userOrders, user, $scope) => {
   $scope.currUser = user;
 

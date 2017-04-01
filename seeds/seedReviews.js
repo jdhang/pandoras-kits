@@ -1,5 +1,3 @@
-'use strict'
-
 const Promise = require('sequelize').Promise
 const Review = require('../server/db').model('review')
 
