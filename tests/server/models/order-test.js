@@ -1,5 +1,3 @@
-'use strict'
-
 const Promise = require('sequelize').Promise
 const chai = require('chai')
 chai.use(require('chai-things'))

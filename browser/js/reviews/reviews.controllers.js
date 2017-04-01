@@ -1,5 +1,3 @@
-'use strict'
-
 app.controller('ReviewFormCtrl', ($scope, $uibModalInstance, $state, ReviewsFactory) => {
 
   if (!$scope.review) {

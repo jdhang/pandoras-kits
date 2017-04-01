@@ -1,5 +1,3 @@
-'use strict'
-
 app.directive('detailInfo', (OrderDetailFactory, $state) => {
 
   return {

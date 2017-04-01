@@ -1,5 +1,3 @@
-'use strict'
-
 app.factory('ReviewsFactory', ($http) => {
 
   let reviewObj = {}

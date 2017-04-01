@@ -1,4 +1,3 @@
-'use strict';
 var chalk = require('chalk');
 var db = require('./db');
 

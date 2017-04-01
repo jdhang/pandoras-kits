@@ -1,4 +1,3 @@
-'use strict';
 window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngKookies']);
 
 app.config(function ($urlRouterProvider, $locationProvider, $kookiesProvider) {

@@ -1,5 +1,3 @@
-'use strict'
-
 app.factory('CartFactory', ($http, $kookies, $q) => {
 	let obj = {};
     

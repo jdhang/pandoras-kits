@@ -1,5 +1,3 @@
-'use strict'
-
 app.directive('reviewItem', (AuthService, $uibModal) => {
 
   return {

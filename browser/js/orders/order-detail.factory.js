@@ -1,5 +1,3 @@
-'use strict'
-
 app.factory('OrderDetailFactory', ($http, $kookies, $state, $q) => {
 
   let obj = {}

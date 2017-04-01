@@ -1,5 +1,3 @@
-'use strict'
-
 app.directive('orderDetailStatus', () => {
 
   return {

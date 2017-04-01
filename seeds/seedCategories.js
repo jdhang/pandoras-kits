@@ -1,5 +1,3 @@
-'use strict'
-
 const Promise = require('sequelize').Promise
 const Category = require('../server/db').model('category')
 

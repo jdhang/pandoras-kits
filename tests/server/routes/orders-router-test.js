@@ -1,5 +1,3 @@
-'use strict'
-
 const expect = require('chai').expect;
 const Promise = require('sequelize').Promise
 const db = require('../../../server/db')

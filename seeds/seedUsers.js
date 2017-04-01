@@ -1,5 +1,3 @@
-'use strict'
-
 const Faker = require('faker')
 const Promise = require('sequelize').Promise
 const User = require('../server/db').model('user')

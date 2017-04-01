@@ -1,5 +1,3 @@
-'use strict'
-
 const router = require('express').Router()
 
 var stripe = require("stripe")("sk_test_XgiEaA9iBtEWcpfiFsvFBizL");
