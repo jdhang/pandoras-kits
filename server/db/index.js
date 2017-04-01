@@ -1,13 +1,11 @@
-'use strict'
-
-const db = require('./_db')
-const Review = require('./models/review')(db)
-const Item = require('./models/item')(db)
-const User = require('./models/user')(db)
-const Category= require('./models/categories')(db)
-const OrderDetail = require('./models/order_detail')(db)
-const Order = require('./models/order')(db)
-const Kit = require('./models/kit')(db)
+const db = require('./_db');
+const Review = require('./models/review')(db);
+const Item = require('./models/item')(db);
+const User = require('./models/user')(db);
+const Category= require('./models/categories')(db);
+const OrderDetail = require('./models/order_detail')(db);
+const Order = require('./models/order')(db);
+const Kit = require('./models/kit')(db);
 const Address= require('./models/address')(db);
 
 Order.hasMany(OrderDetail)
