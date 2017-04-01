@@ -74,6 +74,9 @@
   "devDependencies": {
     "chai-things": "^0.2.0",
     "coveralls": "^2.11.9",
+    "eslint": "^3.19.0",
+    "eslint-config-fullstack": "^2.8.1",
+    "eslint-plugin-react": "^6.10.3",
     "faker": "^3.1.0",
     "karma-phantomjs-launcher": "^1.0.0",
     "lcov-result-merger": "^1.2.0",
