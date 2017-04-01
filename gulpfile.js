@@ -62,6 +62,7 @@ gulp.task('testServerJS', function () {
 });
 
 gulp.task('testServerJSWithCoverage', function (done) {
+    require('babel-register');
     gulp.src('./server/**/*.js')
         .pipe(istanbul({
             includeUntested: true
